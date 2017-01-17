@@ -1,0 +1,75 @@
+<style scoped lang="less">
+    .index {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    .top {
+        width: 100%;
+        height: 10%;
+        background: cadetblue;
+    }
+
+    .left {
+        width: 240px;
+        height: 90%;
+        /*background: rosybrown;*/
+    }
+
+    .center {
+        width: 100%;
+        height: 85%;
+        position: fixed;
+        padding-right: 240px;
+        top: 10%;
+        left: 240px;
+        /*background: darkgrey;*/
+    }
+
+    .bottom {
+        width: 100%;
+        height: 5%;
+        position: fixed;
+        padding-right: 240px;
+        top: 95%;
+        left: 240px;
+        /*background: forestgreen;*/
+    }
+</style>
+<template>
+    <div class="index">
+        <div class="top">
+            <top></top>
+        </div>
+        <div class="left">
+            <left></left>
+        </div>
+        <div class="center">
+            <bg-center></bg-center>
+        </div>
+        <div class="bottom">
+            <bottom></bottom>
+        </div>
+    </div>
+</template>
+<script>
+    import Top from './top.vue'
+    import Left from './left.vue'
+    import BgCenter from './center.vue'
+    import Bottom from './bottom.vue'
+    export default {
+        data () {
+            return {
+            }
+        },
+        components: {
+            top: Top,
+            left: Left,
+            BgCenter: BgCenter,
+            bottom: Bottom,
+        }
+    }
+</script>
