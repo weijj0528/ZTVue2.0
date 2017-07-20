@@ -1,7 +1,18 @@
 <!-- -->
 <template>
     <div class="index">
-        <router-view></router-view>
+        <div class="top">
+            <top></top>
+        </div>
+        <div class="left">
+            <left></left>
+        </div>
+        <div class="center">
+            <bg-center></bg-center>
+        </div>
+        <div class="bottom">
+            <bottom></bottom>
+        </div>
     </div>
 </template>
 <script>

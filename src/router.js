@@ -2,14 +2,16 @@
  * Created by aresn on 16/8/22.
  */
 import VueRouter from 'vue-router';
-const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' }
+import Main from './views/main.vue';
+import Login from './views/login.vue';
+// const Login = { template: '<div>Login</div>' }
+// const Main = { template: '<div>Main</div>' }
 
 const router = new VueRouter({
     linkActiveClass: 'active',
     routes: [
-        {path: '/foo', component: Foo},
-        {path: '/bar', component: Bar}
+        {path: '/login', component: Login},
+        {path: '/main', component: Main}
     ]
 })
 export default router;

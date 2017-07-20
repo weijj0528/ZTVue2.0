@@ -3,14 +3,14 @@
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ElementUi from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';    // 使用 CSS
 import router from './router'
 import index from './views/index.vue'
 import store from './vuex/store';
 
 Vue.use(VueRouter)
-Vue.use(ElementUi)
+Vue.use(iView)
 
 const routerApp = new Vue({
     store,

@@ -10,25 +10,42 @@
 </style>
 <template>
     <div class="left">
-        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
-            <el-submenu index="1">
-                <template slot="title"><i class="el-icon-message"></i>导航一</template>
-                <el-menu-item-group>
-                    <template slot="title">分组一</template>
-                    <el-menu-item index="1-1">选项1</el-menu-item>
-                    <el-menu-item index="1-2">选项2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="分组2">
-                    <el-menu-item index="1-3">选项3</el-menu-item>
-                </el-menu-item-group>
-                <el-submenu index="1-4">
-                    <template slot="title">选项4</template>
-                    <el-menu-item index="1-4-1">选项1</el-menu-item>
-                </el-submenu>
-            </el-submenu>
-            <el-menu-item index="2"><i class="el-icon-menu"></i>导航二</el-menu-item>
-            <el-menu-item index="3"><i class="el-icon-setting"></i>导航三</el-menu-item>
-        </el-menu>
+         <Col span="2">
+            <Menu :theme="theme2" active-name="1-2" :open-names="['1']">
+                <Submenu name="1">
+                    <template slot="title">
+                        <Icon type="ios-paper"></Icon>
+                        内容管理
+                    </template>
+                    <Menu-item name="1-1">文章管理</Menu-item>
+                    <Menu-item name="1-2">评论管理</Menu-item>
+                    <Menu-item name="1-3">举报管理</Menu-item>
+                </Submenu>
+                <Submenu name="2">
+                    <template slot="title">
+                        <Icon type="ios-people"></Icon>
+                        用户管理
+                    </template>
+                    <Menu-item name="2-1">新增用户</Menu-item>
+                    <Menu-item name="2-2">活跃用户</Menu-item>
+                </Submenu>
+                <Submenu name="3">
+                    <template slot="title">
+                        <Icon type="stats-bars"></Icon>
+                        统计分析
+                    </template>
+                    <Menu-group title="使用">
+                        <Menu-item name="3-1">新增和启动</Menu-item>
+                        <Menu-item name="3-2">活跃分析</Menu-item>
+                        <Menu-item name="3-3">时段分析</Menu-item>
+                    </Menu-group>
+                    <Menu-group title="留存">
+                        <Menu-item name="3-4">用户留存</Menu-item>
+                        <Menu-item name="3-5">流失用户</Menu-item>
+                    </Menu-group>
+                </Submenu>
+            </Menu>
+        </Col>
     </div>
 </template>
 <script>
@@ -51,7 +68,6 @@
                 console.log("打开")
             },
             handleClose:function () {
-
                 console.log("关闭")
             }
         }
