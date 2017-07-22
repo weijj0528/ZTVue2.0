@@ -1,18 +1,10 @@
 <!-- -->
 <template>
     <div class="index">
-        <div class="top">
-            <top></top>
-        </div>
-        <div class="left">
-            <left></left>
-        </div>
-        <div class="center">
-            <bg-center></bg-center>
-        </div>
-        <div class="bottom">
-            <bottom></bottom>
-        </div>
+        <top class="top"></top>
+        <left class="left"></left>
+        <bg-center class="center"></bg-center>
+        <bottom class="bottom"></bottom>
     </div>
 </template>
 <script>
@@ -20,10 +12,10 @@
     import Left from './left.vue'
     import BgCenter from './center.vue'
     import Bottom from './bottom.vue'
+
     export default {
-        data () {
-            return {
-            }
+        data() {
+            return {}
         },
         components: {
             top: Top,
