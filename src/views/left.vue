@@ -56,8 +56,6 @@
         mounted: function () {
             this.$nextTick(function () {
                 // 代码保证 this. 在 document 中
-
-
             })
         },
         beforeDestroy () {
