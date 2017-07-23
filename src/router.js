@@ -4,12 +4,11 @@
 import VueRouter from 'vue-router';
 import Main from './views/main.vue';
 import Login from './views/login.vue';
-// const Login = { template: '<div>Login</div>' }
-// const Main = { template: '<div>Main</div>' }
 
 const router = new VueRouter({
     linkActiveClass: 'active',
     routes: [
+        {path: '/', component: Main},
         {path: '/login', component: Login},
         {path: '/main', component: Main}
     ]

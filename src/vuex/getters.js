@@ -5,6 +5,6 @@
 // 在 ES6 里你可以写成：
 // export const getHeaderTitle = state => state.headerTitle;
 
-export function getHeaderTitle (state) {
-  return state.headerTitle;
+export function menus (state) {
+  return state.menus;
 };
