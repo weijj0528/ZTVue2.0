@@ -12,21 +12,19 @@
 <div class="left">
   <Col span="2">
   <Menu :theme="theme2" active-name="1-2" :open-names="['1']">
-    <Submenu name="1">
+    <Submenu  v-for="(menu,index) in menus" name='{{menu.id}}'>
       <template slot="title">
                         <Icon type="ios-paper"></Icon>
-                        内容管理
+                        {{menus[index].id}}-{{menu.name}}
                     </template>
-      <Menu-item name="1-1">文章管理</Menu-item>
-      <Menu-item name="1-2">评论管理</Menu-item>
-      <Menu-item name="1-3">举报管理</Menu-item>
+      <Menu-item v-for="(subMenu,i) in menu.subMenus" name='{{menu.subMenus[i].id}}'>{{menu.subMenus[i].id}}-{{subMenu.name}}</Menu-item>
     </Submenu>
   </Menu>
   </Col>
 </div>
 </template>
 <script>
-import {mapGetters} from 'vuex'
+import {menus} from '../vuex/getters'
 export default {
   data() {
     return {}
@@ -36,6 +34,11 @@ export default {
     // ...mapGetters([
     //   'menus'
     // ])
+  },
+  vuex:{
+    getters:{
+      'menus':menus
+    }
   },
   mounted: function() {
     this.$nextTick(function() {
