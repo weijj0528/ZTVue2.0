@@ -2,7 +2,7 @@
 <template>
 <div class="index">
   <top class="top"></top>
-  <left class="left"></left>
+  <left class="left" :menus='menus' v-on:menu-select='menuSelect'></left>
   <bg-center class="center"></bg-center>
   <bottom class="bottom"></bottom>
 </div>
@@ -12,7 +12,8 @@ import Top from './top.vue'
 import Left from './left.vue'
 import BgCenter from './center.vue'
 import Bottom from './bottom.vue'
-
+import util from '../libs/util'
+import {menus} from '../vuex/getters'
 export default {
   data() {
     return {}
@@ -22,6 +23,16 @@ export default {
     left: Left,
     BgCenter: BgCenter,
     bottom: Bottom,
+  },
+  vuex:{
+    getters:{
+      'menus':menus
+    }
+  },
+  methods:{
+    menuSelect:function(menu){
+
+    }
   }
 }
 </script>

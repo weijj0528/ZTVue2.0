@@ -8,3 +8,6 @@
 export function menus (state) {
   return state.menus;
 };
+export function tabs (state) {
+  return state.tabs;
+};

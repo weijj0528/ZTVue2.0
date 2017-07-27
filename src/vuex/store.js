@@ -10,10 +10,6 @@ Vue.use(Vuex);
 
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
-  'headerTitle': '福利',
-  'menuShow': false,
-  'loadingShow': false,
-  'news': 5,
   'menus': [{
     'id': 1,
     'name': '内容管理',
@@ -34,7 +30,11 @@ const state = {
       'id': 22,
       'name': '季度分析'
     }]
-  }]
+  }],
+  // 当前活动菜单
+  'activeMenuName':'',
+  // 页签
+  'tabs':[]
 };
 // 创建一个对象存储一系列我们接下来要写的 mutation 函数
 const mutations = {

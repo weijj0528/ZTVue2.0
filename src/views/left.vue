@@ -11,33 +11,30 @@
 <template>
 <div class="left">
   <Col span="2">
-  <Menu :theme="theme2" active-name="1-2" :open-names="['1']">
-    <Submenu  v-for="(menu,index) in menus" name='{{menu.id}}'>
+  <Menu :theme="theme2" active-name="1-2" :open-names="['1']" v-on:on-select="onMenuSelect">
+    <Submenu v-for="(menu,index) in menus" :name='menu.id'>
       <template slot="title">
                         <Icon type="ios-paper"></Icon>
-                        {{menus[index].id}}-{{menu.name}}
+                        {{menu.id}}-{{menu.name}}
                     </template>
-      <Menu-item v-for="(subMenu,i) in menu.subMenus" name='{{menu.subMenus[i].id}}'>{{menu.subMenus[i].id}}-{{subMenu.name}}</Menu-item>
+      <Menu-item v-for="(subMenu,i) in menu.subMenus" :name='subMenu.id'>{{subMenu.id}}-{{subMenu.name}}</Menu-item>
     </Submenu>
   </Menu>
   </Col>
 </div>
 </template>
 <script>
-import {menus} from '../vuex/getters'
+import util from '../libs/util'
 export default {
   data() {
     return {}
   },
-  computed: {
-    // 使用对象展开运算符将 getters 混入 computed 对象中
-    // ...mapGetters([
-    //   'menus'
-    // ])
-  },
-  vuex:{
-    getters:{
-      'menus':menus
+  props: {
+    menus: {
+      type: Array,
+      default: function() {
+        return [];
+      }
     }
   },
   mounted: function() {
@@ -45,15 +42,12 @@ export default {
       // 代码保证 this. 在 document 中
     })
   },
-  beforeDestroy() {
-
-  },
   methods: {
-    handleOpen: function() {
-      console.log("打开")
-    },
-    handleClose: function() {
-      console.log("关闭")
+    onMenuSelect: function(name) {
+      console.log('菜单点击：' + name);
+      let menu = util.selectMenu(this.menus, name);
+      console.log('菜单点击：' + menu.name);
+      this.$emit("menu-select", menu);
     }
   }
 }
