@@ -3,13 +3,7 @@
     /*@import '../styles/common.css';*/
 </style>
 <template>
-    <div>
-        <Tabs type="card" closable @on-tab-remove="handleTabRemove">
-            <Tab-pane label="标签一" ></Tab-pane>
-            <Tab-pane label="标签二" ></Tab-pane>
-            <Tab-pane label="标签三" ></Tab-pane>
-        </Tabs>
-    </div>
+
 </template>
 <script>
     export default {
