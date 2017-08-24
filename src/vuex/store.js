@@ -6,6 +6,8 @@ import Vuex from 'vuex';
 import * as actions from './actions';
 import * as getters from './getters';
 import * as mutations from './mutations';
+import common from './modules/common'
+import user from './modules/user'
 
 Vue.use(Vuex)
 // 创建一个对象来保存应用启动时的初始状态
@@ -42,5 +44,8 @@ export default new Vuex.Store({
   mutations,
   actions,
   getters,
-  modules: {}
+  modules: {
+    common,
+    user
+  }
 });
