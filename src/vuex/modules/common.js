@@ -1,9 +1,8 @@
 import httpService from '../../libs/httpService'
 
 const state = {
-    scrollTop: 0,
     // 菜单
-    'menus': [{
+    menus: [{
         'id': '1',
         'name': '用户管理',
         'subMenus': [{
@@ -31,7 +30,12 @@ const state = {
         }]
     }],
     // 当前活动菜单
-    'activeMenuName': ''
+    activeMenuName: '',
+    // 导航栏
+    tabs: [{
+        'id': '0',
+        'name': '主页'
+    }]
 }
 
 // getters
@@ -48,6 +52,12 @@ const actions = {
             commit('setScrollTop', param);
             resolve();
         })
+    },
+    tabsAdd({commit, state}, tab) {
+        commit("tabsAdd", tab);
+    },
+    tabsRemove({commit, state}, id) {
+        commit("tabsRemove", id);
     }
 }
 
@@ -59,7 +69,6 @@ const mutations = {
     },
     tabsRemove(state, id) {
         console.log('mutations-tabsRemove:' + id);
-        let index = -1
         for (let i = 0; i < state.tabs.length; i++) {
             let tab = state.tabs[i];
             if (tab.id === id) {

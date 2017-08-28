@@ -2,10 +2,13 @@
 <template>
     <div class="index">
         <top class="top"></top>
-        <left class="left" :menus='menus' @menu-select='menuSelect'></left>
-        <tab-nav class="nav" :tabs.sync='tabs' :active-tab.sync='active_tab' @on-click="navClick"
-                 @on-close='navClose'></tab-nav>
-        <center class="center"></center>
+        <left class="left" :menus='menus'
+              @menu-select='menuSelect'></left>
+        <tab-nav class="nav" :tabs='tabs' :active-tab='active_tab'
+                 @nav-router="navRouter"
+                 @nav-click="navClick"
+                 @nav-close='navClose'></tab-nav>
+        <router-view class="center"></router-view>
         <bottom class="bottom"></bottom>
     </div>
 </template>
@@ -13,29 +16,30 @@
     import Top from './top.vue'
     import Left from './left.vue'
     import TabNav from './nav.vue'
-    import Center from './center.vue'
     import Bottom from './bottom.vue'
     import util from '../libs/util'
+
     export default {
         data() {
             return {
-                'active_tab': '-1',
-                'tabs': []
+                'active_tab': '0',
             }
         },
         computed: {
             menus() {
                 return this.$store.state.common.menus;
+            },
+            tabs() {
+                return this.$store.state.common.tabs;
             }
         },
         components: {
             top: Top,
             left: Left,
             tabNav: TabNav,
-            center: Center,
             bottom: Bottom,
         },
-        mounted(){
+        mounted() {
 
         },
         methods: {
@@ -53,16 +57,22 @@
                     if (this.active_tab != menu.id)
                         this.active_tab = menu.id;
                 } else {
-                    this.tabs.push(menu);
+                    this.$store.dispatch("tabsAdd", menu);
                     this.active_tab = menu.id;
                 }
                 console.log(this.tabs);
-                // TODO 路由到选择的页面
+            },
+            navRouter: function (id) {
+                console.log('navRouter:' + id);
+                this.$router.push('/wms/home/detail');
             },
             navClick: function (tab) {
-
+                console.log('navClick:' + tab.id);
+                this.active_tab = tab.id;
             },
             navClose: function (tab) {
+                console.log('navClose:' + tab.id);
+                this.$store.dispatch("tabsRemove", tab.id);
             }
         }
     }
