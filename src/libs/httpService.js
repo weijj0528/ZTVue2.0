@@ -13,10 +13,8 @@ var httpService = new Vue({
     version: 1,
     difTime: 0,
     apiUrl: {
-      login: '/account/erpLogin.do',
-      code_login: '/account/verifiLogin.do',
-      getDate: '/system/date.do',
-      most: '/handle/control.do'
+      login: '/user/phoneLogin',
+      most: '/handle/request'
     }
   },
   methods: {
@@ -115,7 +113,7 @@ var httpService = new Vue({
       data.version = this.version;
       let localTime = new Date().getTime();
       data.time = localTime + this.difTime;
-      data.sign = this.getSign('biz_module=' + data.biz_module + '&biz_method=' + data.biz_method + '&time=' + data.time);
+      data.sign = this.getSign('module=' + data.biz_module + '&method=' + data.biz_method + '&time=' + data.time);
       var _self = this;
       return new Promise(function (resolve, reject) {
         axios({method: 'post', url: url, data: data}).then(function (response) {

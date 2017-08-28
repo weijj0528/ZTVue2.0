@@ -1,4 +1,4 @@
-import httpService from '../../common/httpService'
+import httpService from '../../libs/httpService'
 
 
 const state = {
