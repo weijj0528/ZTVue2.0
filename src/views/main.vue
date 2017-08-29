@@ -64,7 +64,7 @@
             },
             navRouter: function (id) {
                 console.log('navRouter:' + id);
-                this.$router.push('/wms/home/detail');
+                this.$router.push('/');
             },
             navClick: function (tab) {
                 console.log('navClick:' + tab.id);
