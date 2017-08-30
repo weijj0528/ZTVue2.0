@@ -5,6 +5,7 @@ node_modules/
 .project
 dist
 dist/*
+dist_prod
 src/config/*.tmp
 src/config/env.js
 /index.html

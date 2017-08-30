@@ -1,11 +1,12 @@
+const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const merge = require('webpack-merge');
 const webpackBaseConfig = require('./webpack.base.config.js');
 
 module.exports = merge(webpackBaseConfig, {
     output: {
+        path: path.join(__dirname, './../dist_prod'),
         filename: '[name].[hash].js',
         chunkFilename: '[name].[hash].chunk.js'
     },
