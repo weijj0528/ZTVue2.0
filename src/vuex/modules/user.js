@@ -1,57 +1,57 @@
-import httpService from '../../libs/httpService'
+import http from '../../libs/httpService'
 
 
 const state = {
-  user: {
-    name: "", idnumber: ""
-  },
+    user: {
+        name: "", idnumber: ""
+    },
 
 }
 
 // getters
 const getters = {
-  user: state => state.user,
-
+    user: state => state.user,
 }
 
 // actions
 const actions = {
-  login({commit, state}, param) {
-    return new Promise((resolve, reject) => {
-      httpService.commonPost(param.path, param.body)
-        .then(function (response) {
-          resolve(response);
+    login({commit, state}, param) {
+        return new Promise((resolve, reject) => {
+            let url = http.urlCommon + http.apiUrl.login;
+            http.commonPost(url, param)
+                .then((res) => {
+                    resolve(res);
+                })
+                .catch((err) => {
+                    reject(err);
+                });
         })
-        .catch(function (error) {
-          reject(error);
-        });
-    })
-  },
-  getUserInfor({commit, state}, param) {
-    return new Promise((resolve, reject) => {
-      httpService.commonPost(param.path, param.body)
-        .then(function (response) {
-          commit('setUserInfo', response);
-          resolve(response);
+    },
+    getUserInfor({commit, state}, param) {
+        return new Promise((resolve, reject) => {
+            http.commonPost(param.path, param.body)
+                .then(function (response) {
+                    commit('setUserInfo', response);
+                    resolve(response);
+                })
+                .catch(function (error) {
+                    reject(error);
+                });
         })
-        .catch(function (error) {
-          reject(error);
-        });
-    })
-  }
+    }
 }
 
 // mutations
 const mutations = {
-  setUserInfo(state, res){
-    state.user = res.biz_result;
-    console.log(state.user);
-  }
+    setUserInfo(state, res) {
+        state.user = res.biz_result;
+        console.log(state.user);
+    }
 }
 
 export default {
-  state,
-  getters,
-  actions,
-  mutations
+    state,
+    getters,
+    actions,
+    mutations
 }

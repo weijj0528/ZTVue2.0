@@ -47,29 +47,11 @@ const getters = {
 
 // actions
 const actions = {
-    setScrollTop({commit, state}, param) {
-        return new Promise((resolve, reject) => {
-            commit('setScrollTop', param);
-            resolve();
-        })
-    },
     tabsAdd({commit, state}, tab) {
         commit("tabsAdd", tab);
     },
     tabsRemove({commit, state}, id) {
         commit("tabsRemove", id);
-    },
-    login(state, param) {
-        let url = http.urlCommon + http.apiUrl.login;
-        return new Promise((resolve, reject) => {
-            http.commonPost(url, param)
-                .then((res) => {
-                    resolve(res);
-                })
-                .catch((err) => {
-                    reject(err);
-                });
-        });
     }
 }
 

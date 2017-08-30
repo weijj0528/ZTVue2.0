@@ -51,8 +51,12 @@
         methods: {
             submit() {
                 let _self = this;
-                console.log(this.body);
+                console.log(_self.body);
                 _self.$store.dispatch("login", _self.body);
+//                .then((resp) => {
+//                    console.log(resp);
+//                }, (err) => {
+//                });
             }
         }
     }
