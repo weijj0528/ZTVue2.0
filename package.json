@@ -4,9 +4,9 @@
   "description": "A base project using Vue.js2.0、Vue-Router、Vuex、webpack and with element-ui.",
   "main": "index.js",
   "scripts": {
-    "init": "webpack --progress --config webpack.dev.config.js",
-    "dev": "webpack-dev-server --inline --hot --compress --history-api-fallback --config webpack.dev.config.js",
-    "build": "webpack --progress --hide-modules --config webpack.prod.config.js"
+    "init": "webpack --progress --config config/webpack.dev.config.js",
+    "dev": "node config/dev-server.js",
+    "build": "node config/build.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "vuex": "^1.0.1"
   },
   "devDependencies": {
+    "ms": "^2.0.0",
     "crypto-js": "^3.1.9-1",
     "autoprefixer-loader": "^2.0.0",
     "babel": "^6.23.0",
@@ -38,6 +39,11 @@
     "file-loader": "^0.8.5",
     "html-loader": "^0.3.0",
     "html-webpack-plugin": "^2.28.0",
+    "opn": "^4.0.2",
+    "ora": "^1.2.0",
+    "rimraf": "^2.6.0",
+    "semver": "^5.3.0",
+    "shelljs": "^0.7.6",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "style-loader": "^0.13.2",
@@ -52,6 +58,10 @@
     "webpack-dev-server": "^2.4.1",
     "webpack-hot-middleware": "^2.18.2",
     "webpack-merge": "^3.0.0"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
   },
   "bugs": {
     "url": "https://github.com/iview/iview-project/issues"

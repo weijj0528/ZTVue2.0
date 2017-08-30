@@ -52,11 +52,7 @@
             submit() {
                 let _self = this;
                 console.log(this.body);
-                _self.$store.dispatch("login", _self.body).then((res) => {
-                    console.log(res.SID);
-                }, (err) => {
-                    console.log(err);
-                });
+                _self.$store.dispatch("login", _self.body);
             }
         }
     }

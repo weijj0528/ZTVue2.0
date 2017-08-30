@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -8,7 +9,7 @@ module.exports = {
         vendors: ['vue','vue-router']
     },
     output: {
-        path: path.join(__dirname, './dist')
+        path: path.join(__dirname, './../dist')
     },
     module: {
         rules: [{
@@ -16,7 +17,6 @@ module.exports = {
                 loader: 'vue-loader',
                 options: {
                     loaders: {
-
                         css: ExtractTextPlugin.extract({
                             use: ['css-loader', 'autoprefixer-loader'],
                             fallback: 'vue-style-loader'
@@ -56,5 +56,13 @@ module.exports = {
         alias: {
             'vue': 'vue/dist/vue.esm.js'
         }
-    }
+    },
+    // 挂载全局插件
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: './index.html',
+            template: './src/template/index.ejs',
+            inject: false
+        })
+    ]
 };
