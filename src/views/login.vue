@@ -52,11 +52,10 @@
             submit() {
                 let _self = this;
                 console.log(_self.body);
-                _self.$store.dispatch("login", _self.body);
-//                .then((resp) => {
-//                    console.log(resp);
-//                }, (err) => {
-//                });
+                _self.$store.dispatch("login", _self.body).then((resp) => {
+                    console.log(resp);
+                }, (err) => {
+                });
             }
         }
     }
