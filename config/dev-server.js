@@ -3,9 +3,8 @@ require('./check-versions')()
 
 //配置文件
 var config = require('./config')
-var env = require('./env')
 if (!process.env.NODE_ENV) {
-    process.env.NODE_ENV = JSON.parse(env.NODE_ENV)
+    process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
 
 var opn = require('opn')
@@ -89,7 +88,7 @@ console.log('> Listening at ' + uri + '\n')
 // })
 
 var server = app.listen(port, '127.0.0.1')
-app.listen(port, '192.168.1.5');
+// app.listen(port, '192.168.1.5');
 
 module.exports = {
     ready: readyPromise,

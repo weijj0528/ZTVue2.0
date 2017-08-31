@@ -1,7 +1,5 @@
 //检查版本
 require('./check-versions')()
-//声明打包环境 生成
-process.env.NODE_ENV = 'production'
 
 //各种模块
 var ora = require('ora')
@@ -10,6 +8,8 @@ var path = require('path')
 var chalk = require('chalk')
 var webpack = require('webpack')
 var config = require('./config')
+//声明打包环境 生成
+process.env.NODE_ENV = config.build.env
 //生成配置文件
 var webpackConfig = require('./webpack.prod.config')
 

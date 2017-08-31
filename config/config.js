@@ -5,6 +5,9 @@ var path = require('path')
 
 module.exports = {
     build: {
+        env: {
+            NODE_ENV: '"production"'
+        },
         index: path.resolve(__dirname, '../dist/index.html'),
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: './static',
@@ -23,10 +26,13 @@ module.exports = {
         bundleAnalyzerReport: process.env.npm_config_report
     },
     dev: {
-        port: 80,
+        env: {
+            NODE_ENV: '"development"'
+        },
         autoOpenBrowser: true,
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
+        port: 80,
         proxyTable: {
             '/front': {
                 target: 'http://139.224.15.80:8080',
