@@ -7,15 +7,19 @@ const state = {
         'name': '用户管理',
         'subMenus': [{
             'id': '11',
+            'path': '/main/userList',
             'name': '用户列表'
         }, {
             'id': '12',
+            'path': '/main/userList',
             'name': '充值记录'
         }, {
             'id': '13',
+            'path': '/main/userList',
             'name': '分享记录'
         }, {
             'id': '14',
+            'path': '/main/userList',
             'name': '免费赠送记录'
         }]
     }, {
@@ -23,9 +27,11 @@ const state = {
         'name': '短信管理',
         'subMenus': [{
             'id': '21',
+            'path': '/main/userList',
             'name': '会话记录'
         }, {
             'id': '22',
+            'path': '/main/userList',
             'name': '短信记录'
         }]
     }],
@@ -34,6 +40,7 @@ const state = {
     // 导航栏
     tabs: [{
         'id': '0',
+        'path': '/main/userList',
         'name': '主页'
     }]
 }
@@ -47,21 +54,21 @@ const getters = {
 
 // actions
 const actions = {
-    tabsAdd({commit, state}, tab) {
-        commit("tabsAdd", tab);
+    comTabsAdd({commit, state}, tab) {
+        commit("comTabsAdd", tab);
     },
-    tabsRemove({commit, state}, id) {
-        commit("tabsRemove", id);
+    comTabsRemove({commit, state}, id) {
+        commit("comTabsRemove", id);
     }
 }
 
 // mutations
 const mutations = {
-    tabsAdd(state, tab) {
+    comTabsAdd(state, tab) {
         console.log('mutations-tabsAdd:' + tab);
         state.tabs.push(tab);
     },
-    tabsRemove(state, id) {
+    comTabsRemove(state, id) {
         console.log('mutations-tabsRemove:' + id);
         for (let i = 0; i < state.tabs.length; i++) {
             let tab = state.tabs[i];

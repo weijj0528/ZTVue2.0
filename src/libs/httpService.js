@@ -91,6 +91,11 @@ var httpService = new Vue({
       var signStr = CryptoJS.HmacSHA1(str, _self.KEY).toString(CryptoJS.enc.Base64);
       return signStr;
     },
+    getBase64: function getBase64(str) {
+      let s = CryptoJS.enc.Utf8.parse(str);
+      let base64  = CryptoJS.enc.Base64.stringify(s);
+      return base64;
+    },
     //过滤请求的数据
     /*
      *1.传入一个对象 自动过滤该对象 键所对应的值为空的情况

@@ -52,12 +52,12 @@
         },
         components: {},
         methods: {
-            ...mapActions(['login']),
+            ...mapActions(['userLogin']),
             submit: function () {
                 let _self = this;
                 console.log(_self.param);
                 _self.loading = true;
-                _self.login(_self.param).then((resp) => {
+                _self.userLogin(_self.param).then((resp) => {
                     console.log(resp);
                     _self.loading = false;
                     _self.$router.push('/main');

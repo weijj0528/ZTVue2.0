@@ -3,7 +3,7 @@
     /*@import '../styles/common.css';*/
 </style>
 <template>
-
+    <div>你好这里是Center</div>
 </template>
 <script>
     export default {

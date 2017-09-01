@@ -32,10 +32,11 @@ module.exports = {
         autoOpenBrowser: true,
         assetsPublicPath: '/',
         assetsSubDirectory: 'static',
-        port: 8080,
+        port: 80,
         proxyTable: {
             '/front': {
                 target: 'http://139.224.15.80:8080',
+                // target: 'http://localhost:8081',
                 changeOrigin: true
             }
         },

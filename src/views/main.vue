@@ -8,7 +8,9 @@
                  @nav-router="navRouter"
                  @nav-click="navClick"
                  @nav-close='navClose'></tab-nav>
-        <router-view class="center"></router-view>
+        <div class="center">
+            <router-view></router-view>
+        </div>
         <bottom class="bottom"></bottom>
     </div>
 </template>
@@ -38,7 +40,7 @@
 
         },
         methods: {
-            ...mapActions(['tabsAdd','tabsRemove']),
+            ...mapActions(['comTabsAdd','comTabsRemove']),
             menuSelect: function (menu) {
                 // 存在则激活，否则添加
                 let b = false;
@@ -53,14 +55,22 @@
                     if (this.active_tab != menu.id)
                         this.active_tab = menu.id;
                 } else {
-                    this.tabsAdd(menu);
+                    this.comTabsAdd(menu);
                     this.active_tab = menu.id;
                 }
                 console.log(this.tabs);
             },
             navRouter: function (id) {
                 console.log('navRouter:' + id);
-                this.$router.push('/main');
+                let _self = this;
+                let tab = _self.tabs[0];
+                for (let i = 0; i < _self.tabs.length; i++) {
+                    if (tab.id === id) {
+                        tab = _self.tabs[i];
+                        break;
+                    }
+                }
+                this.$router.push(tab.path);
             },
             navClick: function (tab) {
                 console.log('navClick:' + tab.id);
@@ -68,7 +78,7 @@
             },
             navClose: function (tab) {
                 console.log('navClose:' + tab.id);
-                this.tabsRemove(tab.id);
+                this.comTabsRemove(tab.id);
             }
         }
     }
