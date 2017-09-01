@@ -24,7 +24,9 @@
                 </div>
                 <div class="logdv" style="height:40px;">
                     <p class="logzi">&nbsp;</p>
-                    <input name="提交" type="submit" class="btnbg" value="点击登录" @click="submit"/>
+                    <Button type="primary" class="btnbg" :loading="loading" @click="submit">
+                        <span >提交</span>
+                    </Button>
                 </div>
                 <div>
                     <a href="#" class="more">注册</a>
@@ -37,10 +39,11 @@
 </template>
 <script>
     import http from "./../libs/httpService"
-
+    import { mapActions } from 'vuex'
     export default {
         data() {
             return {
+                loading:false,
                 param: {
                     userName: "",
                     password: ""
@@ -49,16 +52,18 @@
         },
         components: {},
         methods: {
+            ...mapActions(['login']),
             submit: function () {
                 let _self = this;
                 console.log(_self.param);
-                let loading = _self.$loading(true);
-                _self.$store.dispatch("login", _self.param).then((resp) => {
+                _self.loading = true;
+                _self.login(_self.param).then((resp) => {
                     console.log(resp);
-                    loading.visible = false;
+                    _self.loading = false;
                     _self.$router.push('/main');
                 }, (err) => {
-                    loading.visible = false;
+                    _self.loading = false;
+                    _self.$router.push('/main');
                 });
             }
         }
@@ -69,9 +74,7 @@
         -webkit-text-size-adjust: none;
     }
 
-    li,
-    ol,
-    ul {
+    li,ol,ul {
         list-style: none;
     }
 
@@ -157,9 +160,7 @@
     .btnbg {
         width: 203px;
         height: 40px;
-        background: url("../images/btnbg.png") no-repeat;
         text-align: center;
-        line-height: 40px;
         color: #FFFFFF;
         font-weight: bold;
         border: 0;

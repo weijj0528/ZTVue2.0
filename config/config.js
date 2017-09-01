@@ -10,8 +10,8 @@ module.exports = {
         },
         index: path.resolve(__dirname, '../dist/index.html'),
         assetsRoot: path.resolve(__dirname, '../dist'),
-        assetsSubDirectory: './static',
         assetsPublicPath: './',
+        assetsSubDirectory: './static',
         productionSourceMap: true,
         // Gzip off by default as many popular static hosts such as
         // Surge or Netlify already gzip all static assets for you.
@@ -30,9 +30,9 @@ module.exports = {
             NODE_ENV: '"development"'
         },
         autoOpenBrowser: true,
-        assetsSubDirectory: 'static',
         assetsPublicPath: '/',
-        port: 8088,
+        assetsSubDirectory: 'static',
+        port: 8080,
         proxyTable: {
             '/front': {
                 target: 'http://139.224.15.80:8080',

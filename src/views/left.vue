@@ -2,12 +2,12 @@
 <template>
 <div class="left">
   <Menu :theme="theme2" active-name="1-2" :open-names="['1']" v-on:on-select="onMenuSelect">
-    <Submenu v-for="(menu,index) in menus" :name='menu.id'>
+    <Submenu v-for="(menu,index) in menus" :key="menu" :name='menu.id'>
         <template slot="title">
             <Icon type="ios-paper"></Icon>
             {{menu.name}}
         </template>
-        <Menu-item v-for="(subMenu,i) in menu.subMenus" :name='subMenu.id'>{{subMenu.name}}</Menu-item>
+        <Menu-item v-for="(subMenu,i) in menu.subMenus" :key="subMenu" :name='subMenu.id'>{{subMenu.name}}</Menu-item>
     </Submenu>
   </Menu>
 </div>

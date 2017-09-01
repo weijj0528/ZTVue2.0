@@ -3,7 +3,7 @@
 <template>
     <div>
         <Tabs type="card" :value='activeTab' closable @on-tab-remove="handleRemove" @on-click="handleClick">
-            <Tab-pane v-for='(tab,i) in tabs' :label="tab.name" :name="tab.id" :closable="tab.id != 0"></Tab-pane>
+            <Tab-pane v-for='(tab,i) in tabs' :key="tab" :label="tab.name" :name="tab.id" :closable="tab.id != 0"></Tab-pane>
         </Tabs>
     </div>
 </template>

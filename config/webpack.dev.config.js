@@ -17,6 +17,9 @@ module.exports = merge(webpackBaseConfig, {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
             filename: 'vendors.js'
-        })
+        }),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
     ]
 });

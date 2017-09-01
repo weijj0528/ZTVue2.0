@@ -30,12 +30,13 @@ var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
     publicPath: webpackConfig.output.publicPath,
-    quiet: true
+    quiet: false
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
-    log: () => {
-    }
+    log: console.log,
+    path: '/__webpack_hmr',
+    heartbeat: 10 * 1000
 })
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
