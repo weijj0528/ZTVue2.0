@@ -8,7 +8,7 @@ import Login from './views/login.vue';
 const router = new VueRouter({
     linkActiveClass: 'active',
     routes: [
-        {path: '/', component: Main},
+        {path: '/', component: Login},
         {path: '/login', component: Login},
         {path: '/main', component: Main}
     ]

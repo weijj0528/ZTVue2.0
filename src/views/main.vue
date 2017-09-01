@@ -64,7 +64,7 @@
             },
             navRouter: function (id) {
                 console.log('navRouter:' + id);
-                this.$router.push('/');
+                this.$router.push('/main');
             },
             navClick: function (tab) {
                 console.log('navClick:' + tab.id);

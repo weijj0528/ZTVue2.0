@@ -18,10 +18,9 @@ const actions = {
     login({commit, state}, param) {
         return new Promise((resolve, reject) => {
             let url = http.urlCommon + http.apiUrl.login;
-            http.commonPost(url, param)
-                .then((res) => {
-                    resolve(res);
-                })
+            http.commonPost(url, {param: param}).then((res) => {
+                resolve(res);
+            })
                 .catch((err) => {
                     reject(err);
                 });

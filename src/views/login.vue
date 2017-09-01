@@ -11,11 +11,11 @@
                 <h1>&nbsp;</h1>
                 <div class="logdv">
                     <span class="logzi">账 号：</span>
-                    <input name="textarea" type="text" id="textarea" class="ipt" v-model="body.userName"/>
+                    <input name="textarea" type="text" id="textarea" class="ipt" v-model="param.userName"/>
                 </div>
                 <div class="logdv">
                     <span class="logzi">密 码：</span>
-                    <input name="textarea" type="password" id="textarea" class="ipt" v-model="body.password"/>
+                    <input name="textarea" type="password" id="textarea" class="ipt" v-model="param.password"/>
                 </div>
                 <div class="logdv">
                     <p class="logzi">&nbsp;</p>
@@ -41,7 +41,7 @@
     export default {
         data() {
             return {
-                body: {
+                param: {
                     userName: "",
                     password: ""
                 }
@@ -49,12 +49,16 @@
         },
         components: {},
         methods: {
-            submit() {
+            submit: function () {
                 let _self = this;
-                console.log(_self.body);
-                _self.$store.dispatch("login", _self.body).then((resp) => {
+                console.log(_self.param);
+                let loading = _self.$loading(true);
+                _self.$store.dispatch("login", _self.param).then((resp) => {
                     console.log(resp);
+                    loading.visible = false;
+                    _self.$router.push('/main');
                 }, (err) => {
+                    loading.visible = false;
                 });
             }
         }
