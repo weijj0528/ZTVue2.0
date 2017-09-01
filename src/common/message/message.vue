@@ -1,42 +1,4 @@
-<style lang="less" scoped>
-  .message {
-    position: fixed;
-    z-index: 20170721;
-    top: 120px;
-    left: 50%;
-    transform: translate(-50%);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    min-width: 240px;
-    box-sizing: border-box;
-    border-radius: 2px;
-    overflow: hidden;
-    background-color: #fff;
-    img {
-      flex: 0 0 auto;
-    }
-    .content {
-      flex: 1;
-      font-size: 12px;
-      background-color: #fff;
-      height: 40px;
-      line-height: 40px;
-      padding: 0 10px;
-    }
-  }
-
-  .message-enter-active, .message-leave-active {
-    transition: opacity .3s .2s, top .4s .2s;
-  }
-
-  .message-enter, .message-leave-to {
-    opacity: 0;
-    top: 60px;
-  }
-</style>
+<!--公共消息组件-->
 <template>
   <!--组件动效-->
   <transition name="message">
@@ -104,3 +66,42 @@
     }
   }
 </script>
+<style lang="less" scoped>
+  .message {
+    position: fixed;
+    z-index: 20170721;
+    top: 120px;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    min-width: 240px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    overflow: hidden;
+    background-color: #fff;
+    img {
+      flex: 0 0 auto;
+    }
+    .content {
+      flex: 1;
+      font-size: 12px;
+      background-color: #fff;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 10px;
+    }
+  }
+
+  .message-enter-active, .message-leave-active {
+    transition: opacity .3s .2s, top .4s .2s;
+  }
+
+  .message-enter, .message-leave-to {
+    opacity: 0;
+    top: 60px;
+  }
+</style>

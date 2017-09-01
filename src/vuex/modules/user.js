@@ -1,5 +1,5 @@
 import http from '../../libs/httpService'
-
+import CryptoJS from "crypto-js"
 
 const state = {
     user: {
@@ -16,14 +16,16 @@ const getters = {
 // actions
 const actions = {
     login({commit, state}, param) {
+        let b = CryptoJS.enc.Base64.stringify("123456");
+        console.log(b);
         return new Promise((resolve, reject) => {
             let url = http.urlCommon + http.apiUrl.login;
+            console.log(param.password);
             http.commonPost(url, {param: param}).then((res) => {
                 resolve(res);
-            })
-                .catch((err) => {
-                    reject(err);
-                });
+            }).catch((err) => {
+                reject(err);
+            });
         })
     },
     getUserInfor({commit, state}, param) {

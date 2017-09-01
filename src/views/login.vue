@@ -2,7 +2,7 @@
 <template>
     <div id="web">
         <p style="height:180px;"></p>
-        <h1 align="center">欢迎进入爱家园中台系统</h1>
+        <h1 align="center">欢迎进入XXX中台系统</h1>
         <p style="height:40px;"></p>
         <div class="login">
             <div class="banner">
@@ -34,7 +34,7 @@
             </div>
         </div>
         <p style="height:100px;"></p>
-        <p align="center">爱家园公司版权所有@****提供技术支持</p>
+        <p align="center">XXX公司版权所有@****提供技术支持</p>
     </div>
 </template>
 <script>
@@ -63,7 +63,7 @@
                     _self.$router.push('/main');
                 }, (err) => {
                     _self.loading = false;
-                    _self.$router.push('/main');
+                    // _self.$router.push('/main');
                 });
             }
         }

@@ -18,7 +18,7 @@
     import TabNav from './nav.vue'
     import Bottom from './bottom.vue'
     import util from '../libs/util'
-
+    import {mapActions,mapGetters} from 'vuex'
     export default {
         data() {
             return {
@@ -26,12 +26,7 @@
             }
         },
         computed: {
-            menus() {
-                return this.$store.state.common.menus;
-            },
-            tabs() {
-                return this.$store.state.common.tabs;
-            }
+            ...mapGetters(['menus','tabs'])
         },
         components: {
             top: Top,
@@ -43,6 +38,7 @@
 
         },
         methods: {
+            ...mapActions(['tabsAdd','tabsRemove']),
             menuSelect: function (menu) {
                 // 存在则激活，否则添加
                 let b = false;
@@ -57,7 +53,7 @@
                     if (this.active_tab != menu.id)
                         this.active_tab = menu.id;
                 } else {
-                    this.$store.dispatch("tabsAdd", menu);
+                    this.tabsAdd(menu);
                     this.active_tab = menu.id;
                 }
                 console.log(this.tabs);
@@ -72,7 +68,7 @@
             },
             navClose: function (tab) {
                 console.log('navClose:' + tab.id);
-                this.$store.dispatch("tabsRemove", tab.id);
+                this.tabsRemove(tab.id);
             }
         }
     }
