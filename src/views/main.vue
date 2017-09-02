@@ -37,7 +37,7 @@
             bottom: Bottom,
         },
         mounted() {
-
+            this.navRouter(0);
         },
         methods: {
             ...mapActions(['comTabsAdd','comTabsRemove']),
@@ -65,11 +65,12 @@
                 let _self = this;
                 let tab = _self.tabs[0];
                 for (let i = 0; i < _self.tabs.length; i++) {
-                    if (tab.id === id) {
-                        tab = _self.tabs[i];
+                    tab = _self.tabs[i];
+                    if (tab.id == id) {
                         break;
                     }
                 }
+                console.log('navRouter:' + tab.path);
                 this.$router.push(tab.path);
             },
             navClick: function (tab) {

@@ -13,14 +13,17 @@ var httpService = new Vue({
     version: 1,
     difTime: 0,
     apiUrl: {
-      login: '/user/phoneLogin',
+      login: '/user/ztLogin',
       most: '/handle/request'
     }
   },
   methods: {
     addSID: function addSID(url) {
+      if(this.SID != undefined){
+        this.SID = window.localStorage.SID;
+      }
       if (this.SID && this.SID != undefined) {
-        return url + ';jsessionid=' + this.SID;
+        return url + ';jsessionid=' + this.SID ;
       } else {
         return url;
       }

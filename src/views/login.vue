@@ -60,7 +60,7 @@
                 _self.userLogin(_self.param).then((resp) => {
                     console.log(resp);
                     _self.loading = false;
-                    _self.$router.push('/main');
+                    _self.$router.push('/main/home');
                 }, (err) => {
                     _self.loading = false;
                     // _self.$router.push('/main');

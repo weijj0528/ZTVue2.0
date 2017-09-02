@@ -11,15 +11,15 @@ const state = {
             'name': '用户列表'
         }, {
             'id': '12',
-            'path': '/main/userList',
+            'path': '/main/moneyRecordList',
             'name': '充值记录'
         }, {
             'id': '13',
-            'path': '/main/userList',
+            'path': '/main/shareRecordList',
             'name': '分享记录'
         }, {
             'id': '14',
-            'path': '/main/userList',
+            'path': '/main/freeSmsList',
             'name': '免费赠送记录'
         }]
     }, {
@@ -27,11 +27,11 @@ const state = {
         'name': '短信管理',
         'subMenus': [{
             'id': '21',
-            'path': '/main/userList',
+            'path': '/main/smsSessionList',
             'name': '会话记录'
         }, {
             'id': '22',
-            'path': '/main/userList',
+            'path': '/main/smsRecordList',
             'name': '短信记录'
         }]
     }],
@@ -40,7 +40,7 @@ const state = {
     // 导航栏
     tabs: [{
         'id': '0',
-        'path': '/main/userList',
+        'path': '/main/home',
         'name': '主页'
     }]
 }
