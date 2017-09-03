@@ -8,9 +8,17 @@ import 'iview/dist/styles/iview.css';    // 使用 CSS
 import router from './router'
 import index from './views/index.vue'
 import store from './vuex/store';
+import * as filters from './filters/filters'
+
+Object.keys(filters).forEach(key => {
+    Vue.filter(key, filters[key])
+})
 
 Vue.use(VueRouter)
 Vue.use(iView)
+
+import ClientSource from './components/com/enum/clientSource.vue'
+Vue.component('ClientSource', ClientSource)
 
 import loading  from './common/loading/loading'
 // import message  from './common/message/message'

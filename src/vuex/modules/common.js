@@ -1,6 +1,13 @@
 import http from '../../libs/httpService'
 
 const state = {
+    // 布局
+    layout:{
+        topHeight:80,
+        contentHeight:600,
+        menuWidth:240,
+        contentWidth:800,
+    },
     // 菜单
     menus: [{
         'id': '1',
@@ -49,7 +56,8 @@ const state = {
 const getters = {
     // scrollTop: state => state.scrollTop,
     menus: state => state.menus,
-    tabs: state => state.tabs
+    tabs: state => state.tabs,
+    layout: state => state.layout,
 }
 
 // actions
@@ -64,6 +72,14 @@ const actions = {
 
 // mutations
 const mutations = {
+    windowsHeightChange(state, bodyHeigh) {
+        console.log('windowsHeightChange:' + bodyHeigh);
+        state.layout.contentHeight = bodyHeigh -state.layout.topHeight ;
+    },
+    windowsWidthChange(state, bodyWidth) {
+        console.log('windowsWidthChange' + bodyWidth);
+        state.layout.contentWidth = bodyWidth - state.layout.menuWidth - 3;
+    },
     comTabsAdd(state, tab) {
         console.log('mutations-tabsAdd:' + tab);
         state.tabs.push(tab);

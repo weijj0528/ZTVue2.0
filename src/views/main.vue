@@ -1,17 +1,20 @@
 <!-- -->
 <template>
-    <div class="index">
-        <top class="top"></top>
-        <left class="left" :menus='menus'
-              @menu-select='menuSelect'></left>
-        <tab-nav class="nav" :tabs='tabs' :active-tab='active_tab'
-                 @nav-router="navRouter"
-                 @nav-click="navClick"
-                 @nav-close='navClose'></tab-nav>
-        <div class="center">
-            <router-view></router-view>
-        </div>
-        <bottom class="bottom"></bottom>
+    <div>
+        <Row>
+            <Col span="24" class = 'top_calss' v-bind:style="{ height: layout.topHeight + 'px'}" >
+                <top></top>
+            </Col>
+        </Row>
+        <Row>
+            <Col  :lg='3' :md="4" :sm="5" :xs='6' v-bind:style="{ height: layout.contentHeight + 'px' }">
+                <left v-bind:style="{ height: layout.contentHeight + 'px'}" :menus='menus' @menu-select='menuSelect'></left> 
+            </Col>
+            <Col :lg='21' :md="20" :sm="19" :xs='18'>
+                <tab-nav class="nav" :tabs='tabs' :active-tab='active_tab' @nav-router="navRouter" @nav-click="navClick" @nav-close='navClose'></tab-nav>
+                <router-view></router-view>
+            </Col>
+        </Row>
     </div>
 </template>
 <script>
@@ -20,15 +23,15 @@
     import TabNav from './nav.vue'
     import Bottom from './bottom.vue'
     import util from '../libs/util'
-    import {mapActions,mapGetters} from 'vuex'
+    import {mapActions,mapGetters,mapMutations} from 'vuex'
     export default {
         data() {
             return {
-                'active_tab': '0',
+                active_tab: '0',
             }
         },
         computed: {
-            ...mapGetters(['menus','tabs'])
+            ...mapGetters(['menus','tabs','layout']),
         },
         components: {
             top: Top,
@@ -37,10 +40,13 @@
             bottom: Bottom,
         },
         mounted() {
+            this.resize();
+            this.initLayout();
             this.navRouter(0);
         },
         methods: {
             ...mapActions(['comTabsAdd','comTabsRemove']),
+            ...mapMutations(['windowsHeightChange','windowsWidthChange']),
             menuSelect: function (menu) {
                 // 存在则激活，否则添加
                 let b = false;
@@ -77,62 +83,38 @@
                 console.log('navClick:' + tab.id);
                 this.active_tab = tab.id;
             },
-            navClose: function (tab) {
+            navClose: function (tab,i) {
                 console.log('navClose:' + tab.id);
+                this.active_tab = this.tabs[i-1].id;
                 this.comTabsRemove(tab.id);
+            },
+            initLayout: function () {
+                let _self = this;
+                window.onresize = function(){
+                    _self.resize();
+                }
+            },
+            resize: function () {
+                // 浏览器宽高发生变化时
+                let _self = this;
+                var bodyWidth = document.body.clientWidth;
+                var bodyHeight = document.documentElement.clientHeight;
+                _self.windowsWidthChange(bodyWidth);
+                _self.windowsHeightChange(bodyHeight);
+            }
+        },
+        watch:{
+            active_tab:function(newId){
+                this.navRouter(newId);
             }
         }
     }
 </script>
 <style scoped lang="less">
-    .index {
-        width: 100%;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
+    .top_calss {
+        background: #80848f;
+        border-bottom:1px solid #dddee1;
     }
 
-    .top {
-        width: 100%;
-        height: 10%;
-        background: cadetblue;
-    }
-
-    .left {
-        width: 240px;
-        height: 90%;
-        // background: rosybrown;
-    }
-
-    .nav {
-        width: 100%;
-        height: 85%;
-        position: fixed;
-        padding-right: 240px;
-        top: 10%;
-        left: 240px;
-        /*background: darkgrey;*/
-    }
-
-    .center {
-        width: 100%;
-        height: 85%;
-        position: fixed;
-        padding-right: 240px;
-        margin-top: 32px;
-        top: 10%;
-        left: 240px;
-        /*background: darkgrey;*/
-    }
-
-    .bottom {
-        width: 100%;
-        height: 5%;
-        position: fixed;
-        padding-right: 240px;
-        top: 95%;
-        left: 240px;
-        /*background: forestgreen;*/
-    }
+   
 </style>

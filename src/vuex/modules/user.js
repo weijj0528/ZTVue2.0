@@ -8,12 +8,20 @@ const state = {
         name:'示例数据',
         address:'示例地址数据',
     }],
+    userQueryParam:{},
+    userPageParam:{
+        page:1,
+        pageSize:20,
+        total:0
+    },
 }
 
 // getters
 const getters = {
     user: state => state.user,
-    userList: state => state.userList
+    userList: state => state.userList,
+    userQueryParam: state => state.userQueryParam,
+    userPageParam: state => state.userPageParam,
 }
 
 // actions
@@ -45,6 +53,9 @@ const actions = {
         return new Promise((resolve, reject) => {
             http.commonPost(url, body).then((res) => {
                 commit("setUserList",res);
+                commit("pageChange",res.result.pageNum);
+                commit("pageSizeChange",res.result.pageSize);
+                commit("totalChange",res.result.total);
                 resolve(res);
             }).catch((err) => {
                 reject(err);
@@ -61,6 +72,15 @@ const mutations = {
     },
     setUserList(state, res) {
         state.userList = res.result.list;
+    },
+    totalChange(state, total) {
+        state.userPageParam.total = total;
+    },
+    pageChange(state, page) {
+        state.userPageParam.page = page;
+    },
+    pageSizeChange(state, pageSize) {
+        state.userPageParam.pageSize = pageSize;
     }
 }
 

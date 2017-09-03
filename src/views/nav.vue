@@ -1,11 +1,9 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <!-- 导航组件，选项卡组件 -->
 <template>
-    <div>
-        <Tabs type="card" :value='activeTab' closable @on-tab-remove="handleRemove" @on-click="handleClick">
-            <Tab-pane v-for='(tab,i) in tabs' :key="tab" :label="tab.name" :name="tab.id" :closable="tab.id != 0"></Tab-pane>
-        </Tabs>
-    </div>
+    <Tabs type="card" :value='activeTab' closable @on-tab-remove="handleRemove" @on-click="handleClick">
+        <Tab-pane v-for='(tab,i) in tabs' :key="tab" :label="tab.name" :name="tab.id" :closable="tab.id != 0"></Tab-pane>
+    </Tabs>
 </template>
 <script>
     export default {
@@ -15,15 +13,11 @@
         props: {
             tabs: {
                 type: Array,
-                default: function () {
-                    return [];
-                }
+                default: []
             },
             activeTab: {
                 type: String,
-                default: function () {
-                    return '-1';
-                }
+                default: 0
             }
         },
         mounted: function () {
@@ -60,7 +54,7 @@
                     }
                 }
                 console.log("Tab移除" + name);
-                this.$emit("nav-close", this.tabs[index]);
+                this.$emit("nav-close", this.tabs[index],index);
             }
         },
         watch: {

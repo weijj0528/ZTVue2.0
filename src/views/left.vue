@@ -1,7 +1,6 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <template>
-<div class="left">
-  <Menu :theme="theme2" active-name="1-2" :open-names="['1']" v-on:on-select="onMenuSelect">
+  <Menu :theme="theme2" active-name="1-2" :open-names="['1']" v-on:on-select="onMenuSelect" width="auto">
     <Submenu v-for="(menu,index) in menus" :key="menu" :name='menu.id'>
         <template slot="title">
             <Icon type="ios-paper"></Icon>
@@ -10,7 +9,6 @@
         <Menu-item v-for="(subMenu,i) in menu.subMenus" :key="subMenu" :name='subMenu.id'>{{subMenu.name}}</Menu-item>
     </Submenu>
   </Menu>
-</div>
 </template>
 <script>
 import util from '../libs/util'
@@ -43,10 +41,4 @@ export default {
 </script>
 <style scoped>
 /*@import '../styles/common.css';*/
-
-.left {
-  width: 100%;
-  height: 100%;
-  background: white;
-}
 </style>
