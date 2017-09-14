@@ -19,7 +19,7 @@
               <Row v-bind:style = "{height:(layout.contentHeight-210)+'px'}">
                 <Col span="24" >
                     <slot name="content"></slot>
-                    <Spin size="large" fix v-if="loading" v-bind:style = "{height:(layout.contentHeight-210)+'px'}"></Spin>
+                    <Spin size="large" fix v-if="loading" v-bind:style = "{height:(layout.contentHeight-210)+'px',opacity: 0.5}"></Spin>
                 </Col>
               </Row>
               <Row>

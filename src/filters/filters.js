@@ -24,3 +24,31 @@ export function client(value) {
             return 'Other';
     }
 }
+
+export function moneyRecordWay(value) {
+    switch(value){
+        case -1:
+            return '短信消费';
+        case 1:
+            return '支付宝充值';
+        case 2:
+            return '微信充值';
+        default:
+            return '其他';
+    }
+}
+
+export function moneyRecordStatus(value) {
+    switch(value){
+        case 0:
+            return '初始';
+        case 1:
+            return '成功';
+        case 2:
+            return '失败';
+        case 3:
+            return '未知';
+        default:
+            return '未知';
+    }
+}
