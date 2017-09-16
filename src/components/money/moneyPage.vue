@@ -1,33 +1,47 @@
 <template>
-    <Page :total="moneyPageParam.total" 
-          :page-size="moneyPageParam.pageSize" 
-          :current="moneyPageParam.page" show-total show-elevator show-sizer show-elevator placement='top' 
-          :page-size-opts="opts" @on-change='pageChang' @on-page-size-change="pageSizeChang"></Page>
+  <Page :total="pageParam.total" :page-size="pageParam.pageSize" :current="pageParam.page"  @on-change='pageNumChang' @on-page-size-change="pageSizeChang" show-total show-elevator show-sizer show-elevator placement='top' :page-size-opts="opts">
+  </Page>
 </template>
 <script>
-import {mapMutations,mapGetters} from 'vuex'
 export default {
   data() {
     return {
-      opts:[20,50,80,100],
+      opts: [15, 50, 80, 100],
     }
   },
-  computed:{
-    ...mapGetters(['moneyPageParam'])
+  props: {
+    pageParam: {
+      type: Object,
+      default: {
+        page: 1,
+        pageSize: 15,
+        total: 0,
+      }
+    }
+  },
+  computed: {
+
   },
   mounted: function() {
 
   },
   methods: {
-    ...mapMutations(['moneyPageChange','moneyPageSizeChange']),
-    pageSizeChang:function(ps){
-        this.moneyPageSizeChange(ps);
+    pageSizeChang: function(ps) {
+      let pn = this.pageParam.pageSize;
+      this.chang(pn, ps);
     },
-    pageChang:function(pn){
-      this.moneyPageChange(pn);
-      this.$emit("page-chang", pn);
+    pageNumChang: function(pn) {
+      let ps = this.pageParam.page;
+      this.chang(pn, ps);
+    },
+    chang: function(pn, ps) {
+      let p = {
+        page: pn,
+        pageSize: ps,
+      }
+      this.$emit("page-chang", p);
     }
-    
+
   }
 }
 </script>

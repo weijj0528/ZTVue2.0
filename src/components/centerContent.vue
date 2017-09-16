@@ -1,6 +1,6 @@
 <!-- Created by Weiun on 2017/1/17. 页面内容区组件，负责内容区布局-->
 <template>
-    <div class="centerContent" >
+    <div class="centerContent" v-bind:style = "{width:(layout.contentWidth-10)+'px'}" >
         <Row>
           <Col :span="sidebar.leftSpan" v-show="leftOnOff">
             <slot name="left"></slot>

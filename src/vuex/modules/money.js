@@ -1,21 +1,19 @@
 import http from '../../libs/httpService'
 
 const state = {
-    moneyRecordList: [{
-    }],
-    moneyQueryParam:{},
-    moneyPageParam:{
+    result: {
         page:1,
         pageSize:20,
-        total:0
+        total:0,
+        list:[]
     },
+    moneyQueryParam:{},
 }
 
 // getters
 const getters = {
-    moneyRecordList: state => state.moneyRecordList,
+    moneyResult: state => state.result,
     moneyQueryParam: state => state.moneyQueryParam,
-    moneyPageParam: state => state.moneyPageParam,
 }
 
 // actions
@@ -29,10 +27,7 @@ const actions = {
         let url = http.urlCommon + http.apiUrl.most;
         return new Promise((resolve, reject) => {
             http.commonPost(url, body).then((res) => {
-                commit("setMoneyRecordList",res);
-                commit("moneyPageChange",res.result.pageNum);
-                commit("moneyPageSizeChange",res.result.pageSize);
-                commit("moneyTotalChange",res.result.total);
+                commit("setMoneyResult",res);
                 resolve(res);
             }).catch((err) => {
                 reject(err);
@@ -43,18 +38,9 @@ const actions = {
 
 // mutations
 const mutations = {
-    setMoneyRecordList(state, res) {
-        state.moneyRecordList = res.result.list;
+    setMoneyResult(state, res) {
+        state.result = res.result;
     },
-    moneyTotalChange(state, total) {
-        state.moneyPageParam.total = total;
-    },
-    moneyPageChange(state, page) {
-        state.moneyPageParam.page = page;
-    },
-    moneyPageSizeChange(state, pageSize) {
-        state.moneyPageParam.pageSize = pageSize;
-    }
 }
 
 export default {
