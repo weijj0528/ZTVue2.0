@@ -48,7 +48,7 @@
                         }
                     },
                     {
-                        title: '注册时间',
+                        title: '时间',
                         key: 'ctime',
                     }
                 ]

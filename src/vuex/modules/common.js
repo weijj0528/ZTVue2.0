@@ -16,32 +16,36 @@ const state = {
             'id': '11',
             'path': '/main/userList',
             'name': '用户列表'
-        }, {
+        }, 
+        {
             'id': '12',
             'path': '/main/moneyRecordList',
             'name': '充值记录'
-        }, {
-            'id': '13',
-            'path': '/main/shareRecordList',
-            'name': '分享记录'
-        }, {
-            'id': '14',
-            'path': '/main/freeSmsList',
-            'name': '免费赠送记录'
-        }]
-    }, {
+        }, 
+        // {
+        //     'id': '13',
+        //     'path': '/main/shareRecordList',
+        //     'name': '分享记录'
+        // }, 
+        // {
+        //     'id': '14',
+        //     'path': '/main/freeSmsList',
+        //     'name': '免费赠送记录'
+        // }
+    ]}, {
         'id': '2',
         'name': '短信管理',
         'subMenus': [{
             'id': '21',
             'path': '/main/smsSessionList',
             'name': '会话记录'
-        }, {
-            'id': '22',
-            'path': '/main/smsRecordList',
-            'name': '短信记录'
-        }]
-    }],
+        },
+        // {
+        //     'id': '22',
+        //     'path': '/main/smsRecordList',
+        //     'name': '短信记录'
+        // }
+    ]}],
     // 当前活动菜单
     activeMenuName: '',
     // 导航栏

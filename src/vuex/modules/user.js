@@ -39,6 +39,24 @@ const actions = {
             });
         })
     },
+    userLogout({commit, state}, param) {
+        let resp = {
+            result:{
+                info:{name: "", no: ""}
+            }
+        };
+        let url = http.urlCommon + http.apiUrl.logout;
+        return new Promise((resolve, reject) => {
+            http.commonPost(url, {param: {}}).then((res) => {
+                window.localStorage.KEY = "";
+                window.localStorage.SID = "";
+                commit("setUserInfo",resp);
+                resolve(res);
+            }).catch((err) => {
+                reject(err);
+            });
+        })
+    },
     userQueryList({commit, state}, param){
         let body = {
             module:'userService',

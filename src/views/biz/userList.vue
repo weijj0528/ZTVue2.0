@@ -10,9 +10,9 @@
 </template>
 <script>
 import centerContent from './../../components/centerContent.vue';
+import comPage from './../../components/com/comPage.vue';
 import userSearch from './../../components/user/userSearch.vue';
 import userMoreSearch from './../../components/user/userMoreSearch.vue';
-import comPage from './../../components/com/comPage.vue';
 import userFunction from './../../components/user/userFunction.vue';
 import uList from './../../components/user/uList.vue';
 import util from './../../libs/util';
@@ -28,12 +28,12 @@ export default {
         }
     },
     components: {
-        centerContent: centerContent,
-        comPage: comPage,
-        userSearch: userSearch,
-        userMoreSearch: userMoreSearch,
-        userFunction: userFunction,
-        uList: uList
+        centerContent,
+        comPage,
+        userSearch,
+        userMoreSearch,
+        userFunction,
+        uList
     },
     computed: {
         ...mapGetters(['userResult']),

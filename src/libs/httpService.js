@@ -14,6 +14,7 @@ var httpService = new Vue({
     difTime: 0,
     apiUrl: {
       login: '/user/ztLogin',
+      logout: '/user/ztLogout',
       most: '/handle/request'
     }
   },

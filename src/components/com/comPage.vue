@@ -28,11 +28,11 @@ export default {
   },
   methods: {
     pageSizeChang: function(ps) {
-      let pn = this.pageParam.pageSize;
+      let pn = this.pageParam.page;
       this.chang(pn, ps);
     },
     pageNumChang: function(pn) {
-      let ps = this.pageParam.page;
+      let ps = this.pageParam.pageSize;
       this.chang(pn, ps);
     },
     chang: function(pn, ps) {
