@@ -17,9 +17,6 @@ Object.keys(filters).forEach(key => {
 Vue.use(VueRouter)
 Vue.use(iView)
 
-import ClientSource from './components/com/enum/clientSource.vue'
-Vue.component('ClientSource', ClientSource)
-
 import loading  from './common/loading/loading'
 // import message  from './common/message/message'
 // import showImg  from './common/showImg/showImg'

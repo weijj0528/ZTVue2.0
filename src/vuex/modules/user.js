@@ -4,24 +4,20 @@ const state = {
     user: {
         name: "", no: ""
     },
-    userList: [{
-        name:'示例数据',
-        address:'示例地址数据',
-    }],
-    userQueryParam:{},
-    userPageParam:{
+    userResult:{
         page:1,
-        pageSize:20,
-        total:0
+        pageSize:15,
+        total:0,
+        list:[]
     },
+    userQueryParam:{},
 }
 
 // getters
 const getters = {
     user: state => state.user,
-    userList: state => state.userList,
+    userResult: state => state.userResult,
     userQueryParam: state => state.userQueryParam,
-    userPageParam: state => state.userPageParam,
 }
 
 // actions
@@ -52,10 +48,7 @@ const actions = {
         let url = http.urlCommon + http.apiUrl.most;
         return new Promise((resolve, reject) => {
             http.commonPost(url, body).then((res) => {
-                commit("setUserList",res);
-                commit("pageChange",res.result.pageNum);
-                commit("pageSizeChange",res.result.pageSize);
-                commit("totalChange",res.result.total);
+                commit("setUserResult",res);
                 resolve(res);
             }).catch((err) => {
                 reject(err);
@@ -70,18 +63,9 @@ const mutations = {
         state.user = res.result.info;
         console.log(state.user);
     },
-    setUserList(state, res) {
-        state.userList = res.result.list;
+    setUserResult(state, res) {
+        state.userResult = res.result;
     },
-    totalChange(state, total) {
-        state.userPageParam.total = total;
-    },
-    pageChange(state, page) {
-        state.userPageParam.page = page;
-    },
-    pageSizeChange(state, pageSize) {
-        state.userPageParam.pageSize = pageSize;
-    }
 }
 
 export default {

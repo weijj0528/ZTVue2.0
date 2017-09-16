@@ -1,3 +1,4 @@
+<!-- 通用分页组件-->
 <template>
   <Page :total="pageParam.total" :page-size="pageParam.pageSize" :current="pageParam.page"  @on-change='pageNumChang' @on-page-size-change="pageSizeChang" show-total show-elevator show-sizer show-elevator placement='top' :page-size-opts="opts">
   </Page>
