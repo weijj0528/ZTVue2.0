@@ -3,6 +3,7 @@
  */
 import Vue from 'vue'
 import Vuex from 'vuex';
+import charts from './modules/charts'
 import common from './modules/common'
 import user from './modules/user'
 import money from './modules/money'
@@ -14,6 +15,7 @@ Vue.use(Vuex)
 // 至此，这个 store 就可以连接到我们的应用中
 export default new Vuex.Store({
   modules: {
+    charts,
     common,
     user,
     money,
