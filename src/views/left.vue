@@ -1,12 +1,12 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <template>
-  <Menu :theme="theme2" active-name="1-2" :open-names="['1']" v-on:on-select="onMenuSelect" width="auto">
-    <Submenu v-for="(menu,index) in menus" :key="menu" :name='menu.id'>
+  <Menu active-name="1-2" :open-names="['1']" v-on:on-select="onMenuSelect" width="auto">
+    <Submenu v-for="(menu,index) in menus" :key="menu.id" :name='menu.id'>
         <template slot="title">
             <Icon type="ios-paper"></Icon>
             {{menu.name}}
         </template>
-        <Menu-item v-for="(subMenu,i) in menu.subMenus" :key="subMenu" :name='subMenu.id'>{{subMenu.name}}</Menu-item>
+        <Menu-item v-for="(subMenu,i) in menu.subMenus" :key="subMenu.id" :name='subMenu.id'>{{subMenu.name}}</Menu-item>
     </Submenu>
   </Menu>
 </template>

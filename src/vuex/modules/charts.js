@@ -40,6 +40,21 @@ const actions = {
             });
         })
     },
+    queryChannelLen({commit, state}, param) {
+        let body = {
+            module:'smsSendService',
+            method:'queryChannelLen',
+            param:param
+        };
+        let url = http.urlCommon + http.apiUrl.most;
+        return new Promise((resolve, reject) => {
+            http.commonPost(url, body).then((res) => {
+                resolve(res);
+            }).catch((err) => {
+                reject(err);
+            });
+        })
+    },
 }
 
 // mutations

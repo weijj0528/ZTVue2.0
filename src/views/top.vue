@@ -7,8 +7,13 @@
         <Col span="2" style="padding-left: 5px;">
         <span class="userName">系统管理员</span>
         </Col>
-        <Col span="20" style="padding: 20px;">
-
+        <Col span="20">
+        <Menu mode="horizontal" theme="dark" @on-select="topMenuSelect">
+            <MenuItem v-for="item in topMenus" v-bind:key='item.id' :name="item.id">
+            <Icon :type="item.icon"></Icon>
+            {{item.name}}
+            </MenuItem>
+        </Menu>
         </Col>
         <Col span="1" style="padding: 20px;">
         <Button type="info" size='large' shape="circle" icon="log-out" @click="logout"></Button>
@@ -19,7 +24,34 @@
 import { mapActions } from 'vuex';
 export default {
     data() {
-        return {}
+        return {
+            topMenus: [
+                {
+                    id: 'api',
+                    name: 'API文档',
+                    icon: 'clipboard',
+                    url: 'http://lovejiayuan.cn:8080/api',
+                },
+                {
+                    id: 'service',
+                    name: 'SOA服务治理',
+                    icon: 'shuffle',
+                    url: 'http://lovejiayuan.cn:8080/dubbo',
+                },
+                {
+                    id: 'job',
+                    name: 'Job调度中心',
+                    icon: 'clock',
+                    url: 'http://114.67.135.132:8080/xxljob',
+                },
+                {
+                    id: 'maven',
+                    name: 'Maven私库',
+                    icon: 'ios-keypad',
+                    url: 'http://lovejiayuan.cn:8081',
+                },
+            ]
+        }
     },
     mounted: function() {
         this.$nextTick(function() {
@@ -38,6 +70,21 @@ export default {
             }, (err) => {
                 _self.$router.push('/login');
             });
+        },
+        topMenuSelect: function(id) {
+            console.log(id);
+            for (let i = 0; i < this.topMenus.length; i++) {
+                let menu = this.topMenus[i];
+                if (menu.id == id) {
+                    if (menu.url.indexOf('http') == 0) {
+                        // 打开新窗口
+                        window.open(menu.url);
+                    } else {
+                        this.$router.push(menu.url);
+                    }
+                    break;
+                }
+            }
         }
     }
 }

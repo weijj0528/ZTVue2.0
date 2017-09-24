@@ -2,7 +2,7 @@
 <!-- 导航组件，选项卡组件 -->
 <template>
     <Tabs type="card" :value='activeTab' closable @on-tab-remove="handleRemove" @on-click="handleClick">
-        <Tab-pane v-for='(tab,i) in tabs' :key="tab" :label="tab.name" :name="tab.id" :closable="tab.id != 0"></Tab-pane>
+        <Tab-pane v-for='(tab,i) in tabs' v-bind:key="tab.id" :label="tab.name" :name="tab.id" :closable="tab.id != 0"></Tab-pane>
     </Tabs>
 </template>
 <script>

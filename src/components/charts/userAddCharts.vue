@@ -5,7 +5,7 @@
 </template>
 <script>
 import echarts from 'echarts';
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 export default {
   data() {
     return {
@@ -34,7 +34,9 @@ export default {
           type: 'value',
           axisLabel: {
             formatter: '{value} 人'
-          }
+          },
+          min: 0,
+          max: 100,
         },
         series: [
           {
@@ -71,13 +73,14 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapGetters(['layout']),
-    height: function() {
-      return (this.layout.contentHeight - 100) / 2;
+  props: {
+    height: {
+      type: Number,
+      default: 0,
     },
-    width: function() {
-      return this.layout.contentWidth * 2 / 3;
+    width: {
+      type: Number,
+      default: 0,
     },
   },
   mounted: function() {
@@ -98,18 +101,18 @@ export default {
     queryData: function() {
       let _self = this;
       _self.myChart.showLoading();
-      let param = {queryType:'day'};
+      let param = { queryType: 'day' };
       _self.queryUserAddStatistics(param).then((resp) => {
         let dataList = resp.result.list;
         let xAxisData = [];
         let series1Data = [];
         for (let i = 0; i < dataList.length; i++) {
-            // dataList[i];
-            xAxisData.push(dataList[i].id);
-            series1Data.push(dataList[i].totalCount);
-            _self.option.xAxis.data = xAxisData;
-            _self.option.series[0].data = series1Data;
-            _self.myChart.setOption(_self.option);
+          // dataList[i];
+          xAxisData.push(dataList[i].id);
+          series1Data.push(dataList[i].totalCount);
+          _self.option.xAxis.data = xAxisData;
+          _self.option.series[0].data = series1Data;
+          _self.myChart.setOption(_self.option);
         };
         _self.myChart.hideLoading();
       }, (err) => {

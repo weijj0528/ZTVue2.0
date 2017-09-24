@@ -112,7 +112,7 @@
 </script>
 <style scoped lang="less">
     .top_calss {
-        background: #80848f;
+        background: #495060;
         border-bottom:1px solid #dddee1;
     }
 

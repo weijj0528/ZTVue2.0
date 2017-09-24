@@ -5,7 +5,7 @@
 </template>
 <script>
 import echarts from 'echarts';
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 export default {
   data() {
     return {
@@ -37,7 +37,9 @@ export default {
           type: 'value',
           axisLabel: {
             formatter: '{value} 条'
-          }
+          },
+          min: 0,
+          max: 1000,
         },
         series: [
           {
@@ -59,13 +61,14 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapGetters(['layout']),
-    height: function() {
-      return (this.layout.contentHeight - 100) / 2;
+  props: {
+    height: {
+      type: Number,
+      default: 0,
     },
-    width: function() {
-      return this.layout.contentWidth * 2 / 3;
+    width: {
+      type: Number,
+      default: 0,
     },
   },
   mounted: function() {

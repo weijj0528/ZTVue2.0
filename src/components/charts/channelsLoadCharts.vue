@@ -6,16 +6,17 @@
 <script>
 import echarts from 'echarts';
 import http from '../../libs/httpService'
-import { mapGetters,mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 export default {
   data() {
     return {
+      timer: {},
       myChart: {},
       option: {
-        title: { text: '实时通道负载', subtext: '通道中未发送的数量' },
+        title: { text: '实时通道负载', subtext: '通道中未发送的短信数量，刷新时间10s' },
         tooltip: {},
         xAxis: {
-          data: ["容联", "网易", "环信", "云片"]
+          data: []
         },
         yAxis: {
           type: 'value',
@@ -28,18 +29,19 @@ export default {
         series: [{
           name: '负载',
           type: 'bar',
-          data: [100, 0, 0, 0]
+          data: []
         }]
       }
     }
   },
-  computed: {
-    ...mapGetters(['layout']),
-    height: function() {
-      return (this.layout.contentHeight - 100);
+  props: {
+    height: {
+      type: Number,
+      default: 0,
     },
-    width: function() {
-      return this.layout.contentWidth * 1 / 3;
+    width: {
+      type: Number,
+      default: 0,
     },
   },
   mounted: function() {
@@ -49,12 +51,49 @@ export default {
       var myChart = echarts.init(document.getElementById('channelsLoadCharts'));
       myChart.setOption(this.option);
       _self.myChart = myChart;
+      _self.queryData();
+      window.setInterval(_self.intervalQueryData, 1000 * 10)
     })
   },
   methods: {
-    // ...mapActions(['','']),
+    ...mapActions(['queryChannelLen']),
     queryData: function() {
+      let _self = this;
+      _self.myChart.showLoading();
+      let param = {};
+      _self.queryChannelLen(param).then((resp) => {
+        _self.dataHandel(resp);
+        _self.myChart.hideLoading();
+      }, (err) => {
+        _self.myChart.hideLoading();
+      });
+    },
+    intervalQueryData: function() {
+      // 周期查询
+      let _self = this;
+      let param = {};
+      _self.queryChannelLen(param).then((resp) => {
+        _self.dataHandel(resp);
+      }, (err) => {
+      });
+    },
+    dataHandel: function(resp) {
+      let _self = this;
+      let dataList = resp.result.list;
+      let xAxisData = [];
+      let series0Data = [];
+      for (let i = 0; i < dataList.length; i++) {
+        xAxisData.push(dataList[i].name);
+        series0Data.push(dataList[i].len);
+        _self.option.xAxis.data = xAxisData;
+        _self.option.series[0].data = series0Data;
+        _self.myChart.setOption(_self.option);
+      };
     }
+  },
+  beforeDestroy: function() {
+    // 清除定时器
+    window.setInterval(this.timer)
   }
 }
 </script>
