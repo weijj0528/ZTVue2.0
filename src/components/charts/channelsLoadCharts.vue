@@ -93,7 +93,7 @@ export default {
   },
   beforeDestroy: function() {
     // 清除定时器
-    window.setInterval(this.timer)
+    window.clearInterval(this.timer)
   }
 }
 </script>
