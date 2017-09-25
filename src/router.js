@@ -12,6 +12,7 @@ import shareRecordList from './views/biz/shareRecordList.vue';
 import freeSmsList from './views/biz/freeSmsList.vue';
 import smsSessionList from './views/biz/smsSessionList.vue';
 import smsRecordList from './views/biz/smsRecordList.vue';
+import activityList from './views/biz/activityList.vue';
 
 
 
@@ -28,6 +29,7 @@ const router = new VueRouter({
             {path: 'freeSmsList', component: freeSmsList},
             {path: 'smsSessionList', component: smsSessionList},
             {path: 'smsRecordList', component: smsRecordList},
+            {path: 'activityList', component: activityList},
         ]}
     ]
 })

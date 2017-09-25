@@ -52,3 +52,25 @@ export function moneyRecordStatus(value) {
             return '未知';
     }
 }
+
+export function activityAType(value) {
+    switch(value){
+        case 'register':
+            return '注册';
+        case 'firstPay':
+            return '首次充值';
+        default:
+            return '其他';
+    }
+}
+
+export function activityAwardType(value) {
+    switch(value){
+        case 'sms':
+            return '免费短信';
+        case 'money':
+            return '奖励金';
+        default:
+            return '其他';
+    }
+}
