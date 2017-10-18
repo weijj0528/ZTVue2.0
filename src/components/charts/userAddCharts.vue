@@ -35,8 +35,8 @@ export default {
           axisLabel: {
             formatter: '{value} 人'
           },
-          min: 0,
-          max: 100,
+          // min: 0,
+          // max: 100,
         },
         series: [
           {
