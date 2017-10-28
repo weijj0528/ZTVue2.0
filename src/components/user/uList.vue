@@ -16,8 +16,31 @@ export default {
                     align: 'center',
                 },
                 {
+                    title: '头像',
+                    render: (h, param) => {
+                        if(param.row.avatar){
+                            return h('Avatar', {
+                                props: {
+                                       src:param.row.avatar
+                                }
+                                
+                            });
+                        }else{
+                            return h('Avatar', {
+                                props: {
+                                       icon:"person"
+                                }});
+                        }
+                        
+                    }
+                },
+                {
                     title: '姓名',
                     key: 'name',
+                },
+                {
+                    title: '昵称',
+                    key: 'nickname',
                 },
                 {
                     title: '电话',
