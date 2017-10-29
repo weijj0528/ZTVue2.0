@@ -55,6 +55,35 @@ const actions = {
             });
         })
     },
+    queryChannelRatio({commit, state}) {
+        let body = {
+            module:'smsSendService',
+            method:'getChannelRatio',
+        };
+        let url = http.urlCommon + http.apiUrl.most;
+        return new Promise((resolve, reject) => {
+            http.commonPost(url, body).then((res) => {
+                resolve(res);
+            }).catch((err) => {
+                reject(err);
+            });
+        })
+    },
+    setChannelRatio({commit, state},param) {
+        let body = {
+            module:'smsSendService',
+            method:'setChannelRatio',
+            param:param
+        };
+        let url = http.urlCommon + http.apiUrl.most;
+        return new Promise((resolve, reject) => {
+            http.commonPost(url, body).then((res) => {
+                resolve(res);
+            }).catch((err) => {
+                reject(err);
+            });
+        })
+    },
 }
 
 // mutations
