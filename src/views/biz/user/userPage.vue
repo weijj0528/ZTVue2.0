@@ -1,15 +1,15 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <template>
-    <centerContent :leftOnOff='leftOnOff' :rightOnOff='rightOnOff' :loading='loading'>
+    <centerLayout :leftOnOff='leftOnOff' :rightOnOff='rightOnOff' :loading='loading'>
         <userMoreSearch slot="left" @more-search-onoff='moreSearchOnOff'></userMoreSearch>
         <userSearch slot="search" @more-search-onoff='moreSearchOnOff' @query='query'></userSearch>
         <userFunction slot="function" @open-details="openDetails"></userFunction>
         <uList slot="content" :dataList='dataList'></uList>
         <comPage slot="bottom" :pageParam='pageArgs' @page-chang="page"></comPage>
-    </centerContent>
+    </centerLayout>
 </template>
 <script>
-import centerContent from './../../layout/centerContent.vue';
+import centerLayout from './../../layout/centerLayout.vue';
 import comPage from './../../com/comPage.vue';
 import userSearch from './userSearch.vue';
 import userMoreSearch from './userMoreSearch.vue';
@@ -28,7 +28,7 @@ export default {
         }
     },
     components: {
-        centerContent,
+        centerLayout,
         comPage,
         userSearch,
         userMoreSearch,
