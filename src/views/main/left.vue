@@ -1,14 +1,14 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <template>
-  <Menu active-name="1-2" :open-names="['1']" v-on:on-select="onMenuSelect" width="auto">
-    <Submenu v-for="(menu,index) in menus" :key="menu.id" :name='menu.id'>
+  <el-menu active-name="1-2" @select="onMenuSelect" width="auto">
+    <el-submenu v-for="menu in menus" :key="menu.id" :index='menu.id'>
         <template slot="title">
-            <Icon type="ios-paper"></Icon>
+            <i v-if="menu.icon" :class="menu.icon"></i>
             {{menu.name}}
         </template>
-        <Menu-item v-for="(subMenu,i) in menu.subMenus" :key="subMenu.id" :name='subMenu.id'>{{subMenu.name}}</Menu-item>
-    </Submenu>
-  </Menu>
+        <el-menu-item v-for="subMenu in menu.subMenus" :key="subMenu.id" :index='subMenu.id'>{{subMenu.name}}</el-menu-item>
+    </el-submenu>
+  </el-menu>
 </template>
 <script>
 import util from '../../libs/util'

@@ -1,9 +1,15 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <!-- 导航组件，选项卡组件 -->
 <template>
-    <Tabs type="card" :value='activeTab' closable @on-tab-remove="handleRemove" @on-click="handleClick">
-        <Tab-pane v-for='(tab,i) in tabs' v-bind:key="tab.id" :label="tab.name" :name="tab.id" :closable="tab.id != 0"></Tab-pane>
-    </Tabs>
+    <el-tabs :value='activeTab' type="card" closable @tab-remove="handleRemove" @tab-click="handleClick">
+        <el-tab-pane
+            :key="tab.name"
+            v-for='tab in tabs'
+            :closable="tab.id != 0"
+            :label="tab.name"
+            :name="tab.id">
+        </el-tab-pane>
+    </el-tabs>
 </template>
 <script>
     export default {

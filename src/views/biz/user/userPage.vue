@@ -4,7 +4,7 @@
         <userMoreSearch slot="left" @more-search-onoff='moreSearchOnOff'></userMoreSearch>
         <userSearch slot="search" @more-search-onoff='moreSearchOnOff' @query='query'></userSearch>
         <userFunction slot="function" @open-details="openDetails"></userFunction>
-        <uList slot="content" :dataList='dataList'></uList>
+        <userList slot="content" :dataList='dataList'></userList>
         <comPage slot="bottom" :pageParam='pageArgs' @page-chang="page"></comPage>
     </centerLayout>
 </template>
@@ -14,7 +14,7 @@ import comPage from './../../com/comPage.vue';
 import userSearch from './userSearch.vue';
 import userMoreSearch from './userMoreSearch.vue';
 import userFunction from './userFunction.vue';
-import uList from './uList.vue';
+import userList from './userList.vue';
 import util from './../../../libs/util';
 import { mapGetters, mapActions } from 'vuex';
 export default {
@@ -33,7 +33,7 @@ export default {
         userSearch,
         userMoreSearch,
         userFunction,
-        uList
+        userList
     },
     computed: {
         ...mapGetters(['userResult']),

@@ -1,36 +1,37 @@
 <!-- 登录页面 -->
 <template>
     <div id="web">
-        <p style="height:180px;"></p>
+        <p style="height:160px;"></p>
         <h1 align="center">欢迎进入XXX中台系统</h1>
-        <p style="height:40px;"></p>
+        <p style="height:20px;"></p>
         <div class="login">
             <div class="banner">
             </div>
             <div class="logmain">
-                <h1>&nbsp;</h1>
-                <div class="logdv">
-                    <span class="logzi">账 号：</span>
-                    <input name="textarea" type="text" id="textarea" class="ipt" v-model="param.userName"/>
-                </div>
-                <div class="logdv">
-                    <span class="logzi">密 码：</span>
-                    <input name="textarea" type="password" id="textarea" class="ipt" v-model="param.password"/>
-                </div>
-                <div class="logdv">
-                    <p class="logzi">&nbsp;</p>
-                    <a href="#" class="more">忘记密码</a>
-                    <input name="" type="checkbox" value="" class="cex"/>记住密码
-                </div>
-                <div class="logdv" style="height:40px;">
-                    <p class="logzi">&nbsp;</p>
-                    <Button type="primary" class="btnbg" :loading="loading" @click="submit">
-                        <span >提交</span>
-                    </Button>
-                </div>
-                <div>
-                    <a href="#" class="more">注册</a>
-                </div>
+                <h1></h1>
+                <el-row>
+                    <el-col :span="24" class="col-margin">
+                        <el-input placeholder="账号名……" v-model="param.userName">
+                            <template slot="prepend">账 号：</template>
+                        </el-input>
+                    </el-col>
+                    <el-col :span="24" class="col-margin">
+                        <el-input placeholder="密码……" v-model="param.password">
+                            <template slot="prepend">密 码：</template>
+                        </el-input>
+                    </el-col>
+                    <el-col :span="12" class="col-margin">
+                       <input name="" type="checkbox" value="" class="cex"/>记住密码
+                    </el-col>
+                    <el-col :span="12" class="col-margin">
+                       <a href="#" class="more">忘记密码</a>
+                    </el-col>
+                    <el-col :span="24" class="col-margin">
+                        <el-button type="primary" :loading="loading" @click="submit">
+                            <span >提交</span>
+                        </el-button>
+                    </el-col>
+                </el-row>
             </div>
         </div>
         <p style="height:100px;"></p>
@@ -95,7 +96,7 @@
     }
 
     #web .login {
-        width: 670px;
+        width: 700px;
         height: 220px;
         margin: 0 auto;
         background: #F7F7F9;
@@ -103,67 +104,26 @@
     }
 
     #web .login .banner {
-        width: 368px;
+        width: 346px;
         height: 218px;
         padding: 1px;
         float: left;
     }
 
     #web .login .logmain {
-        width: 300px;
+        width: 320px;
         height: 220px;
+        padding: 10px;
         float: right;
     }
 
     #web .login .logmain h1 {
-        height: 30px;
+        height: 20px;
         display: block;
-        line-height: 30px;
+        line-height: 20px;
     }
 
-    #web .login .logmain .logdv {
-        height: 28px;
-        margin: 8px 0;
-        padding-left: 20px;
-        line-height: 28px;
-    }
-
-    #web .login .logmain .logdv .logzi {
-        width: 50px;
-        height: 28px;
-        display: block;
-        float: left;
-    }
-
-    #web .login .logmain .logdv .ipt {
-        width: 190px;
-        height: 26px;
-        border: 1px solid #ddd;
-        padding-left: 10px;
-    }
-
-    .more {
-        display: block;
-        float: right;
-        color: #3C8DB5;
-        margin-right: 30px;
-        color: #3C8DB5;
-    }
-
-    .cex {
-        float: left;
-        display: block;
-        margin-top: 7px;
-        margin-right: 5px;
-    }
-
-    .btnbg {
-        width: 203px;
-        height: 40px;
-        text-align: center;
-        color: #FFFFFF;
-        font-weight: bold;
-        border: 0;
-        cursor: pointer;
+    .col-margin{
+        margin-top: 10px
     }
 </style>

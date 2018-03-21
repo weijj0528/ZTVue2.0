@@ -3,8 +3,9 @@
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import iView from 'iview';
-import 'iview/dist/styles/iview.css';    // 使用 CSS
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
 import router from './router'
 import app from './views/app.vue'
 import store from './vuex/store';
@@ -15,7 +16,7 @@ Object.keys(filters).forEach(key => {
 })
 
 Vue.use(VueRouter)
-Vue.use(iView)
+Vue.use(ElementUI,{ size: 'mini' });
 
 import loading  from './common/loading/loading'
 // import message  from './common/message/message'

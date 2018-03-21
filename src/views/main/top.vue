@@ -1,24 +1,26 @@
 <!--Created by Weiun on 2017/1/17.-->
 <template>
-    <Row type="flex" justify="space-between" align="middle">
-        <Col span="1" style="padding: 20px;">
-        <Avatar style="background-color: #87d068" size="large" icon="person" />
-        </Col>
-        <Col span="2" style="padding-left: 5px;">
-        <span class="userName">系统管理员</span>
-        </Col>
-        <Col span="20">
-        <Menu mode="horizontal" theme="dark" @on-select="topMenuSelect">
-            <MenuItem v-for="item in topMenus" v-bind:key='item.id' :name="item.id">
-            <Icon :type="item.icon"></Icon>
-            {{item.name}}
-            </MenuItem>
-        </Menu>
-        </Col>
-        <Col span="1" style="padding: 20px;">
-        <Button type="info" size='large' shape="circle" icon="log-out" @click="logout"></Button>
-        </Col>
-    </Row>
+    <el-row type="flex" justify="space-between" align="middle">
+        <el-col :span="2">
+            <!-- <Avatar style="background-el-color: #87d068" size="large" icon="person" /> -->
+        </el-col>
+        <el-col :span="2" style="padding-left: 5px;">
+            <span class="userName">系统管理员</span>
+        </el-col>
+        <el-col :span="18">
+        <el-menu mode="horizontal" 
+            
+            @on-select="topMenuSelect">
+            <el-menu-item v-for="item in topMenus" :key='item.id'  :index="item.id">
+                <i v-if="item.icon" :class="item.icon"></i>
+                <span slot="title"> {{item.name}}</span>
+            </el-menu-item>
+        </el-menu>
+        </el-col>
+        <el-col :span="2" style="padding: 20px;">
+            <el-button type="info" icon="log-out" @click="logout"></el-button>
+        </el-col>
+    </el-row>
 </template>
 <script>
 import { mapActions } from 'vuex';
@@ -73,7 +75,7 @@ export default {
         },
         topMenuSelect: function(id) {
             console.log(id);
-            for (let i = 0; i < this.topMenus.length; i++) {
+            for (let i = 0; i < this.topMenus; i++) {
                 let menu = this.topMenus[i];
                 if (menu.id == id) {
                     if (menu.url.indexOf('http') == 0) {
@@ -93,6 +95,6 @@ export default {
 /*@import '../styles/common.css';*/
 
 .userName {
-    color: #fff;
+    el-color: #fff;
 }
 </style>

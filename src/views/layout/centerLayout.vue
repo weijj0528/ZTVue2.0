@@ -1,37 +1,37 @@
 <!-- Created by Weiun on 2017/1/17. 页面内容区组件，负责内容区布局-->
 <template>
     <div class="centerContent" v-bind:style = "{width:(layout.contentWidth-10)+'px'}" >
-        <Row>
-          <Col :span="sidebar.leftSpan" v-show="leftOnOff">
+        <el-row>
+          <el-col :span="sidebar.leftSpan" v-show="leftOnOff">
             <slot name="left"></slot>
-          </Col>
-          <Col :span="sidebar.centerSpan">
-              <Row type="flex" justify="start" v-show="searchShow">
-                <Col span="24" v-show="searchShow">
+          </el-col>
+          <el-col :span="sidebar.centerSpan">
+              <el-row type="flex" justify="start" v-show="searchShow">
+                <el-col :span="24" v-show="searchShow">
                   <slot name="search"></slot>
-                </Col>
-              </Row><br>
-              <Row type="flex" justify="start" v-show="functionShow">
-                <Col span="24" v-show="functionShow">
+                </el-col>
+              </el-row><br>
+              <el-row type="flex" justify="start" v-show="functionShow">
+                <el-col :span="24" v-show="functionShow">
                   <slot name="function"></slot>
-                </Col>
-              </Row><br> 
-              <Row v-bind:style = "{height:(layout.contentHeight-210)+'px'}">
-                <Col span="24" >
+                </el-col>
+              </el-row><br> 
+              <el-row v-bind:style = "{height:(layout.contentHeight-210)+'px'}">
+                <el-col :span="24" >
                     <slot name="content"></slot>
                     <Spin size="large" fix v-if="loading" v-bind:style = "{height:(layout.contentHeight-210)+'px',opacity: 0.5}"></Spin>
-                </Col>
-              </Row>
-              <Row>
-                <Col span="24" style="height: 30px;margin-top: 5px" >
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="24" style="height: 30px;margin-top: 5px" >
                     <slot name="bottom"></slot>
-                </Col>
-              </Row>
-          </Col>
-          <Col :span="sidebar.rightSpan" v-show="rightOnOff">
+                </el-col>
+              </el-row>
+          </el-col>
+          <el-col :span="sidebar.rightSpan" v-show="rightOnOff">
             <slot name="right"></slot>
-          </Col>
-        </Row>
+          </el-col>
+        </el-row>
         
     </div>
 </template>

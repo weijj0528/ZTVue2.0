@@ -1,20 +1,20 @@
 <!-- -->
 <template>
     <div>
-        <Row>
-            <Col span="24" class='top_calss' v-bind:style="{ height: layout.topHeight + 'px'}">
-            <top></top>
-            </Col>
-        </Row>
-        <Row>
-            <Col :lg='3' :md="4" :sm="5" :xs='6' v-bind:style="{ height: layout.contentHeight + 'px' }">
-            <left v-bind:style="{ height: layout.contentHeight + 'px'}" :menus='menus' @menu-select='menuSelect'></left>
-            </Col>
-            <Col :lg='21' :md="20" :sm="19" :xs='18'>
+        <el-row>
+            <el-col :span="24" class='top_calss' v-bind:style="{ height: layout.topHeight + 'px'}">
+                <top></top>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :lg='3' :md="4" :sm="5" :xs='6' v-bind:style="{ height: layout.contentHeight + 'px' }">
+                <left v-bind:style="{ height: layout.contentHeight + 'px'}" :menus='menus' @menu-select='menuSelect'></left>
+            </el-col>
+            <el-col :lg='21' :md="20" :sm="19" :xs='18'>
             <tab-nav class="nav" :tabs='tabs' :active-tab='active_tab' @nav-router="navRouter" @nav-click="navClick" @nav-close='navClose'></tab-nav>
-            <router-view></router-view>
-            </Col>
-        </Row>
+                <router-view></router-view>
+            </el-col>
+        </el-row>
     </div>
 </template>
 <script>

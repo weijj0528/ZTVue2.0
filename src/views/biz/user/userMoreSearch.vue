@@ -1,12 +1,10 @@
 
 <template>
-    <Row type="flex" justify="space-between">
-        <Col span="24">
-            <Button type="primary" size="small" shape="circle" icon="ios-search"></Button>
-            <Button type="info" size="small">清空</Button>
-            <Button type="info" size="small">刷新</Button>
-        </Input></Col>
-    </Row>
+    <el-row type="flex" justify="space-between">
+        <el-col :span="24">
+            更多查询条件
+        </el-col>
+    </el-row>
 </template>
 <script>
 export default {

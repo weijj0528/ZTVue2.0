@@ -1,7 +1,15 @@
 <!-- 通用分页组件-->
 <template>
-  <Page :total="pageParam.total" :page-size="pageParam.pageSize" :current="pageParam.page"  @on-change='pageNumChang' @on-page-size-change="pageSizeChang" show-total show-elevator show-sizer show-elevator placement='top' :page-size-opts="opts">
-  </Page>
+  <el-pagination
+      background
+      @size-change="pageSizeChang"
+      @current-change="pageNumChang"
+      :current-page="pageParam.page"
+      :page-sizes="opts"
+      :page-size="pageParam.pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="pageParam.total">
+    </el-pagination>
 </template>
 <script>
 export default {

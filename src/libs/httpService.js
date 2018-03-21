@@ -120,10 +120,10 @@ var httpService = new Vue({
             if (response.data.code === '1c01') {
               resolve(response.data);
             } else {
-              _self.$Message.error({
-                top: 100,
-                content: response.data.msg,
-                closable: true,
+              _self.$message({
+                message: response.data.msg,
+                type: 'error',
+                showClose: true,
                 duration: 3
               });
               reject(response.data);
