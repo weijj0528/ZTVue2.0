@@ -17,29 +17,6 @@ const state = {
                 'id': '11',
                 'path': '/main/userList',
                 'name': '用户列表'
-            },
-            {
-                'id': '12',
-                'path': '/main/moneyRecordList',
-                'name': '充值记录'
-            },]
-        },
-        {
-            'id': '2',
-            'name': '短信管理',
-            'subMenus': [{
-                'id': '21',
-                'path': '/main/smsSessionList',
-                'name': '会话记录'
-            },]
-        },
-        {
-            'id': '3',
-            'name': '活动管理',
-            'subMenus': [{
-                'id': '31',
-                'path': '/main/activityList',
-                'name': '活动列表'
             },]
         },
     ],

@@ -6,7 +6,7 @@ import VueRouter from 'vue-router'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';    // 使用 CSS
 import router from './router'
-import index from './views/index.vue'
+import app from './views/app.vue'
 import store from './vuex/store';
 import * as filters from './filters/filters'
 
@@ -30,5 +30,5 @@ Vue.prototype.$loading = loading;
 const routerApp = new Vue({
     store,
     router,
-    render: h => h(index)
+    render: h => h(app)
 }).$mount('#app')

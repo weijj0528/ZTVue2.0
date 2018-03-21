@@ -69,18 +69,8 @@ var httpService = new Vue({
             _self.difTime = response.biz_result.time - timestamp;
             if (cb) cb();
           } else {
-            /*_self.$message({
-             showClose: true,
-             message: response.msg,
-             type: 'error'
-             });*/
           }
         }, function (err) {
-          /* _self.$message({
-           showClose: true,
-           message: '网络错误，请稍后重试',
-           type: 'error'
-           });*/
         });
       }
     },
