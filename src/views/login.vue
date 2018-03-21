@@ -1,40 +1,44 @@
 <!-- 登录页面 -->
 <template>
     <div id="web">
-        <p style="height:160px;"></p>
-        <h1 align="center">欢迎进入XXX中台系统</h1>
-        <p style="height:20px;"></p>
+        
+        <div style="height:180px"></div>
+        <h1 align="center" style="margin:0">欢迎进入XXX中台系统</h1>
+        <p align="center"></p>
         <div class="login">
             <div class="banner">
+                <el-carousel height="218px">
+                    <el-carousel-item>
+                        <img style="height:218px;width:358px" src="http://img3.imgtn.bdimg.com/it/u=765875353,3793971150&fm=27&gp=0.jpg"/>
+                    </el-carousel-item>
+                </el-carousel>
             </div>
             <div class="logmain">
-                <h1></h1>
                 <el-row>
                     <el-col :span="24" class="col-margin">
-                        <el-input placeholder="账号名……" v-model="param.userName">
+                        <el-input placeholder="账号名……" v-model="param.userName" size="large">
                             <template slot="prepend">账 号：</template>
                         </el-input>
                     </el-col>
                     <el-col :span="24" class="col-margin">
-                        <el-input placeholder="密码……" v-model="param.password">
+                        <el-input type="password" placeholder="密码……" v-model="param.password" size="large">
                             <template slot="prepend">密 码：</template>
                         </el-input>
                     </el-col>
-                    <el-col :span="12" class="col-margin">
-                       <input name="" type="checkbox" value="" class="cex"/>记住密码
+                    <el-col :span="20" class="col-margin">
+                        <el-checkbox v-model="rememberPwd" >记住密码</el-checkbox>
                     </el-col>
-                    <el-col :span="12" class="col-margin">
-                       <a href="#" class="more">忘记密码</a>
+                    <el-col :span="4" class="col-margin">
+                       <el-button type="text">忘记密码</el-button>
                     </el-col>
                     <el-col :span="24" class="col-margin">
-                        <el-button type="primary" :loading="loading" @click="submit">
-                            <span >提交</span>
+                        <el-button type="primary" :loading="loading" @click="submit" style="width:100%" size="large">
+                            提交
                         </el-button>
                     </el-col>
                 </el-row>
             </div>
         </div>
-        <p style="height:100px;"></p>
         <p align="center">XXX公司版权所有@****提供技术支持</p>
     </div>
 </template>
@@ -45,6 +49,7 @@
         data() {
             return {
                 loading:false,
+                rememberPwd:false,
                 param: {
                     userName: "",
                     password: ""
@@ -70,29 +75,17 @@
         }
     }
 </script>
-<style scoped lang="less">
-    html {
-        -webkit-text-size-adjust: none;
-    }
-
-    li,ol,ul {
-        list-style: none;
-    }
-
-    a {
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    img {
-        border: 0;
-    }
+<style scoped >
 
     #web {
         width: 100%;
         height: 100%;
         background: cadetblue;
         margin: 0 auto;
+        background-image: url('../resource/image/bg_login.jpg');
+        background-repeat:no-repeat; 
+        background-size:100% 100%;
+        -moz-background-size:100% 100%;
     }
 
     #web .login {
@@ -104,7 +97,7 @@
     }
 
     #web .login .banner {
-        width: 346px;
+        width: 358px;
         height: 218px;
         padding: 1px;
         float: left;
@@ -112,15 +105,9 @@
 
     #web .login .logmain {
         width: 320px;
-        height: 220px;
+        height: 198px;
         padding: 10px;
         float: right;
-    }
-
-    #web .login .logmain h1 {
-        height: 20px;
-        display: block;
-        line-height: 20px;
     }
 
     .col-margin{

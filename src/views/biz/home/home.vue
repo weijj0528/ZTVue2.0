@@ -1,10 +1,10 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <template>
-    <Row>
-        <Col span="24">
+    <el-row>
+        <el-col :span="24">
             主页
-        </Col>
-    </Row>
+        </el-col>
+    </el-row>
 </template>
 <script>
 import { mapGetters } from 'vuex';

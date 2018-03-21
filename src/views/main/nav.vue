@@ -38,10 +38,11 @@
         methods: {
             handleClick: function (name) {
                 // tab 点击 返回当前tab
+                console.log(name)
                 let index = -1;
                 for (let i = 0; i < this.tabs.length; i++) {
                     let tab = this.tabs[i];
-                    if (tab.id === name) {
+                    if (tab.id === name.name) {
                         index = i;
                         break;
                     }

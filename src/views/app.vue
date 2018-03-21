@@ -13,8 +13,7 @@ export default {
 }
 </script>
 <style scoped lang="less">
-address,blockquote,body,button,caption,dd,div,dl,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,iframe,input,legend,li,ol,p,p,pre,select,table,td,textarea,th,
-ul {
+body,button,caption,dd,div,dl,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,iframe,input,legend,li,ol,p,pre,select,table,td,textarea,th,ul {
     margin: 0;
     padding: 0;
     font-weight: normal;

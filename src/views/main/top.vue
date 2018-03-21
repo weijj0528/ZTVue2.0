@@ -1,24 +1,14 @@
 <!--Created by Weiun on 2017/1/17.-->
 <template>
     <el-row type="flex" justify="space-between" align="middle">
-        <el-col :span="2">
-            <!-- <Avatar style="background-el-color: #87d068" size="large" icon="person" /> -->
-        </el-col>
         <el-col :span="2" style="padding-left: 5px;">
             <span class="userName">系统管理员</span>
         </el-col>
         <el-col :span="18">
-        <el-menu mode="horizontal" 
-            
-            @on-select="topMenuSelect">
-            <el-menu-item v-for="item in topMenus" :key='item.id'  :index="item.id">
-                <i v-if="item.icon" :class="item.icon"></i>
-                <span slot="title"> {{item.name}}</span>
-            </el-menu-item>
-        </el-menu>
+        <el-button v-for="item in topMenus" :key='item.id' :icon="item.icon" @click="topMenuSelect(item)" type="text" size="large">{{item.name}}</el-button>
         </el-col>
-        <el-col :span="2" style="padding: 20px;">
-            <el-button type="info" icon="log-out" @click="logout"></el-button>
+        <el-col :span="1" style="padding: 20px;">
+            <el-button type="text" icon="el-icon-arrow-right" @click="logout"  size="large" style="width:100%"></el-button>
         </el-col>
     </el-row>
 </template>
@@ -31,25 +21,25 @@ export default {
                 {
                     id: 'api',
                     name: 'API文档',
-                    icon: 'clipboard',
+                    icon: 'el-icon-tickets',
                     url: 'http://lovejiayuan.cn:8080/api',
                 },
                 {
                     id: 'service',
                     name: 'SOA服务治理',
-                    icon: 'shuffle',
+                    icon: 'el-icon-refresh',
                     url: 'http://lovejiayuan.cn:8080/dubbo',
                 },
                 {
                     id: 'job',
                     name: 'Job调度中心',
-                    icon: 'clock',
+                    icon: 'el-icon-time',
                     url: 'http://114.67.135.132:8080/xxljob',
                 },
                 {
                     id: 'maven',
                     name: 'Maven私库',
-                    icon: 'ios-keypad',
+                    icon: 'el-icon-menu',
                     url: 'http://lovejiayuan.cn:8081',
                 },
             ]
@@ -73,19 +63,13 @@ export default {
                 _self.$router.push('/login');
             });
         },
-        topMenuSelect: function(id) {
-            console.log(id);
-            for (let i = 0; i < this.topMenus; i++) {
-                let menu = this.topMenus[i];
-                if (menu.id == id) {
-                    if (menu.url.indexOf('http') == 0) {
-                        // 打开新窗口
-                        window.open(menu.url);
-                    } else {
-                        this.$router.push(menu.url);
-                    }
-                    break;
-                }
+        topMenuSelect: function(menu) {
+            console.log(menu);
+            if (menu.url.indexOf('http') == 0) {
+                // 打开新窗口
+                window.open(menu.url);
+            } else {
+                this.$router.push(menu.url);
             }
         }
     }

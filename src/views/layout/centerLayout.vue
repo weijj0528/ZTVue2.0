@@ -17,9 +17,8 @@
                 </el-col>
               </el-row><br> 
               <el-row v-bind:style = "{height:(layout.contentHeight-210)+'px'}">
-                <el-col :span="24" >
+                <el-col :span="24" v-loading="loading" element-loading-text="……加载中……">
                     <slot name="content"></slot>
-                    <Spin size="large" fix v-if="loading" v-bind:style = "{height:(layout.contentHeight-210)+'px',opacity: 0.5}"></Spin>
                 </el-col>
               </el-row>
               <el-row>

@@ -20,11 +20,11 @@ var httpService = new Vue({
   },
   methods: {
     addSID: function addSID(url) {
-      if(this.SID != undefined){
+      if (this.SID != undefined) {
         this.SID = window.localStorage.SID;
       }
       if (this.SID && this.SID != undefined) {
-        return url + ';jsessionid=' + this.SID ;
+        return url + ';jsessionid=' + this.SID;
       } else {
         return url;
       }
@@ -68,10 +68,8 @@ var httpService = new Vue({
             window.localStorage.difTime = response.biz_result.time - timestamp;
             _self.difTime = response.biz_result.time - timestamp;
             if (cb) cb();
-          } else {
-          }
-        }, function (err) {
-        });
+          } else {}
+        }, function (err) {});
       }
     },
     getSign: function getSign(str) {
@@ -87,7 +85,7 @@ var httpService = new Vue({
     },
     getBase64: function getBase64(str) {
       let s = CryptoJS.enc.Utf8.parse(str);
-      let base64  = CryptoJS.enc.Base64.stringify(s);
+      let base64 = CryptoJS.enc.Base64.stringify(s);
       return base64;
     },
     //过滤请求的数据
@@ -95,7 +93,7 @@ var httpService = new Vue({
      *1.传入一个对象 自动过滤该对象 键所对应的值为空的情况
      * 并返回一个 新对象
      */
-    filterFormData(params){
+    filterFormData(params) {
       if (params && typeof params == 'object') {
         let obj = {};
         Object.keys(params).forEach((item) => {
@@ -115,16 +113,17 @@ var httpService = new Vue({
       data.sign = this.getSign('module=' + data.biz_module + '&method=' + data.biz_method + '&time=' + data.time);
       var _self = this;
       return new Promise(function (resolve, reject) {
-        axios({method: 'post', url: url, data: data}).then(function (response) {
+        axios({
+          method: 'post',
+          url: url,
+          data: data
+        }).then(function (response) {
           if (response.status === 200) {
             if (response.data.code === '1c01') {
               resolve(response.data);
             } else {
-              _self.$message({
+              _self.$message.error({
                 message: response.data.msg,
-                type: 'error',
-                showClose: true,
-                duration: 3
               });
               reject(response.data);
             }

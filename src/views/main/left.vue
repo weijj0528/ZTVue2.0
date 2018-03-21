@@ -1,6 +1,6 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <template>
-  <el-menu active-name="1-2" @select="onMenuSelect" width="auto">
+  <el-menu default-active="1" @select="onMenuSelect" width="auto">
     <el-submenu v-for="menu in menus" :key="menu.id" :index='menu.id'>
         <template slot="title">
             <i v-if="menu.icon" :class="menu.icon"></i>
