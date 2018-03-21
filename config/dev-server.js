@@ -22,29 +22,10 @@ var port = process.env.PORT || config.dev.port
 var autoOpenBrowser = !!config.dev.autoOpenBrowser
 // Define HTTP proxies to your custom API backend
 // https://github.com/chimurai/http-proxy-middleware
-
 var proxyTable = config.dev.proxyTable
 
 var app = express()
 var compiler = webpack(webpackConfig)
-
-var devMiddleware = require('webpack-dev-middleware')(compiler, {
-    publicPath: webpackConfig.output.publicPath,
-    quiet: false
-})
-
-var hotMiddleware = require('webpack-hot-middleware')(compiler, {
-    log: console.log,
-    path: '/__webpack_hmr',
-    heartbeat: 10 * 1000
-})
-// force page reload when html-webpack-plugin template changes
-compiler.plugin('compilation', function (compilation) {
-    compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
-        hotMiddleware.publish({action: 'reload'})
-        cb()
-    })
-})
 
 // proxy api requests 反向代理API 在config 中配置即可
 Object.keys(proxyTable).forEach(function (context) {
@@ -55,9 +36,27 @@ Object.keys(proxyTable).forEach(function (context) {
     app.use(proxyMiddleware(options.filter || context, options))
 })
 
-// handle fallback for HTML5 history API
-// h5的 history模式
-app.use(require('connect-history-api-fallback')())
+var devMiddleware = require('webpack-dev-middleware')(compiler, {
+    publicPath: webpackConfig.output.publicPath,
+    quiet: false,
+    stats: {
+        colors: true
+    },
+})
+
+var hotMiddleware = require('webpack-hot-middleware')(compiler, {
+    path: '/__webpack_hmr',
+    heartbeat: 1000
+})
+// force page reload when html-webpack-plugin template changes
+compiler.plugin('compilation', function (compilation) {
+    compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
+        hotMiddleware.publish({action: 'reload'})
+        cb()
+    })
+})
+
+
 
 // serve webpack bundle output
 app.use(devMiddleware)
@@ -66,31 +65,26 @@ app.use(devMiddleware)
 // compilation error display
 app.use(hotMiddleware)
 
+// handle fallback for HTML5 history API
+// h5的 history模式
+app.use(require('connect-history-api-fallback')())
+
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
 var uri = '127.0.0.1:' + port
 
+console.log('> Starting dev server...')
+
+console.log('> Listening at ' + uri + '\n')
+
+var server = app.listen(port, '127.0.0.1')
+
 var _resolve
 var readyPromise = new Promise(resolve => {
     _resolve = resolve
 })
-
-console.log('> Starting dev server...')
-console.log('> Listening at ' + uri + '\n')
-// devMiddleware.waitUntilValid(() => {
-//   console.log('> Listening at ' + uri + '\n')
-//   // when env is testing, don't need open it
-//   if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
-//     opn(uri)
-//   }
-//   _resolve()
-// })
-
-var server = app.listen(port, '127.0.0.1')
-// app.listen(port, '192.168.1.5');
-
 module.exports = {
     ready: readyPromise,
     close: () => {
