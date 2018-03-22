@@ -16,7 +16,7 @@
             label="头像"
             width="100">
             <template slot-scope="scope">
-                <img class="user-icon" v-if="scope.row.avatar" :src="scope.row.avatar"></img>
+                <imageView v-if="scope.row.avatar" :imgList='userAvatar(scope.row)'></imageView>
             </template>
         </el-table-column>
         <el-table-column
@@ -78,6 +78,7 @@
     </el-table>
 </template>
 <script>
+import imageView from "../../com/imageView.vue"
 import { mapGetters } from 'vuex'
 export default {
     data() {
@@ -93,11 +94,21 @@ export default {
     computed: {
         ...mapGetters(['layout'])
     },
+    components:{
+        imageView
+    },
     mounted: function() {
 
     },
     methods: {
-
+        userAvatar(user){
+            return [
+                {
+                    src:user.avatar,
+                    alt:user.name + "的头像"
+                }
+            ];
+        }
     }
 }
 </script>

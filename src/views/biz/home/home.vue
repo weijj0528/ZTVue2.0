@@ -1,46 +1,60 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <template>
-    <el-row>
-        <el-col :span="24">
-            主页
-        </el-col>
-    </el-row>
+    <div>
+       <imageView :imgList="imgList" :maxShow="2"></imageView>
+    </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import imageView from "../../com/imageView.vue";
 export default {
-    data() {
-        return {
-
-        }
-    },
-    computed: {
-        ...mapGetters(['layout']),
-        userChartHeight: function() {
-            return (this.layout.contentHeight - 100) / 2;
+  data() {
+    return {
+      imgList:[
+        {
+          src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2357619894,3620973597&fm=27&gp=0.jpg",
+          alt:"图片1"
         },
-        userChartWidth: function() {
-            return this.layout.contentWidth * 2 / 3;
+        {
+          src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2359550423,1794059142&fm=27&gp=0.jpg",
+          alt:"图片1"
         },
-        channelChartHeight: function() {
-            return (this.layout.contentHeight - 100);
+        {
+          src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3608840126,3105604471&fm=27&gp=0.jpg",
+          alt:"图片1"
         },
-        channelChartWidth: function() {
-            return this.layout.contentWidth * 1 / 3;
+        {
+          src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3608840126,3105604471&fm=27&gp=0.jpg",
+          alt:"图片1"
         },
-    },
-    components: {
-    },
-    mounted: function() {
-        this.$nextTick(function() {
-            // 代码保证 this. 在 document 中
-        })
-    },
-    beforeDestroy() {
-
-    },
-    methods: {}
-}
+        {
+          src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3608840126,3105604471&fm=27&gp=0.jpg",
+          alt:"图片1"
+        },
+        {
+          src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3608840126,3105604471&fm=27&gp=0.jpg",
+          alt:"图片1"
+        },
+        {
+          src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3608840126,3105604471&fm=27&gp=0.jpg",
+          alt:"图片1"
+        },
+      ]
+    };
+  },
+  props:{
+  },
+  computed: {},
+  components: {
+    imageView
+  },
+  mounted: function() {
+    this.$nextTick(function() {
+      
+    });
+  },
+  beforeDestroy() {},
+  methods: {}
+};
 </script>
 <style scoped>
 /*@import '../styles/common.css';*/

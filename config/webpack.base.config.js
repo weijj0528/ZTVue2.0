@@ -54,7 +54,8 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.vue'],
         alias: {
-            'vue': 'vue/dist/vue.esm.js'
+            'vue': 'vue/dist/vue.esm.js',
+            // 'jquery': 'jquery'
         }
     },
     // 挂载全局插件
@@ -63,6 +64,10 @@ module.exports = {
             filename: './index.html',
             template: './src/template/index.ejs',
             inject: false
-        })
+        }),
+        // new webpack.ProvidePlugin({
+        //     $: "jquery",
+        //     jQuery: "jquery"
+        // })
     ]
 };
