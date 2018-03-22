@@ -1,20 +1,21 @@
 <!-- 登录页面 -->
 <template>
     <div id="web">
-        
         <div style="height:180px"></div>
-        <h1 align="center" style="margin:0">欢迎进入XXX中台系统</h1>
         <p align="center"></p>
         <div class="login">
             <div class="banner">
-                <el-carousel height="218px">
+                <el-carousel height="238px">
                     <el-carousel-item>
-                        <img style="height:218px;width:358px" src="http://img3.imgtn.bdimg.com/it/u=765875353,3793971150&fm=27&gp=0.jpg"/>
+                        <!-- <img style="height:238px;width:358px" src=""/> -->
                     </el-carousel-item>
                 </el-carousel>
             </div>
             <div class="logmain">
                 <el-row>
+                    <el-col :span="24" >
+                        <p align="center" style="margin:0;">管理员登录</p>
+                    </el-col>
                     <el-col :span="24" class="col-margin">
                         <el-input placeholder="账号名……" v-model="param.userName" size="large">
                             <template slot="prepend">账 号：</template>
@@ -90,7 +91,7 @@
 
     #web .login {
         width: 700px;
-        height: 220px;
+        height: 240px;
         margin: 0 auto;
         background: #F7F7F9;
         border: 1px solid #ddd;
@@ -98,14 +99,14 @@
 
     #web .login .banner {
         width: 358px;
-        height: 218px;
+        height: 238px;
         padding: 1px;
         float: left;
     }
 
     #web .login .logmain {
         width: 320px;
-        height: 198px;
+        height: 218px;
         padding: 10px;
         float: right;
     }
