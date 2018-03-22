@@ -6,7 +6,7 @@ const webpackBaseConfig = require('./webpack.base.config.js');
 
 module.exports = merge(webpackBaseConfig, {
     output: {
-        path: path.join(__dirname, './../dist_prod'),
+        path: path.join(__dirname, './../dist'),
         filename: '[name].[hash].js',
         chunkFilename: '[name].[hash].chunk.js'
     },

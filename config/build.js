@@ -16,8 +16,9 @@ var webpackConfig = require('./webpack.prod.config')
 var spinner = ora('building for production...')
 spinner.start()
 
-rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
+rm(path.join(config.build.assetsRoot, config.build.assetsPublicPath), err => {
     if (err) throw err
+    console.log(chalk.cyan('\n  Clean old.'))
     webpack(webpackConfig, function (err, stats) {
         spinner.stop()
         if (err) throw err
