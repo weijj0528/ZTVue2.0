@@ -136,7 +136,7 @@ var httpService = new Vue({
               window.localStorage.SID = '';
               _self.KEY = '';
               _self.SID = '';
-              window.location.href = '/login';
+              _self.$router.push('/login');
             }
           }
           reject(error);

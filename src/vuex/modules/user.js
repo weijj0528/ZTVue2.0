@@ -32,6 +32,8 @@ const actions = {
             http.commonPost(url, {param: body}).then((res) => {
                 window.localStorage.KEY = res.result.KEY;
                 window.localStorage.SID = res.result.SID;
+                http.KEY =  res.result.KEY;
+                http.SID =  res.result.KEY;
                 commit("setUserInfo",res);
                 resolve(res);
             }).catch((err) => {
