@@ -9,7 +9,7 @@
 -->
 <template>
       <div :id="viewerid" :style="{width:60 * maxShow +'px'}">
-        <div v-for="(image,index) in imgList" :key="image.src" style="float:left">
+        <div v-for="(image,index) in imgList" :key="index" style="float:left">
           <img v-show="index < maxShow" class="image" :src="image.src" :alt="image.alt">
         </div>
       </div>

@@ -5,10 +5,13 @@
             <span class="userName">系统管理员</span>
         </el-col>
         <el-col :span="18">
-        <el-button v-for="item in topMenus" :key='item.id' :icon="item.icon" @click="topMenuSelect(item)" type="text" size="large">{{item.name}}</el-button>
+            <el-button v-for="item in topMenus" :key='item.id' :icon="item.icon" @click="topMenuSelect(item)" type="text" size="large">{{item.name}}</el-button>
+        </el-col>
+        <el-col :span="1" >
+            <i class="el-icon-bell"  size="large"></i>
         </el-col>
         <el-col :span="1" style="padding: 20px;">
-            <el-button type="text" icon="el-icon-arrow-right" @click="logout"  size="large" style="width:100%"></el-button>
+            <el-button type="text" icon="el-icon-arrow-right" @click="logout"  size="large" style="width:100%">退出</el-button>
         </el-col>
     </el-row>
 </template>
