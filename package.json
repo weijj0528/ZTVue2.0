@@ -6,11 +6,14 @@
   "scripts": {
     "init": "webpack --progress --config config/webpack.dev.config.js",
     "dev": "node config/dev-server.js",
-    "build": "node config/build.js"
+    "build": "node config/build.js",
+    "start": "cross-env NODE_ENV=production forever start config/app.js",
+    "restart": "cross-env NODE_ENV=production forever restart config/app.js",
+    "stop": "cross-env NODE_ENV=production forever stop config/app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iview/iview-project.git"
+    "url": ""
   },
   "author": "Weiun",
   "license": "MIT",
@@ -27,6 +30,7 @@
     "vuex": "^2.4.0"
   },
   "devDependencies": {
+    "serve-favicon":"^2.5.0",
     "ms": "^2.0.0",
     "autoprefixer-loader": "^2.0.0",
     "babel": "^6.23.0",

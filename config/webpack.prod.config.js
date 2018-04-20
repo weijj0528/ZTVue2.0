@@ -5,6 +5,10 @@ const merge = require('webpack-merge');
 const webpackBaseConfig = require('./webpack.base.config.js');
 
 module.exports = merge(webpackBaseConfig, {
+    entry: {
+        main: './src/main',
+        vendors: ['vue','vue-router']
+    },
     output: {
         path: path.join(__dirname, './../dist'),
         filename: '[name].[hash].js',
