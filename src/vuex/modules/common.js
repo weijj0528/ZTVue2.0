@@ -21,7 +21,7 @@ const state = {
         },
     ],
     // 当前活动菜单
-    activeMenuName: '',
+    activeName: '0',
     // 导航栏
     tabs: [{
         'id': '0',
@@ -36,6 +36,7 @@ const getters = {
     menus: state => state.menus,
     tabs: state => state.tabs,
     layout: state => state.layout,
+    activeName: state => state.activeName,
 }
 
 // actions
@@ -45,6 +46,9 @@ const actions = {
     },
     comTabsRemove({ commit, state }, id) {
         commit("comTabsRemove", id);
+    },
+    comTabsSet({ commit, state }, tabs) {
+        commit("comTabsSet", tabs);
     }
 }
 
@@ -71,6 +75,14 @@ const mutations = {
                 break;
             }
         }
+    },
+    comTabsSet(state, tabs) {
+        console.log('mutations-comTabsSet:' + tabs);
+        state.tabs = tabs;
+    } ,
+    activeNameSet(state, id) {
+        console.log('mutations-activeNameSet:' + id);
+        state.activeName = id;
     }
 }
 

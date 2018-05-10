@@ -1,4 +1,4 @@
-<!-- -->
+<!-- 主页面 -->
 <template>
     <div>
         <el-row>
@@ -11,7 +11,7 @@
                 <left v-bind:style="{ height: layout.contentHeight + 'px'}" :menus='menus' @menu-select='menuSelect'></left>
             </el-col>
             <el-col :lg='21' :md="20" :sm="19" :xs='18'>
-            <tab-nav class="nav" :tabs='tabs' :active-tab='active_tab' @nav-router="navRouter" @nav-click="navClick" @nav-close='navClose'></tab-nav>
+                <tab-nav class="nav" :tabs='tabs'></tab-nav>
                 <router-view></router-view>
             </el-col>
         </el-row>
@@ -27,11 +27,11 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
     data() {
         return {
-            active_tab: '0',
+
         }
     },
     computed: {
-        ...mapGetters(['menus', 'tabs', 'layout']),
+        ...mapGetters(['activeName','menus', 'tabs', 'layout']),
     },
     components: {
         top: Top,
@@ -45,8 +45,8 @@ export default {
         this.initRouter();
     },
     methods: {
-        ...mapActions(['comTabsAdd', 'comTabsRemove']),
-        ...mapMutations(['windowsHeightChange', 'windowsWidthChange']),
+        ...mapActions(['comTabsAdd']),
+        ...mapMutations(['windowsHeightChange', 'windowsWidthChange','activeNameSet']),
         menuSelect: function(menu) {
             // 存在则激活，否则添加
             let b = false;
@@ -57,13 +57,11 @@ export default {
                     break;
                 }
             }
-            if (b) {
-                if (this.active_tab != menu.id)
-                    this.active_tab = menu.id;
-            } else {
+            if (!b) {
                 this.comTabsAdd(menu);
-                this.active_tab = menu.id;
             }
+            this.activeNameSet(menu.id);
+            this.navRouter(menu.id);
             console.log(this.tabs);
         },
         navRouter: function(id) {
@@ -79,15 +77,6 @@ export default {
             console.log('navRouter:' + tab.path);
             this.$router.push(tab.path);
         },
-        navClick: function(tab) {
-            console.log('navClick:' + tab.id);
-            this.active_tab = tab.id;
-        },
-        navClose: function(tab, i) {
-            console.log('navClose:' + tab.id);
-            this.active_tab = this.tabs[i - 1].id;
-            this.comTabsRemove(tab.id);
-        },
         initRouter: function() {
             let u = window.location.hash;
             u = u.substring(1);
@@ -98,7 +87,8 @@ export default {
                         if (subMenus[j].path == u) {
                             console.log(subMenus[j]);
                             this.comTabsAdd(subMenus[j]);
-                            this.active_tab = subMenus[j].id;
+                            let active_id = subMenus[j].id;
+                            this.activeNameSet(active_id);
                             return;
                         }
                     }
@@ -120,11 +110,6 @@ export default {
             var bodyHeight = document.documentElement.clientHeight;
             _self.windowsWidthChange(bodyWidth);
             _self.windowsHeightChange(bodyHeight);
-        }
-    },
-    watch: {
-        active_tab: function(newId) {
-            this.navRouter(newId);
         }
     }
 }
