@@ -9,7 +9,8 @@ import home from './views/biz/home/home.vue';
 import userPage from './views/biz/user/userPage.vue';
 import userInfo from './views/biz/user/userInfo.vue';
 import userUpdatePwd from './views/biz/user/userUpdatePwd.vue';
-
+// Demo
+import imageView from './views/demo/image.vue';
 
 const router = new VueRouter({
     linkActiveClass: 'active',
@@ -22,6 +23,9 @@ const router = new VueRouter({
             {path: 'userList', component: userPage},
             {path: 'userInfo', component: userInfo},
             {path: 'userUpdatePwd', component: userUpdatePwd},
+        ]},
+        {path: '/demo/', component: Main,children:[
+            {path: 'imageView', component: imageView},
         ]}
     ]
 })

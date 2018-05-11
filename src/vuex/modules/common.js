@@ -19,6 +19,15 @@ const state = {
                 'name': '用户列表'
             },]
         },
+        {
+            'id': '100',
+            'name': '组件示例',
+            'subMenus': [{
+                'id': '101',
+                'path': '/demo/imageView',
+                'name': '图片预览'
+            },]
+        },
     ],
     // 当前活动菜单
     activeName: '0',

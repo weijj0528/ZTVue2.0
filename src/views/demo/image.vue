@@ -1,12 +1,12 @@
 <!-- Created by Weiun on 2017/1/17.-->
+<!-- 图片预览.-->
 <template>
     <div>
-       <!-- <imageView :imgList="imgList" :maxShow="2"></imageView> -->
-       主页
+       <imageView :imgList="imgList" :maxShow="2"></imageView>
     </div>
 </template>
 <script>
-import imageView from "../../com/imageView.vue";
+import imageView from "../com/imageView.vue";
 export default {
   data() {
     return {
