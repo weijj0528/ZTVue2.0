@@ -1,6 +1,6 @@
 <!-- Created by Weiun on 2017/1/17. 页面内容区组件，负责内容区布局-->
 <template>
-    <div class="centerContent" v-bind:style = "{width:(layout.contentWidth-10)+'px'}" >
+    <div class="centerContent" v-bind:style="{width:(layout.contentWidth-10)+'px'}" v-loading="loading" element-loading-text="……加载中……">
         <el-row>
           <el-col :span="sidebar.leftSpan" v-show="leftOnOff">
             <slot name="left"></slot>
@@ -16,13 +16,9 @@
                   <slot name="function"></slot>
                 </el-col>
               </el-row><br> 
-              <el-row v-bind:style = "{height:(layout.contentHeight-210)+'px'}">
-                <el-col :span="24" v-loading="loading" element-loading-text="……加载中……">
+              <el-row >
+                <el-col :span="24" >
                     <slot name="content"></slot>
-                </el-col>
-              </el-row>
-              <el-row>
-                <el-col :span="24" style="height: 30px;margin-top: 5px" >
                     <slot name="bottom"></slot>
                 </el-col>
               </el-row>
@@ -108,7 +104,6 @@
 <style scoped>
 /*@import '../styles/common.css';*/
     .centerContent{
-        margin: 5px;
-        height: 100%;
+        padding: 5px;
     }
 </style>

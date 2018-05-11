@@ -14,6 +14,7 @@ import userInfo from './views/biz/user/userInfo.vue';
 import userUpdatePwd from './views/biz/user/userUpdatePwd.vue';
 // Demo
 import imageView from './views/demo/image.vue';
+import echartsView from './views/demo/echarts.vue';
 
 const router = new VueRouter({
     linkActiveClass: 'active',
@@ -32,6 +33,7 @@ const router = new VueRouter({
         ]},
         {path: '/demo/', component: Main,children:[
             {path: 'imageView', component: imageView},
+            {path: 'echartsView', component: echartsView},
         ]}
     ]
 })

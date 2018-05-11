@@ -26,6 +26,10 @@ const state = {
                 'id': '101',
                 'path': '/demo/imageView',
                 'name': '图片预览'
+            },{
+                'id': '102',
+                'path': '/demo/echartsView',
+                'name': '统计图表'
             },]
         },
     ],

@@ -12,7 +12,16 @@
             </el-col>
             <el-col :lg='21' :md="20" :sm="19" :xs='18'>
                 <tab-nav class="nav" :tabs='tabs'></tab-nav>
-                <router-view></router-view>
+                <!-- 隐藏滚动条 -->
+                <!-- <div v-bind:style="{ height: layout.contentHeight-60 + 'px',width:layout.contentWidth  + 'px',overflow:'hidden' }">
+                    <div v-bind:style="{ height: layout.contentHeight-60 + 'px',width:layout.contentWidth+20 + 'px','overflow-y':'auto' }">  
+                        <router-view></router-view>
+                    </div>
+                </div> -->
+                <!-- 隐藏滚动条 -->
+                <div v-bind:style="{ height: layout.contentHeight-60 + 'px',width:layout.contentWidth  + 'px','overflow-y':'auto','overflow-x':'hidden' }">
+                    <router-view></router-view>
+                </div>
             </el-col>
         </el-row>
     </div>
@@ -45,24 +54,11 @@ export default {
         this.initRouter();
     },
     methods: {
-        ...mapActions(['comTabsAdd']),
+        ...mapActions(['comTabsAdd','openMenu']),
         ...mapMutations(['windowsHeightChange', 'windowsWidthChange','activeNameSet']),
         menuSelect: function(menu) {
-            // 存在则激活，否则添加
-            let b = false;
-            for (let i = 0; i < this.tabs.length; i++) {
-                let tab = this.tabs[i];
-                if (tab.id === menu.id) {
-                    b = true;
-                    break;
-                }
-            }
-            if (!b) {
-                this.comTabsAdd(menu);
-            }
-            this.activeNameSet(menu.id);
-            this.navRouter(menu.id);
-            console.log(this.tabs);
+            this.openMenu(menu)
+            this.$router.push(menu.path);
         },
         navRouter: function(id) {
             console.log('navRouter:' + id);
@@ -86,9 +82,10 @@ export default {
                     for (let j = 0; j < subMenus.length; j++) {
                         if (subMenus[j].path == u) {
                             console.log(subMenus[j]);
-                            this.comTabsAdd(subMenus[j]);
-                            let active_id = subMenus[j].id;
-                            this.activeNameSet(active_id);
+                            // this.comTabsAdd(subMenus[j]);
+                            // let active_id = subMenus[j].id;
+                            // this.activeNameSet(active_id);
+                            this.openMenu(subMenus[j]);
                             return;
                         }
                     }

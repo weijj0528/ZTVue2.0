@@ -35,21 +35,6 @@
             width="120">
         </el-table-column>
         <el-table-column
-            label="余额"
-            prop="money"
-            width="100">
-        </el-table-column>
-        <el-table-column
-            label="短信价格"
-            prop="smsPrice"
-            width="100">
-        </el-table-column>
-        <el-table-column
-            label="免费短信数"
-            prop="smsFree"
-            width="100">
-        </el-table-column>
-        <el-table-column
             label="积分"
             prop="point"
             width="100">

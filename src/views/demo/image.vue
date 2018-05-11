@@ -23,22 +23,6 @@ export default {
           src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3608840126,3105604471&fm=27&gp=0.jpg",
           alt:"图片1"
         },
-        {
-          src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3608840126,3105604471&fm=27&gp=0.jpg",
-          alt:"图片1"
-        },
-        {
-          src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3608840126,3105604471&fm=27&gp=0.jpg",
-          alt:"图片1"
-        },
-        {
-          src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3608840126,3105604471&fm=27&gp=0.jpg",
-          alt:"图片1"
-        },
-        {
-          src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3608840126,3105604471&fm=27&gp=0.jpg",
-          alt:"图片1"
-        },
       ]
     };
   },
