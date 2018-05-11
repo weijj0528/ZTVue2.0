@@ -5,8 +5,8 @@
         <el-col :xs="18" :sm="20" :md="21" :lg="22" :xl="23">
             <el-tabs :value='activeName' type="card" closable @tab-remove="handleRemove" @tab-click="handleClick">
             <el-tab-pane
-                :key="tab.id"
                 v-for='tab in tabs'
+                :key="tab.id"
                 :closable="tab.id != 0"
                 :label="tab.name"
                 :name="tab.id">
