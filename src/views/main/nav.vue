@@ -14,9 +14,9 @@
             </el-tabs>
         </el-col>
         <el-col :xs="6" :sm="4" :md="3" :lg="2" :xl="1"  style="text-align:center;">
-            <el-dropdown @command="handleCommand">
+            <el-dropdown  trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link" >
-                    <i class="el-icon-menu el-icon--center" style="font-size:30px"></i>
+                    <i class="el-icon-more el-icon--center" style="font-size:30px;margin-top: 5px;"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="returnHome">返回首页</el-dropdown-item>

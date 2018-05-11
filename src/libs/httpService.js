@@ -151,7 +151,7 @@ var httpService = new Vue({
           reject(error);
         });
       });
-    },
+    }
   }
 });
 export default httpService;

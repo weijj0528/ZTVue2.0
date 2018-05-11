@@ -49,7 +49,24 @@ const actions = {
     },
     comTabsSet({ commit, state }, tabs) {
         commit("comTabsSet", tabs);
-    }
+    },
+    openMenu({commit, state },menu){
+        //打开菜单
+        // 存在则激活，否则添加
+        let b = false;
+        for (let i = 0; i < state.tabs.length; i++) {
+            let tab = state.tabs[i];
+            if (tab.id === menu.id) {
+                b = true;
+                break;
+            }
+        }
+        if (!b) {
+            // 添加
+            commit("comTabsAdd",menu);
+        }
+        commit("activeNameSet",menu.id);
+    },
 }
 
 // mutations
@@ -79,7 +96,7 @@ const mutations = {
     comTabsSet(state, tabs) {
         console.log('mutations-comTabsSet:' + tabs);
         state.tabs = tabs;
-    } ,
+    },
     activeNameSet(state, id) {
         console.log('mutations-activeNameSet:' + id);
         state.activeName = id;
