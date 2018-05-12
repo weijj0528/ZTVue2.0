@@ -24,7 +24,10 @@ const router = new VueRouter({
         {path: '/login', component: Login},
         {path: '/main/', component: Main,children:[
             {path: 'home', component: home},
-            {path: 'message', component: message},
+            {path: 'message', component: message,children:[
+                {path: 'echarts', component: echartsView},
+                {path: 'image', component: imageView},
+            ]},
             {path: 'fullcalendar', component: fullcalendar},
             {path: 'logistics', component: logistics},
             {path: 'userList', component: userPage},

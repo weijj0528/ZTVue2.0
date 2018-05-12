@@ -6,16 +6,16 @@
             <slot name="left"></slot>
           </el-col>
           <el-col :span="sidebar.centerSpan">
-              <el-row type="flex" justify="start" v-show="searchShow">
-                <el-col :span="24" v-show="searchShow">
+              <el-row type="flex" justify="start" v-if="searchShow">
+                <el-col :span="24">
                   <slot name="search"></slot>
                 </el-col>
-              </el-row><br>
-              <el-row type="flex" justify="start" v-show="functionShow">
-                <el-col :span="24" v-show="functionShow">
+              </el-row><br v-if="searchShow">
+              <el-row type="flex" justify="start" v-if="functionShow">
+                <el-col :span="24">
                   <slot name="function"></slot>
                 </el-col>
-              </el-row><br> 
+              </el-row><br v-if="functionShow"> 
               <el-row >
                 <el-col :span="24" >
                     <slot name="content"></slot>
