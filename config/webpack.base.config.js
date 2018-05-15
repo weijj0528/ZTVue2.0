@@ -51,12 +51,12 @@ module.exports = {
         extensions: ['.js', '.vue'],
         alias: {
             'vue': 'vue/dist/vue.esm.js',
-            'src': '../src',
-            'libs': '../src/libs',
-            'views': '../src/views',
-            'com': '../src/views/com',
-            'layout': '../src/views/layout',
-            'biz': '../src/views/biz',
+            '@src': path.join(__dirname, "..", "src"),
+            '@libs': path.join(__dirname, "..", "src", "libs"),
+            '@views': path.join(__dirname, "..", "src", "views"),
+            '@com': path.join(__dirname, "..", "src", "views","com"),
+            '@layout': path.join(__dirname, "..", "src", "views","layout"),
+            '@biz': path.join(__dirname, "..", "src", "views","biz"),
         }
     },
     // 挂载全局插件
