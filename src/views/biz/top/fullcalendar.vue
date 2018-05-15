@@ -34,7 +34,7 @@
       </el-col>
       <el-col :span="16">
         <el-card shadow="never">
-          
+          <fullcalendar></fullcalendar>
         </el-card>
       </el-col >
     </el-row>
@@ -43,6 +43,7 @@
 <script>
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import centerLayout from "@layout/centerLayout";
+import fullcalendar from "@jquery/fullcalendar";
 export default {
   data() {
     return {
@@ -52,7 +53,7 @@ export default {
         { key: "user", label: "会议", unread: 6 },
         { key: "offer", label: "出差", unread: 0 },
         { key: "order", label: "面试", unread: 666 },
-        { key: "order", label: "过期", unread: 0 },
+        { key: "due", label: "过期", unread: 0 },
       ],
     };
   },
@@ -60,7 +61,8 @@ export default {
     ...mapGetters(["layout"])
   },
   components: {
-    centerLayout
+    centerLayout,
+    fullcalendar,
   },
   mounted: function() {
     this.$nextTick(function() {
