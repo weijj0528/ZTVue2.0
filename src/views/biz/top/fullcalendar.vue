@@ -16,10 +16,10 @@
               </el-tabs>
             </el-col>
             <el-col :span="20">
-              <el-card shadow="never" v-bind:style="{height:layout.contentHeight - 100 + 'px'}">
+              <el-card shadow="never" v-bind:style="{height:layout.contentHeight - 80 + 'px'}">
                 <div slot="header" class="clearfix">
                     <span>{{currentCategoryLabel}}日程</span>
-                    <el-button style="float: right; padding: 3px 0" type="text" >添加</el-button>
+                    <el-button style="float: right; padding: 3px 0" type="text" @click="addEvent">添加</el-button>
                 </div>
                 <el-card v-for="i in 3" :key='i' style="margin-top:5px">
                   <div slot="header" class="clearfix">
@@ -34,7 +34,7 @@
       </el-col>
       <el-col :span="16">
         <el-card shadow="never">
-          <fullcalendar></fullcalendar>
+          <fullcalendar :events='events' :height='layout.contentHeight-120'></fullcalendar>
         </el-card>
       </el-col >
     </el-row>
@@ -54,6 +54,12 @@ export default {
         { key: "offer", label: "出差", unread: 0 },
         { key: "order", label: "面试", unread: 666 },
         { key: "due", label: "过期", unread: 0 },
+      ],
+      events:[
+        { title : 'event1',start : '2018-05-02'},
+        { title : 'event1',start : '2018-05-02'},
+        { title : 'event1',start : '2018-05-03'},
+        { title : 'event1',start : '2018-05-09'},
       ],
     };
   },
@@ -76,6 +82,9 @@ export default {
     scheduleCategorySelect(tab){
       console.log(tab)
       this.currentCategoryLabel = tab.label;
+    },
+    addEvent(){
+      this.events.push({ title : 'event1',start : '2018-05-09'});
     }
   }
 };
