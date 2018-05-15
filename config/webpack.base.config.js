@@ -48,16 +48,17 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.js', '.vue'],
+        extensions: ['.js', '.vue', '.css'],
         alias: {
             'vue': 'vue/dist/vue.esm.js',
+            '@res': path.join(__dirname, "..", "resource"),
             '@src': path.join(__dirname, "..", "src"),
             '@libs': path.join(__dirname, "..", "src", "libs"),
             '@views': path.join(__dirname, "..", "src", "views"),
-            '@com': path.join(__dirname, "..", "src", "views","com"),
-            '@layout': path.join(__dirname, "..", "src", "views","layout"),
-            '@jquery': path.join(__dirname, "..", "src", "views","jquery"),
-            '@biz': path.join(__dirname, "..", "src", "views","biz"),
+            '@com': path.join(__dirname, "..", "src", "views", "com"),
+            '@layout': path.join(__dirname, "..", "src", "views", "layout"),
+            '@jquery': path.join(__dirname, "..", "src", "views", "jquery"),
+            '@biz': path.join(__dirname, "..", "src", "views", "biz"),
         }
     },
     // 挂载全局插件
@@ -71,7 +72,7 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery",
             jquery: "jquery",
-            "window.jQuery": "jquery"
+            "window.jQuery": "jquery",
         })
     ]
 };
