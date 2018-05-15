@@ -32,7 +32,7 @@
             </el-col>
         </el-row>
       </el-col>
-      <el-col :span="14">
+      <el-col :span="16">
         <el-card shadow="never">
           <div slot="header" class="clearfix">
             <span>消息详情</span>
