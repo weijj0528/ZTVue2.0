@@ -9,13 +9,13 @@
     </centerLayout>
 </template>
 <script>
-import centerLayout from './../../layout/centerLayout.vue';
-import comPage from './../../com/comPage.vue';
+import centerLayout from '@layout/centerLayout.vue';
+import comPage from '@com/comPage.vue';
 import userSearch from './userSearch.vue';
 import userMoreSearch from './userMoreSearch.vue';
 import userFunction from './userFunction.vue';
 import userList from './userList.vue';
-import util from './../../../libs/util';
+import util from '@libs/util';
 import { mapGetters, mapActions } from 'vuex';
 export default {
     data() {

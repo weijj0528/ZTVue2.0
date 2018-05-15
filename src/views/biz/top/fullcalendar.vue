@@ -42,7 +42,7 @@
 </template>
 <script>
 import { mapActions, mapGetters, mapMutations } from "vuex";
-import centerLayout from "./../../layout/centerLayout.vue";
+import centerLayout from "@layout/centerLayout";
 export default {
   data() {
     return {

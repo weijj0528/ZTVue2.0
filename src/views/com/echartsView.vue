@@ -5,7 +5,7 @@
 </template>
 <script>
 import echarts from "echarts";
-import util from "../../libs/util";
+import util from "@libs/util";
 export default {
   data() {
     let r = util.randomString();

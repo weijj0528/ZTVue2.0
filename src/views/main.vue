@@ -31,7 +31,7 @@ import Top from './main/top.vue'
 import Left from './main/left.vue'
 import TabNav from './main/nav.vue'
 import Bottom from './main/bottom.vue'
-import util from '../libs/util'
+import util from '@libs/util'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
     data() {

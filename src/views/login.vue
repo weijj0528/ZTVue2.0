@@ -45,7 +45,7 @@
     </div>
 </template>
 <script>
-import http from "./../libs/httpService";
+import http from "@libs/httpService";
 import { mapActions, mapGetters } from "vuex";
 export default {
   data() {

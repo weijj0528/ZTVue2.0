@@ -56,7 +56,7 @@
   </centerLayout>
 </template>
 <script>
-import centerLayout from './../../layout/centerLayout.vue';
+import centerLayout from '@layout/centerLayout.vue';
 import echarts from './echarts.vue';
 export default {
   data() {

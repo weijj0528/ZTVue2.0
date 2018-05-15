@@ -63,7 +63,7 @@
     </el-table>
 </template>
 <script>
-import imageView from "../../com/imageView.vue"
+import imageView from "@com/imageView.vue"
 import { mapGetters } from 'vuex'
 export default {
     data() {

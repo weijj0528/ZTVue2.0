@@ -16,7 +16,7 @@
 </template>
 <script>
 import Viewer from "viewerjs";
-import util from "../../libs/util";
+import util from "@libs/util";
 export default {
   data() {
     let r = util.randomString();

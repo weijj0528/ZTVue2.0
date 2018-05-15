@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-import imageView from "../com/imageView.vue";
+import imageView from "@com/imageView.vue";
 export default {
   data() {
     return {

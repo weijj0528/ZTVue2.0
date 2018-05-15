@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-import echartsView from "../com/echartsView.vue";
+import echartsView from "@com/echartsView.vue";
 export default {
   data() {
     return {
