@@ -56,6 +56,7 @@ module.exports = {
             '@views': path.join(__dirname, "..", "src", "views"),
             '@com': path.join(__dirname, "..", "src", "views","com"),
             '@layout': path.join(__dirname, "..", "src", "views","layout"),
+            '@jquery': path.join(__dirname, "..", "src", "views","jquery"),
             '@biz': path.join(__dirname, "..", "src", "views","biz"),
         }
     },
