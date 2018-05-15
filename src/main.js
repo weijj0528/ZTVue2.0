@@ -7,6 +7,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import 'viewerjs/dist/viewer.min.css';
+import 'fullcalendar/dist/fullcalendar.min.css';
 
 import router from './router'
 import app from './views/app.vue'
