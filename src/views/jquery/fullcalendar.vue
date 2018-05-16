@@ -12,8 +12,6 @@ emit:
     <div id="fullcalendar"></div>
 </template>
 <script>
-import Vue from 'vue'
-import { mapActions, mapGetters, mapMutations } from "vuex";
 import $ from "jquery";
 import "fullcalendar";
 export default {
@@ -33,7 +31,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["layout"])
   },
   mounted: function() {
     let _self = this;
