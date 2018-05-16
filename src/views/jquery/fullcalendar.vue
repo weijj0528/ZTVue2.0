@@ -3,8 +3,11 @@
 <!-- 文档
 props:
   height:日历显示的高度，默认600px
-  
- -->
+  events:日历中事件数据，单向绑定
+emit:
+  eventClick:日历中事件被点击，返回事件事件（events中数据的某一条）
+  dayClick:日历中某一天被点击，返回时间天Moment对像
+-->
 <template>
     <div id="fullcalendar"></div>
 </template>
@@ -62,15 +65,21 @@ export default {
         firstDay: 1,
         timeFormat: "H:mm",
         axisFormat: "H:mm",
-        events:_self.events,
+        events:function(start, end, timezone, callback){
+          console.log("----------events function-----------");
+          callback(_self.events);
+        },
         eventClick: function(calEvent, jsEvent, view) {
-          //日程点击的事件（自己实现）
-          calEvent.title = "?????"
-          // $("#fullcalendar").fullCalendar('updateEvent', calEvent);
-          $("#fullcalendar").fullCalendar('updateEvents', calEvent);
+          //日程点击的事件
+          console.log("----------eventClick-----------");
+          console.log(calEvent);
+          _self.$emit("eventClick", calEvent);
         },
         dayClick: function(data, allDay, jsEvent, view) {
-          //日期点击的事件（自己实现）
+          //日期点击的事件
+          console.log("----------dayClick-----------");
+          console.log(data);
+          _self.$emit("dayClick", data);
         }
       });
       _self.calendar = $("#fullcalendar").fullCalendar("getCalendar");
@@ -89,8 +98,7 @@ export default {
   watch:{
     events:function(newEvents){
       console.log("-----------watch:events-----------");
-      // $("#fullcalendar").fullCalendar('removeEvents');
-      $("#fullcalendar").fullCalendar('updateEvents',[]);
+      $("#fullcalendar").fullCalendar('refetchEvents');
     }
   }
 };
