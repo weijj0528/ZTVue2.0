@@ -64,7 +64,7 @@ export default {
         { id:2,type:'meeting',title : '资源会议',start : '2018-05-02',content:"3.30资源业务功能实现讨论"},
         { id:3,type:'meeting',title : '报价会议',start : '2018-05-03',content:"4.30报价业务功能实现讨论"},
         { id:4,type:'meeting',title : '订单会议',start : '2018-05-09',content:"5.30订单业务功能实现讨论"},
-        { id:4,type:'biz_trip',title : '上海出差',start : '2018-05-09',content:"05.17上海会见某公司领导，对某订单问题协商解决办法！"},
+        { id:4,type:'biz_trip',title : '上海出差',start : '2018-05-09',end : '2018-05-12',content:"05.17上海会见某公司领导，对某订单问题协商解决办法！"},
         { id:4,type:'interview',title : '技术面试',start : '2018-05-10',content:"猪小明-JAVA开发工程师岗位面试"},
         { id:4,type:'due',title : '订单会议',start : '2018-05-01',content:"5.30订单业务功能实现讨论"},
       ],
