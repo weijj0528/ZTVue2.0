@@ -86,7 +86,6 @@ export default {
     console.log("--------updated--------")
   },
   methods: {
-    ...mapActions([]),
     initCalendar() {
       console.log("hellow world");
     }
