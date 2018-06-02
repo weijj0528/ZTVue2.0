@@ -3,7 +3,7 @@
 <template>
     <el-row>
         <el-col :xs="18" :sm="20" :md="21" :lg="22" :xl="23">
-            <el-tabs :value='activeName' type="card" closable @tab-remove="handleRemove" @tab-click="handleClick">
+            <el-tabs :value='activeName' type="card" @tab-remove="handleRemove" @tab-click="handleClick">
             <el-tab-pane
                 v-for='tab in tabs'
                 :key="tab.id"
