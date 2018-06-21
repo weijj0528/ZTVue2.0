@@ -36,10 +36,13 @@ module.exports = {
                     fallback: 'style-loader'
                 })
             },
-
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-                loader: 'url-loader?limit=1024'
+                loader: 'url-loader',
+                options: {
+                    limit: 1024,
+                    name: 'static/[hash].[ext]',
+                }
             },
             {
                 test: /\.(html|tpl)$/,
