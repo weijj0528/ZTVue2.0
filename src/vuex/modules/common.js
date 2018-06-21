@@ -13,8 +13,10 @@ const state = {
         {
             'id': '1',
             'name': '用户管理',
+            'icon':'iconfont icon-yonghu-xianxing',
             'subMenus': [{
                 'id': '11',
+                'icon':'iconfont icon-jiaosequnti',
                 'path': '/main/userList',
                 'name': '用户列表'
             },]
