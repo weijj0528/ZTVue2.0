@@ -11,17 +11,17 @@ module.exports = merge(webpackBaseConfig, {
     },
     output: {
         path: path.join(__dirname, './../dist'),
-        filename: '[name].[hash].js',
-        chunkFilename: '[name].[hash].chunk.js'
+        filename: '[name].[hash:16].js',
+        chunkFilename: 'chunk/[name].[hash:16].chunk.js'
     },
     plugins: [
         new ExtractTextPlugin({
-            filename: '[name].[hash].css',
+            filename: '[name].[hash:16].css',
             allChunks: true
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
-            filename: 'vendors.[hash].js'
+            filename: 'vendors.[hash:16].js'
         }),
         new webpack.DefinePlugin({
             'process.env': {

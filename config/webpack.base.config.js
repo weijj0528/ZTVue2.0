@@ -41,7 +41,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 1024,
-                    name: 'static/[hash].[ext]',
+                    name: 'static/[hash:16].[ext]',
                 }
             },
             {

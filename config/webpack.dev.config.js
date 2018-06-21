@@ -11,7 +11,7 @@ module.exports = merge(webpackBaseConfig, {
     devtool: '#source-map',
     output: {
         filename: '[name].js',
-        chunkFilename: '[name].chunk.js'
+        chunkFilename: 'chunk/[name].chunk.js'
     },
     plugins: [
         new ExtractTextPlugin({
