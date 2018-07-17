@@ -13,13 +13,13 @@
             <el-col :lg='21' :md="20" :sm="19" :xs='18'>
                 <tab-nav class="nav" :tabs='tabs'></tab-nav>
                 <!-- 隐藏滚动条 -->
-                <!-- <div v-bind:style="{ height: layout.contentHeight-60 + 'px',width:layout.contentWidth  + 'px',overflow:'hidden' }">
-                    <div v-bind:style="{ height: layout.contentHeight-60 + 'px',width:layout.contentWidth+20 + 'px','overflow-y':'auto' }">  
+                <!-- <div v-bind:style="{ height: layout.contentHeight-56 + 'px',width:layout.contentWidth  + 'px',overflow:'hidden' }">
+                    <div v-bind:style="{ height: layout.contentHeight-56 + 'px',width:layout.contentWidth+20 + 'px','overflow-y':'auto' }">  
                         <router-view></router-view>
                     </div>
                 </div> -->
                 <!-- 隐藏滚动条 -->
-                <div v-bind:style="{ height: layout.contentHeight-60 + 'px',width:layout.contentWidth  + 'px','overflow-y':'auto','overflow-x':'hidden' }">
+                <div v-bind:style="{ height: layout.contentHeight-66 + 'px',width:layout.contentWidth-10  + 'px',margin:'5px','overflow-y':'auto','overflow-x':'hidden' }">
                     <router-view></router-view>
                 </div>
             </el-col>
@@ -27,26 +27,24 @@
     </div>
 </template>
 <script>
-import Top from './main/top.vue'
-import Left from './main/left.vue'
-import TabNav from './main/nav.vue'
-import Bottom from './main/bottom.vue'
-import util from '@libs/util'
-import { mapActions, mapGetters, mapMutations } from 'vuex'
+import Top from "./main/top.vue";
+import Left from "./main/left.vue";
+import TabNav from "./main/nav.vue";
+import Bottom from "./main/bottom.vue";
+import util from "@libs/util";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
     data() {
-        return {
-
-        }
+        return {};
     },
     computed: {
-        ...mapGetters(['activeName','menus', 'tabs', 'layout']),
+        ...mapGetters(["activeName", "menus", "tabs", "layout"])
     },
     components: {
         top: Top,
         left: Left,
         tabNav: TabNav,
-        bottom: Bottom,
+        bottom: Bottom
     },
     mounted() {
         this.resize();
@@ -54,14 +52,18 @@ export default {
         this.initRouter();
     },
     methods: {
-        ...mapActions(['comTabsAdd','openMenu']),
-        ...mapMutations(['windowsHeightChange', 'windowsWidthChange','activeNameSet']),
+        ...mapActions(["comTabsAdd", "openMenu"]),
+        ...mapMutations([
+            "windowsHeightChange",
+            "windowsWidthChange",
+            "activeNameSet"
+        ]),
         menuSelect: function(menu) {
-            this.openMenu(menu)
+            this.openMenu(menu);
             this.$router.push(menu.path);
         },
         navRouter: function(id) {
-            console.log('navRouter:' + id);
+            console.log("navRouter:" + id);
             let _self = this;
             let tab = _self.tabs[0];
             for (let i = 0; i < _self.tabs.length; i++) {
@@ -70,13 +72,13 @@ export default {
                     break;
                 }
             }
-            console.log('navRouter:' + tab.path);
+            console.log("navRouter:" + tab.path);
             this.$router.push(tab.path);
         },
         initRouter: function() {
             let u = window.location.hash;
             u = u.substring(1);
-            if (u != '/main/home') {
+            if (u != "/main/home") {
                 for (let i = 0; i < this.menus.length; i++) {
                     let subMenus = this.menus[i].subMenus;
                     for (let j = 0; j < subMenus.length; j++) {
@@ -98,7 +100,7 @@ export default {
             let _self = this;
             window.onresize = function() {
                 _self.resize();
-            }
+            };
         },
         resize: function() {
             // 浏览器宽高发生变化时
@@ -109,7 +111,7 @@ export default {
             _self.windowsHeightChange(bodyHeight);
         }
     }
-}
+};
 </script>
 <style scoped lang="less">
 .top_calss {

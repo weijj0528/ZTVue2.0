@@ -7,19 +7,19 @@ const state = {
         contentHeight: 600,
         menuWidth: 240,
         contentWidth: 800,
+        centerLayoutContentHeight: 300
     },
     // 菜单
-    menus: [
-        {
+    menus: [{
             'id': '1',
             'name': '用户管理',
-            'icon':'iconfont icon-yonghu-xianxing',
+            'icon': 'iconfont icon-yonghu-xianxing',
             'subMenus': [{
                 'id': '11',
-                'icon':'iconfont icon-jiaosequnti',
+                'icon': 'iconfont icon-jiaosequnti',
                 'path': '/main/userList',
                 'name': '用户列表'
-            },]
+            }, ]
         },
         {
             'id': '100',
@@ -28,11 +28,11 @@ const state = {
                 'id': '101',
                 'path': '/demo/imageView',
                 'name': '图片预览'
-            },{
+            }, {
                 'id': '102',
                 'path': '/demo/echartsView',
                 'name': '统计图表'
-            },]
+            }, ]
         },
     ],
     // 当前活动菜单
@@ -56,16 +56,28 @@ const getters = {
 
 // actions
 const actions = {
-    comTabsAdd({ commit, state }, tab) {
+    comTabsAdd({
+        commit,
+        state
+    }, tab) {
         commit("comTabsAdd", tab);
     },
-    comTabsRemove({ commit, state }, id) {
+    comTabsRemove({
+        commit,
+        state
+    }, id) {
         commit("comTabsRemove", id);
     },
-    comTabsSet({ commit, state }, tabs) {
+    comTabsSet({
+        commit,
+        state
+    }, tabs) {
         commit("comTabsSet", tabs);
     },
-    openMenu({commit, state },menu){
+    openMenu({
+        commit,
+        state
+    }, menu) {
         //打开菜单
         // 存在则激活，否则添加
         let b = false;
@@ -78,9 +90,9 @@ const actions = {
         }
         if (!b) {
             // 添加
-            commit("comTabsAdd",menu);
+            commit("comTabsAdd", menu);
         }
-        commit("activeNameSet",menu.id);
+        commit("activeNameSet", menu.id);
     },
 }
 
@@ -115,6 +127,10 @@ const mutations = {
     activeNameSet(state, id) {
         console.log('mutations-activeNameSet:' + id);
         state.activeName = id;
+    },
+    centerLayoutContentHeightSet(state, height) {
+        console.log('mutations-centerLayoutContentHeightSet:' + height);
+        state.layout.centerLayoutContentHeight = height;
     }
 }
 
