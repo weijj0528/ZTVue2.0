@@ -1,41 +1,40 @@
 <!-- Created by Weiun on 2017/1/17. 页面内容区组件，负责内容区布局-->
 <template>
-  <div class="centerContent" v-bind:style="{width:(layout.contentWidth-10)+'px'}" v-loading="loading" element-loading-text="……加载中……">
-    <el-row>
-      <el-col :span="sidebar.leftSpan" v-if="leftOnOff">
-        <slot name="left"></slot>
-      </el-col>
-      <el-col :span="sidebar.centerSpan">
-        <el-row type="flex" justify="start" v-if="searchShow">
-          <el-col :span="24">
-            <slot name="search"></slot>
-          </el-col>
+    <div style="width:100%;height:100%" v-loading="loading" element-loading-text="……加载中……">
+        <el-row>
+            <el-col :span="sidebar.leftSpan" v-if="leftOnOff">
+                <slot name="left"></slot>
+            </el-col>
+            <el-col :span="sidebar.centerSpan">
+                <el-row type="flex" justify="start" v-if="searchShow">
+                    <el-col ref="search" :span="24">
+                        <slot name="search"></slot>
+                    </el-col>
+                </el-row>
+                <el-row type="flex" justify="start" v-if="functionShow" :style="{marginTop:searchShow?'10px':'0'}">
+                    <el-col ref="function" :span="24">
+                        <slot name="function"></slot>
+                    </el-col>
+                </el-row>
+                <el-row v-bind:style="{marginTop: (searchShow || functionShow)?'10px':'0'}">
+                    <el-col :span="24" v-bind:style="{height:contentHeight+'px'}">
+                        <slot name="content"></slot>
+                    </el-col>
+                </el-row>
+                <el-row v-if="bottomShow" style="margin-top:10px">
+                    <el-col ref="bottom" :span="24">
+                        <slot name="bottom"></slot>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="sidebar.rightSpan" v-if="rightOnOff">
+                <slot name="right"></slot>
+            </el-col>
         </el-row>
-        <el-row type="flex" justify="start" v-if="functionShow" style="margin-top:10px">
-          <el-col :span="24">
-            <slot name="function"></slot>
-          </el-col>
-        </el-row>
-        <el-row v-bind:style="{marginTop:'10px',height:contentHeight+'px'}">
-          <el-col :span="24">
-            <slot name="content"></slot>
-          </el-col>
-        </el-row>
-        <el-row v-if="bottomShow" style="margin-top:10px">
-          <el-col :span="24">
-            <slot name="bottom"></slot>
-          </el-col>
-        </el-row>
-      </el-col>
-      <el-col :span="sidebar.rightSpan" v-if="rightOnOff">
-        <slot name="right"></slot>
-      </el-col>
-    </el-row>
-
-  </div>
+    </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 export default {
     data() {
         return {
@@ -43,7 +42,11 @@ export default {
                 leftSpan: 0,
                 centerSpan: 24,
                 rightSpan: 0
-            }
+            },
+            layoutContentHeight: 800,
+            searchHeight: 32,
+            functionHeight: 32,
+            bottomHeight: 42
         };
     },
     props: {
@@ -67,41 +70,53 @@ export default {
             type: Boolean,
             default: true
         },
-        searchHeight: {
-            type: Number,
-            default: 32
-        },
-        functionHeight: {
-            type: Number,
-            default: 32
-        },
-        bottomHeight: {
-            type: Number,
-            default: 42
-        },
+
         loading: false
     },
     computed: {
         ...mapGetters(["layout"]),
         contentHeight() {
-            // Tabs导航高56
-            let h = this.layout.contentHeight - 56;
+            let h = this.layoutContentHeight;
+            console.log("-->H:" + h);
             if (this.searchShow) {
-                h = h - this.searchHeight - 10;
+                h = h - this.searchHeight;
             }
             if (this.functionShow) {
                 h = h - this.functionHeight - 10;
             }
+            // 内容marginTop
+            if (this.searchShow || this.functionShow) {
+                h = h - 10;
+            }
             if (this.bottomShow) {
                 h = h - this.bottomHeight - 10;
             }
+            console.log("-->contentHeight:" + h);
+            this.centerLayoutContentHeightSet(h);
             return h;
         }
     },
     mounted() {
         this.init(); // 初始化
+        this.$nextTick(() => {
+            this.layoutContentHeight = this.$el.offsetHeight;
+            console.log("-->layoutContentHeight:" + this.layoutContentHeight);
+            if (this.searchShow) {
+                this.searchHeight = this.$refs.search.$el.offsetHeight;
+                console.log("-->searchHeight:" + this.searchHeight);
+            }
+            if (this.functionShow) {
+                this.functionHeight = this.$refs.function.$el.offsetHeight;
+                console.log("-->functionHeight:" + this.functionHeight);
+            }
+            if (this.bottomShow) {
+                this.bottomHeight = this.$refs.bottom.$el.offsetHeight;
+                console.log("-->bottomHeight:" + this.bottomHeight);
+            }
+        });
     },
     methods: {
+        ...mapMutations(["centerLayoutContentHeightSet"]),
         init: function() {
             if (this.leftOnOff) {
                 this.sidebar.leftSpan = 5;
@@ -137,7 +152,4 @@ export default {
 </script>
 <style scoped>
 /*@import '../styles/common.css';*/
-.centerContent {
-    padding: 5px;
-}
 </style>

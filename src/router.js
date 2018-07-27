@@ -2,9 +2,10 @@
  * Created by aresn on 16/8/22.
  */
 import VueRouter from 'vue-router';
-import test from './views/test.vue';
-import Login from './views/login.vue';
-import Main from './views/main.vue';
+
+const test = resolve => require(['./views/test.vue'], resolve) ;
+const Login = resolve => require(['./views/login.vue'], resolve) ;
+const Main = resolve => require(['./views/main.vue'], resolve) ;
 // 具体业务组件在需要时按需加载
 const home = resolve => require(['@biz/home/home.vue'], resolve) ;
 const message = resolve => require(['@biz/top/message.vue'], resolve) ;
@@ -14,8 +15,8 @@ const userPage = resolve => require(['@biz/user/userPage.vue'], resolve) ;
 const userInfo = resolve => require(['@biz/user/userInfo.vue'], resolve) ;
 const userUpdatePwd = resolve => require(['@biz/user/userUpdatePwd.vue'], resolve) ;
 // Demo
-import imageView from './views/demo/image.vue';
-import echartsView from './views/demo/echarts.vue';
+const imageView = resolve => require(['./views/demo/image.vue'], resolve) ;
+const echartsView = resolve => require(['./views/demo/echarts.vue'], resolve) ;
 
 const router = new VueRouter({
     linkActiveClass: 'active',
