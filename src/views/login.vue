@@ -207,7 +207,7 @@ export default {
   height: 100%;
   /* background: cadetblue; */
   margin: 0 auto;
-  /* background-image: url("../resource/image/bg_login.jpg");
+  /* background-image: url("/static/image/bg_login.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   -moz-background-size: 100% 100%; */

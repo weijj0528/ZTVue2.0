@@ -8,7 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import 'viewerjs/dist/viewer.min.css';
 import 'fullcalendar/dist/fullcalendar.min.css';
-import './resource/icon/iconfont.css';
+import './static/icon/iconfont.css';
 
 import router from './router'
 import app from './views/app.vue'

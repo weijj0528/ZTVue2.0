@@ -7,12 +7,12 @@ const webpackBaseConfig = require('./webpack.base.config.js');
 module.exports = merge(webpackBaseConfig, {
     entry: {
         main: './src/main',
-        vendors: ['vue','vue-router']
+        vendors: ['vue', 'vue-router']
     },
     output: {
         path: path.join(__dirname, './../dist'),
         filename: '[name].[hash:16].js',
-        chunkFilename: 'chunk/[name].[hash:16].chunk.js'
+        chunkFilename: 'static/js/[name].chunk.[hash:16].js'
     },
     plugins: [
         new ExtractTextPlugin({
@@ -35,6 +35,6 @@ module.exports = merge(webpackBaseConfig, {
                 drop_console: true
             },
             sourceMap: false
-        })
+        }),
     ]
 });

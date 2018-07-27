@@ -6,12 +6,12 @@ const webpackBaseConfig = require('./webpack.base.config.js');
 module.exports = merge(webpackBaseConfig, {
     entry: {
         main: './src/main',
-        vendors: ['vue','vue-router','webpack-hot-middleware/client?noInfo=true&reload=true']
+        vendors: ['vue', 'vue-router', 'webpack-hot-middleware/client?noInfo=true&reload=true']
     },
     devtool: '#source-map',
     output: {
         filename: '[name].js',
-        chunkFilename: 'chunk/[name].chunk.js'
+        chunkFilename: 'static/js/[name].chunk.js'
     },
     plugins: [
         new ExtractTextPlugin({
@@ -24,6 +24,6 @@ module.exports = merge(webpackBaseConfig, {
         }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin ()
+        new webpack.NoEmitOnErrorsPlugin()
     ]
 });
