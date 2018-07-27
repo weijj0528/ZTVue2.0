@@ -26,6 +26,7 @@
     "fullcalendar": "^3.9.0",
     "jquery": "^3.3.1",
     "restore-cursor": "^1.0.1",
+    "tinymce": "^4.8.1",
     "viewerjs": "^1.0.0-rc.1",
     "vue": "^2.4.1",
     "vue-router": "^2.7.0",

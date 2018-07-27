@@ -11,29 +11,33 @@ const state = {
     },
     // 菜单
     menus: [{
-            'id': '1',
-            'name': '用户管理',
-            'icon': 'iconfont icon-yonghu-xianxing',
-            'subMenus': [{
-                'id': '11',
-                'icon': 'iconfont icon-jiaosequnti',
-                'path': '/main/userList',
-                'name': '用户列表'
-            }, ]
-        },
-        {
-            'id': '100',
-            'name': '组件示例',
-            'subMenus': [{
-                'id': '101',
-                'path': '/demo/imageView',
-                'name': '图片预览'
-            }, {
-                'id': '102',
-                'path': '/demo/echartsView',
-                'name': '统计图表'
-            }, ]
-        },
+        'id': '1',
+        'name': '用户管理',
+        'icon': 'iconfont icon-yonghu-xianxing',
+        'subMenus': [{
+            'id': '11',
+            'icon': 'iconfont icon-jiaosequnti',
+            'path': '/main/userList',
+            'name': '用户列表'
+        },]
+    },
+    {
+        'id': '100',
+        'name': '组件示例',
+        'subMenus': [{
+            'id': '101',
+            'path': '/demo/imageView',
+            'name': '图片预览'
+        }, {
+            'id': '102',
+            'path': '/demo/echartsView',
+            'name': '统计图表'
+        }, {
+            'id': '103',
+            'path': '/demo/tinymce',
+            'name': '富文本编辑'
+        },]
+    },
     ],
     // 当前活动菜单
     activeName: '0',

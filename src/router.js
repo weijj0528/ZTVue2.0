@@ -17,6 +17,7 @@ const userUpdatePwd = resolve => require(['@biz/user/userUpdatePwd.vue'], resolv
 // Demo
 const imageView = resolve => require(['./views/demo/image.vue'], resolve) ;
 const echartsView = resolve => require(['./views/demo/echarts.vue'], resolve) ;
+const tinymce = resolve => require(['./views/demo/tinymce.vue'], resolve) ;
 
 const router = new VueRouter({
     linkActiveClass: 'active',
@@ -39,6 +40,7 @@ const router = new VueRouter({
         {path: '/demo/', component: Main,children:[
             {path: 'imageView', component: imageView},
             {path: 'echartsView', component: echartsView},
+            {path: 'tinymce', component: tinymce},
         ]}
     ]
 })
