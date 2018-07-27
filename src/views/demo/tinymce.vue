@@ -1,8 +1,8 @@
 <!-- Created by Weiun on 2017/1/17.-->
-<!-- 模板组件 -->
+<!-- tinymce富文本示例 -->
 <template>
     <div style="width:90%;height:100%">
-        <tinymceEditor :value="content" :qiniuBucket="qiniuBucket"></tinymceEditor>
+        <tinymceEditor :value="content" @tinymce="tinymce" :qiniuBucket="qiniuBucket"></tinymceEditor>
     </div>
 </template>
 <script>
@@ -29,8 +29,8 @@ export default {
     beforeDestroy() {},
     methods: {
         ...mapActions([]),
-        hellow() {
-            console.log("hellow world");
+        tinymce(content) {
+            this.content = content;
         }
     },
     watch: {}

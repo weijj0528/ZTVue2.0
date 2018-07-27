@@ -55,7 +55,7 @@ export default {
     },
     mounted() {
         if (this.qiniuBucket == "intl") {
-            // 国际空间上传地址变更
+            // 国际空间上传地址变更,跨域问题可以使用代理解决
             this.url = "http://upload-na0.qiniup.com";
         }
         const _this = this;
@@ -71,7 +71,8 @@ export default {
                 console.log("Editor: " + editor.id + " is now initialized.");
                 editor.on("input change undo redo", () => {
                     var content = editor.getContent();
-                    _this.$emit("show", content);
+                    // 双向绑定content
+                    _this.$emit("tinymce", content);
                 });
             },
             content_style: `
@@ -164,10 +165,6 @@ export default {
                             const xhr = new XMLHttpRequest();
                             xhr.withCredentials = true; // 同步上传
                             xhr.open("POST", _this.url);
-                            xhr.setRequestHeader(
-                                "Content-Type",
-                                "application/octet-stream"
-                            );
                             const formData = new FormData();
                             formData.append("token", token);
                             formData.append("key", fileName);
