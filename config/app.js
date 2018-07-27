@@ -17,7 +17,7 @@ console.log("env-->" + process.env.NODE_ENV);
 
 var app = express()
 // 网站图标
-//app.use(favicon(path.join(__dirname, 'dist/static','favicon.ico')))
+app.use(favicon(path.join(__dirname, '../dist/static/favicon.ico')))
 // 接口代理
 // proxy api requests 反向代理API 在config 中配置
 var proxyTable = config.dev.proxyTable
