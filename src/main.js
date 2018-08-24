@@ -22,10 +22,6 @@ Object.keys(filters).forEach(key => {
 Vue.use(VueRouter)
 Vue.use(ElementUI,{ size: 'mini' });
 
-// import loading  from './common/loading/loading'
-//原型扩展 全局方法
-// Vue.prototype.$loading = loading;
-
 const routerApp = new Vue({
     store,
     router,
