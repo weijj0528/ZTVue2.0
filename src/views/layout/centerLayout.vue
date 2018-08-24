@@ -92,7 +92,6 @@ export default {
                 h = h - this.bottomHeight - 10;
             }
             console.log("-->contentHeight:" + h);
-            this.centerLayoutContentHeightSet(h);
             return h;
         }
     },
@@ -116,7 +115,6 @@ export default {
         });
     },
     methods: {
-        ...mapMutations(["centerLayoutContentHeightSet"]),
         init: function() {
             if (this.leftOnOff) {
                 this.sidebar.leftSpan = 5;

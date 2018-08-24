@@ -7,7 +7,6 @@ const state = {
         contentHeight: 600,
         menuWidth: 240,
         contentWidth: 800,
-        centerLayoutContentHeight: 300
     },
     // 菜单
     menus: [{
@@ -132,10 +131,6 @@ const mutations = {
         console.log('mutations-activeNameSet:' + id);
         state.activeName = id;
     },
-    centerLayoutContentHeightSet(state, height) {
-        console.log('mutations-centerLayoutContentHeightSet:' + height);
-        state.layout.centerLayoutContentHeight = height;
-    }
 }
 
 export default {
