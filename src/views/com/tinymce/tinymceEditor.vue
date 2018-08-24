@@ -163,8 +163,8 @@ export default {
                                     ext;
                             }
                             const xhr = new XMLHttpRequest();
-                            xhr.withCredentials = true; // 同步上传
-                            xhr.open("POST", _this.url);
+                            xhr.withCredentials = false; // 同步上传
+                            xhr.open("post", _this.url);
                             const formData = new FormData();
                             formData.append("token", token);
                             formData.append("key", fileName);
