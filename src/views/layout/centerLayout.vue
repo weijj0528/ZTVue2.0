@@ -1,11 +1,11 @@
 <!-- Created by Weiun on 2017/1/17. 页面内容区组件，负责内容区布局-->
 <template>
     <div style="width:100%;height:100%" v-loading="loading" element-loading-text="……加载中……">
-        <el-row>
-            <el-col :span="sidebar.leftSpan" v-if="leftOnOff">
+        <el-row :gutter="8">
+            <el-col :span="sidebar.leftSpan" v-if="leftOnOff" class="left" :style="{height:layoutContentHeight  + 'px'}">
                 <slot name="left"></slot>
             </el-col>
-            <el-col :span="sidebar.centerSpan">
+            <el-col :span="sidebar.centerSpan" class="left" :style="{height:layoutContentHeight  + 'px'}">
                 <el-row type="flex" justify="start" v-if="searchShow">
                     <el-col ref="search" :span="24">
                         <slot name="search"></slot>
@@ -43,6 +43,7 @@ export default {
                 centerSpan: 24,
                 rightSpan: 0
             },
+            height: 800,
             layoutContentHeight: 800,
             searchHeight: 32,
             functionHeight: 32,
@@ -150,4 +151,8 @@ export default {
 </script>
 <style scoped>
 /*@import '../styles/common.css';*/
+.left {
+    height: 100%;
+    border-right: 1px solid #DCDFE6;
+}
 </style>

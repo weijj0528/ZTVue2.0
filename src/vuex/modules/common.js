@@ -16,8 +16,13 @@ const state = {
         'subMenus': [{
             'id': '11',
             'icon': 'iconfont icon-jiaosequnti',
-            'path': '/main/userList',
+            'path': '/user/userPage',
             'name': '用户列表'
+        }, {
+            'id': '12',
+            'icon': 'iconfont icon-jiaosequnti',
+            'path': '/user/userListPage',
+            'name': '全部用户'
         },]
     },
     {
