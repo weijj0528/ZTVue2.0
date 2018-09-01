@@ -1,9 +1,7 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <!-- 模板组件 -->
 <template>
-    <div>
-        <listPage></listPage>
-    </div>
+    <listPage></listPage>
 </template>
 <script>
 import listPage from "@biz/com/listPage.vue";

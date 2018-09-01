@@ -4,17 +4,10 @@
 <template>
     <el-row :gutter='8' type="flex" justify="start">
         <el-button type="text" icon='el-icon-arrow-right' @click="moreSearchOnOff"></el-button>
-        <el-col :span="4">
-            <el-input v-model="queryParam['name']" placeholder="按回车键可查询……" @on-enter="query">
-                <span slot="prepend">名称</span>
-            </el-input>
+        <el-col :span="4" v-for="(item,key) in param" :key="item.key">
+            <comSearch :pk="key" :param="item" @query="query" @change="change"></comSearch>
         </el-col>
         <el-col :span="4">
-            <el-input v-model="queryParam['name']" placeholder="按回车键可查询……" @on-enter="query">
-                <span slot="prepend">电话</span>
-            </el-input>
-        </el-col>
-        <el-col :span="24">
             <el-button type="primary" icon="el-icon-search" @click="query" round></el-button>
             <el-button type="info">清空</el-button>
             <el-button type="info" @click="query">刷新</el-button>
@@ -22,16 +15,24 @@
     </el-row>
 </template>
 <script>
+import comSearch from "./comSearch.vue";
 export default {
+    components: { comSearch },
     data() {
-        return {};
+        return {
+            queryParam: {}
+        };
     },
     props: {
-        queryParam: {
+        param: {
             type: Object,
             default: () => {
                 return {
-                    name: "大"
+                    name: {
+                        type: "text",
+                        title: "名称",
+                        placeholder: "这是常用查询演示数据"
+                    }
                 };
             }
         }
@@ -40,11 +41,14 @@ export default {
     mounted: function() {},
     methods: {
         moreSearchOnOff: function() {
-            console.log("moreSearchOnoff");
             this.$emit("more-search");
         },
-        query: function() {
+        query(p) {
+            this.queryParam = Object.assign(this.queryParam, p);
             this.$emit("query", this.queryParam);
+        },
+        change(p) {
+            this.queryParam = Object.assign(this.queryParam, p);
         }
     }
 };

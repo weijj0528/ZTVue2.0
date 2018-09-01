@@ -43,8 +43,8 @@ export default {
                 centerSpan: 24,
                 rightSpan: 0
             },
-            height: 800,
-            layoutContentHeight: 800,
+            height: 600,
+            layoutContentHeight: 600,
             searchHeight: 32,
             functionHeight: 32,
             bottomHeight: 42
@@ -92,7 +92,6 @@ export default {
             if (this.bottomShow) {
                 h = h - this.bottomHeight - 10;
             }
-            console.log("-->contentHeight:" + h);
             return h;
         }
     },
@@ -100,18 +99,14 @@ export default {
         this.init(); // 初始化
         this.$nextTick(() => {
             this.layoutContentHeight = this.$el.offsetHeight;
-            console.log("-->layoutContentHeight:" + this.layoutContentHeight);
             if (this.searchShow) {
                 this.searchHeight = this.$refs.search.$el.offsetHeight;
-                console.log("-->searchHeight:" + this.searchHeight);
             }
             if (this.functionShow) {
                 this.functionHeight = this.$refs.function.$el.offsetHeight;
-                console.log("-->functionHeight:" + this.functionHeight);
             }
             if (this.bottomShow) {
                 this.bottomHeight = this.$refs.bottom.$el.offsetHeight;
-                console.log("-->bottomHeight:" + this.bottomHeight);
             }
         });
     },

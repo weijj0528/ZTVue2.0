@@ -1,13 +1,11 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <!-- 通用列表页面组件 -->
 <template>
-    <div>
-        <centerLayout :leftOnOff="moreSearchShow">
-            <moreSearch slot="left"></moreSearch>
-            <topSearch slot="search" @more-search="moreSearchOnoff"></topSearch>
-            <comPage slot="bottom" :pageParam='pageArgs' @page-chang="page"></comPage>
-        </centerLayout>
-    </div>
+    <centerLayout :leftOnOff="moreSearchShow">
+        <moreSearch slot="left" :param="moreSerachParam" @query="query"></moreSearch>
+        <topSearch slot="search" :param="comSerachParam" @query="query" @more-search="moreSearchOnoff"></topSearch>
+        <comPage slot="bottom" :pageParam='pageArgs' @page-chang="page"></comPage>
+    </centerLayout>
 </template>
 <script>
 import centerLayout from "@layout/centerLayout.vue";
@@ -19,30 +17,71 @@ import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
     components: { centerLayout, comPage, topSearch, moreSearch },
     props: {
+        // 查询参数
+        queryParam: {
+            type: Object,
+            default: () => {
+                return {
+                    name: {
+                        type: "text",
+                        title: "常用查询",
+                        placeholder: "关键字"
+                    },
+                    id: {
+                        type: "text",
+                        more: true,
+                        title: "更多查询",
+                        placeholder: "关键字"
+                    },
+                    pageNum: 1,
+                    pageSize: 15,
+                    total: 0
+                };
+            }
+        },
+        // 数据
         dataList: {
             type: Array,
             default: () => {
                 return [];
             }
         },
-        queryParam: {
-            type: Object,
+        //数据展示
+        cols: {
+            type: Array,
             default: () => {
-                return {
-                    pageNum: 1,
-                    pageSize: 15,
-                    total: 0
-                };
+                return [];
             }
         }
     },
     data() {
         return {
-            moreSearchShow: true
+            moreSearchShow: true,
+            param: {}
         };
     },
     computed: {
         ...mapGetters([]),
+        comSerachParam() {
+            let param = {};
+            for (let k in this.queryParam) {
+                let v = this.queryParam[k];
+                if (v instanceof Object && !v.more) {
+                    param[k] = v;
+                }
+            }
+            return param;
+        },
+        moreSerachParam() {
+            let param = {};
+            for (let k in this.queryParam) {
+                let v = this.queryParam[k];
+                if (v instanceof Object && v.more) {
+                    param[k] = v;
+                }
+            }
+            return param;
+        },
         pageArgs: function() {
             let p = {
                 pageNum: this.queryParam.pageNum,
@@ -62,20 +101,19 @@ export default {
         ...mapActions([]),
         moreSearchOnoff() {
             this.moreSearchShow = !this.moreSearchShow;
-            console.log("moreSearchOnoff:" + this.moreSearchShow);
-        },
-        search(param) {
-            // param 合并到 queryParam
-            this.queryParam = util.mergeObj(this.queryParam, param);
-            this.query();
         },
         page(param) {
-            this.queryParam.pageNum = param.pageNum;
-            this.queryParam.pageSize = param.pageSize;
-            this.query();
+            let page = {
+                pageNum: param.pageNum ? param.pageNum : 1,
+                pageSize: param.pageSize ? param.pageSize : 15
+            };
+            this.param = Object.assign(this.param, page);
+            this.query(page);
         },
-        query() {
-            this.$emit("query", this.queryParam);
+        query(p) {
+            let param = Object.assign(this.param, p);
+            this.param = param;
+            this.$emit("query", param);
         }
     },
     watch: {}

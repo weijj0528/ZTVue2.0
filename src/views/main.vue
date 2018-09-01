@@ -19,7 +19,7 @@
                     </div>
                 </div> -->
                 <!-- 隐藏滚动条 -->
-                <div v-bind:style="{ height: layout.contentHeight-66 + 'px',width:layout.contentWidth-10  + 'px',margin:'5px','overflow-y':'auto','overflow-x':'hidden' }">
+                <div v-bind:style="{ height: layout.contentHeight-66 + 'px',width:layout.contentWidth-10  + 'px',padding:'5px','overflow-y':'auto','overflow-x':'hidden' }">
                     <router-view></router-view>
                 </div>
             </el-col>
