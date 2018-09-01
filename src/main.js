@@ -6,6 +6,10 @@ import VueRouter from 'vue-router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import {Table } from 'iview';
+import 'iview/dist/styles/iview.css';
+Vue.component('i-table', Table);
+
 import 'viewerjs/dist/viewer.min.css';
 import 'fullcalendar/dist/fullcalendar.min.css';
 import './static/icon/iconfont.css';
