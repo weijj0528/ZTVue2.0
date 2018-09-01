@@ -1,9 +1,13 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <!-- 通用列表页面组件 -->
 <template>
-    <centerLayout :leftOnOff="moreSearchShow">
+    <centerLayout :leftOnOff="moreSearchShow" :functionShow="funcList.length > 0" @height-change="heightChange">
         <moreSearch slot="left" :param="moreSerachParam" @query="query"></moreSearch>
         <topSearch slot="search" :param="comSerachParam" @query="query" @more-search="moreSearchOnoff"></topSearch>
+        <el-row slot="function">
+            <el-button v-for="(item,index) in funcList" :key="item.title" :type="item.type" @click="funcClick(index)">{{item.title}}</el-button>
+        </el-row>
+        <i-table slot="content" :columns="columns" :data="data" highlight-row @on-current-change="onCurrentChange" @on-selection-change="onSelectionChange" :height="tableHeight" border></i-table>
         <comPage slot="bottom" :pageParam='pageArgs' @page-chang="page"></comPage>
     </centerLayout>
 </template>
@@ -39,25 +43,104 @@ export default {
                 };
             }
         },
-        // 数据
-        dataList: {
+        // 功能参数
+        funcList: {
             type: Array,
             default: () => {
-                return [];
+                return [
+                    {
+                        title: "添加",
+                        type: "primary"
+                    }
+                ];
             }
         },
-        //数据展示
-        cols: {
+        // 数据
+        data: {
             type: Array,
             default: () => {
-                return [];
+                return [
+                    {
+                        name: "John Brown",
+                        age: 18,
+                        date: "2016-10-03",
+                        address: "New York No. 1 Lake Park",
+                        comment: "这是演示数据……"
+                    }
+                ];
+            }
+        },
+        //数据列展示
+        columns: {
+            type: Array,
+            default: () => {
+                return [
+                    {
+                        type: "selection",
+                        width: 60,
+                        align: "center",
+                        fixed: "left"
+                    },
+                    {
+                        title: "名称",
+                        key: "name",
+                        fixed: "left"
+                    },
+                    {
+                        title: "表头分组",
+                        children: [
+                            {
+                                title: "年龄",
+                                key: "age"
+                            },
+                            {
+                                title: "生日",
+                                key: "date"
+                            }
+                        ]
+                    },
+                    {
+                        title: "地址",
+                        key: "address"
+                    },
+                    {
+                        title: "备注",
+                        key: "comment"
+                    },
+                    {
+                        title: "操作",
+                        fixed: "right",
+                        render: (h, params) => {
+                            return h("div", [
+                                h(
+                                    "el-button",
+                                    {
+                                        props: {
+                                            type: "primary",
+                                            size: "small"
+                                        },
+                                        on: {
+                                            click: () => {
+                                                console.log("table action");
+                                            }
+                                        }
+                                    },
+                                    "操作"
+                                )
+                            ]);
+                        }
+                    }
+                ];
             }
         }
     },
     data() {
         return {
             moreSearchShow: true,
-            param: {}
+            tableHeight: 600,
+            param: {},
+            selectedData: {}, // 单选数据
+            selectedDataList: [] // 多选数据
         };
     },
     computed: {
@@ -93,7 +176,7 @@ export default {
     },
     mounted: function() {
         this.$nextTick(function() {
-            // 代码保证 this.$el 在 document 中
+            this.query();
         });
     },
     beforeDestroy() {},
@@ -101,6 +184,9 @@ export default {
         ...mapActions([]),
         moreSearchOnoff() {
             this.moreSearchShow = !this.moreSearchShow;
+        },
+        heightChange(p) {
+            this.tableHeight = p.contentHeight;
         },
         page(param) {
             let page = {
@@ -114,6 +200,25 @@ export default {
             let param = Object.assign(this.param, p);
             this.param = param;
             this.$emit("query", param);
+        },
+        // 功能执行
+        funcClick(index) {
+            let f = this.funcList[index];
+            console.log("funcClick->", f);
+            this.$emit(
+                "func-click",
+                f,
+                this.selectedData,
+                this.selectedDataList
+            );
+        },
+        onCurrentChange(currentRow, oldCurrentRow) {
+            console.log("onCurrentChange->", currentRow, oldCurrentRow);
+            this.selectedData = currentRow;
+        },
+        onSelectionChange(selection) {
+            console.log("onSelectionChange->", selection);
+            this.selectedDataList = selection;
         }
     },
     watch: {}

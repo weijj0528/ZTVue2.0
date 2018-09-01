@@ -92,6 +92,9 @@ export default {
             if (this.bottomShow) {
                 h = h - this.bottomHeight - 10;
             }
+            this.$emit("height-change", {
+                contentHeight: h
+            });
             return h;
         }
     },
@@ -148,6 +151,6 @@ export default {
 /*@import '../styles/common.css';*/
 .left {
     height: 100%;
-    border-right: 1px solid #DCDFE6;
+    border-right: 1px solid #dcdfe6;
 }
 </style>
