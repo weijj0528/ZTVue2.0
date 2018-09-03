@@ -14,7 +14,6 @@ const logistics = resolve => require(['@biz/top/logistics.vue'], resolve);
 const userInfo = resolve => require(['@biz/user/userInfo.vue'], resolve);
 const userUpdatePwd = resolve => require(['@biz/user/userUpdatePwd.vue'], resolve);
 // User
-const userPage = resolve => require(['@biz/user/userPage.vue'], resolve);
 const userListPage = resolve => require(['@biz/user/userListPage.vue'], resolve);
 // Demo
 const imageView = resolve => require(['./views/demo/image.vue'], resolve);
@@ -44,7 +43,6 @@ const router = new VueRouter({
         },
         {
             path: '/user/', component: Main, children: [
-                { path: 'userPage', component: userPage },
                 { path: 'userListPage', component: userListPage },
             ]
         },

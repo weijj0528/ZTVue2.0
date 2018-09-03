@@ -16,7 +16,7 @@ const state = {
         'subMenus': [{
             'id': '11',
             'icon': 'iconfont icon-jiaosequnti',
-            'path': '/user/userPage',
+            'path': '/user/userListPage',
             'name': '用户列表'
         }, {
             'id': '12',
