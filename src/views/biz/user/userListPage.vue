@@ -1,7 +1,7 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <!-- 模板组件 -->
 <template>
-    <listPage :loading="loading" :queryParam="queryParam" :queryValue="userQueryParam" :funcList="funcList" :data="userResult" :columns="columns" @query="loadData"></listPage>
+    <listPage :loading="loading" :queryParam="queryParam" :queryValue="userQueryParam" :funcList="funcList" :data="userResult" :columns="columns" @query="loadData" @func-click="funcClick"></listPage>
 </template>
 <script>
 import listPage from "@biz/com/listPage.vue";
@@ -72,7 +72,7 @@ export default {
                                     },
                                     on: {
                                         click: () => {
-                                            this.actionTest();
+                                            this.actionTest(params.row);
                                         }
                                     }
                                 },
@@ -110,8 +110,13 @@ export default {
                 }
             );
         },
-        actionTest() {
-            console.log("actionTest");
+        actionTest(details) {
+            console.log("UserListPage actionTest", details);
+        },
+        funcClick(f, selectedData, selectedDataList) {
+            console.log("UserListPage funcClick f", f);
+            console.log("UserListPage funcClick selectedData", selectedData);
+            console.log("UserListPage funcClick selectedDataList", selectedDataList);
         }
     },
     watch: {}
