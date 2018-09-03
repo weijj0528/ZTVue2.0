@@ -21,7 +21,7 @@ export default {
                     placeholder: ""
                 },
                 phone: {
-                    type: "text",
+                    type: "number",
                     title: "电话",
                     placeholder: ""
                 }

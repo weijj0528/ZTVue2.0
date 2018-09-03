@@ -18,7 +18,15 @@ event:{
 <template>
     <div>
         <!-- text -->
-        <el-input v-model="v" v-if="param.type == 'text'" type="text" :placeholder="param.placeholder" @change="change" @blur="blur" @keyup.enter.native="query">
+        <el-input v-model="v" v-if="param.type == 'text'" type="text" clearable :placeholder="param.placeholder" @change="change" @blur="blur" @keyup.enter.native="query">
+            <template slot="prepend" v-if="param.title">{{param.title}}</template>
+        </el-input>
+        <!-- number -->
+        <el-input v-model="v" v-if="param.type == 'number'" type="number" clearable :placeholder="param.placeholder" @change="change" @blur="blur" @keyup.enter.native="query">
+            <template slot="prepend" v-if="param.title">{{param.title}}</template>
+        </el-input>
+        <!-- email -->
+        <el-input v-model="v" v-if="param.type == 'email'" type="email" clearable :placeholder="param.placeholder" @change="change" @blur="blur" @keyup.enter.native="query">
             <template slot="prepend" v-if="param.title">{{param.title}}</template>
         </el-input>
     </div>
