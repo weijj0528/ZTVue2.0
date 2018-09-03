@@ -1,5 +1,26 @@
 <!-- Created by Weiun on 2017/1/17.-->
-<!-- 通用列表页面组件 -->
+<!-- 通用列表页面组件 
+props:{
+    loading:组件加载状态,
+    queryParam:查询条件定义对像，可参考默认定义值,
+    queryValue:查询条件的初始值，注意其键需要与queryParam保持一致,
+    funcList:功能列表，可参考默认定义值,
+    data:列表数据,
+    columns:列表数据展示列定义，可参考iView框架中Table组件中columns定义 https://www.iviewui.com/components/table,
+},
+event:{
+    // 查询
+    query(p){
+        p:组件封装好的查询条件
+    },
+    // 功能执行
+    func-click(f,selectedData,selectedDataList){
+        f:功能列表中执行的对像
+        selectedData:单选的数据
+        selectedDataList:多选数据
+    }
+}
+-->
 <template>
     <centerLayout :loading="loading" :leftOnOff="moreSearchShow" :functionShow="funcList.length > 0" @height-change="heightChange">
         <moreSearch slot="left" :param="moreSerachParam" :value="moreSerachValue" @query="query"></moreSearch>

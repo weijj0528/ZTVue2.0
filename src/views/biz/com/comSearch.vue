@@ -1,5 +1,19 @@
 <!-- Created by Weiun on 2017/1/17.-->
-<!-- 查询组件 -->
+<!-- 查询组件 
+props:{
+    pk:查询条件键值,
+    value:查询条件初始值,
+    param:查询条件其他属性,
+},
+event:{
+    query(p){
+        p:组件封装好的查询条件
+    },
+    change(p){
+        p:组件变更的查询条件
+    }
+}
+-->
 
 <template>
     <div>

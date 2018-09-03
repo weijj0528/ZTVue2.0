@@ -1,5 +1,15 @@
 <!-- Created by Weiun on 2017/1/17.-->
-<!-- 模板组件 -->
+<!-- 模板组件 
+props:{
+    value:查询条件初始值,
+    param:查询条件,
+},
+event:{
+    query(p){
+        p:组件封装好的查询条件
+    },
+}
+-->
 
 <template>
     <el-row :gutter='8'>

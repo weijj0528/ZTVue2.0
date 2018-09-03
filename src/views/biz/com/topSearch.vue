@@ -1,5 +1,19 @@
 <!-- Created by Weiun on 2017/1/17.-->
-<!-- 模板组件 -->
+<!-- 模板组件 
+props:{
+    value:查询条件初始值,
+    param:查询条件,
+},
+event:{
+    // 查询
+    query(p){
+        p:组件封装好的查询条件
+    },
+    more-search(){
+        更多模块开关
+    },
+}
+-->
 
 <template>
     <el-row :gutter='8' type="flex" justify="start">
