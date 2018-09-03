@@ -4,7 +4,7 @@
 <template>
     <div>
         <!-- text -->
-        <el-input v-model="v" v-if="param.type == 'text'" type="text" :placeholder="param.placeholder" @change="change" @keyup.enter.native="query">
+        <el-input v-model="v" v-if="param.type == 'text'" type="text" :placeholder="param.placeholder" @change="change" @blur="blur" @keyup.enter.native="query">
             <template slot="prepend" v-if="param.title">{{param.title}}</template>
         </el-input>
     </div>
@@ -45,12 +45,17 @@ export default {
     methods: {
         query: function() {
             let p = {};
-            p[this.pk] = this.value;
+            p[this.pk] = this.v;
+            console.log("ComSearch query->", this.v);
             this.$emit("query", p);
+        },
+        blur(e) {
+            console.log("blur->", e);
         },
         change: function() {
             let p = {};
             p[this.pk] = this.v;
+            console.log("ComSearch change->", this.v);
             this.$emit("change", p);
         }
     },

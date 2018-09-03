@@ -16,6 +16,7 @@ export default {
             queryParam: {
                 name: {
                     type: "text",
+                    more: true,
                     title: "名称",
                     placeholder: ""
                 },
@@ -23,10 +24,7 @@ export default {
                     type: "text",
                     title: "电话",
                     placeholder: ""
-                },
-                pageNum: 1,
-                pageSize: 15,
-                total: 0
+                }
             },
             // 功能参数
             funcList: [
@@ -101,8 +99,8 @@ export default {
         ...mapMutations(["setUserQueryParam"]),
         loadData(p) {
             this.loading = true;
-            console.log(p);
-            this.setUserQueryParam(p)
+            console.log("loadData->", p);
+            this.setUserQueryParam(p);
             this.userQueryList(p).then(
                 result => {
                     this.loading = false;

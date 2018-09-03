@@ -8,9 +8,9 @@
             <comSearch :pk="key" :value="value[key]" :param="item" @query="query" @change="change"></comSearch>
         </el-col>
         <el-col :span="4">
-            <el-button type="primary" icon="el-icon-search" @click="query" round></el-button>
-            <el-button type="info">清空</el-button>
-            <el-button type="info" @click="query">刷新</el-button>
+            <el-button type="primary" icon="el-icon-search" @click="search" round></el-button>
+            <el-button type="info" @click="clear">清空</el-button>
+            <el-button type="info" @click="search">刷新</el-button>
         </el-col>
     </el-row>
 </template>
@@ -46,17 +46,39 @@ export default {
         }
     },
     computed: {},
-    mounted: function() {},
+    mounted: function() {
+        this.$nextTick(function() {
+            this.queryParam = this.value;
+            console.log("TopSearch nextTick->", this.param);
+            this.query();
+        });
+    },
     methods: {
         moreSearchOnOff: function() {
             this.$emit("more-search");
         },
-        query(p) {
-            this.queryParam = Object.assign(this.queryParam, p);
+        search() {
+            console.log("TopSearch search->", this.queryParam);
             this.$emit("query", this.queryParam);
         },
+        query(p) {
+            if (p) {
+                Object.assign(this.queryParam, p);
+                console.log("TopSearch query->", this.queryParam);
+            }
+            this.search();
+        },
         change(p) {
-            this.queryParam = Object.assign(this.queryParam, p);
+            if (p) {
+                Object.assign(this.queryParam, p);
+                console.log("TopSearch change->", this.queryParam);
+            }
+        },
+        clear() {
+            for (let k in this.queryParam) {
+                this.queryParam[k] = "";
+            }
+            this.search();
         }
     }
 };

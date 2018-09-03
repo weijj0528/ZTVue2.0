@@ -7,10 +7,10 @@
             <el-button type="primary" style="width:100%">取消</el-button>
         </el-col>
         <el-col :span="8">
-            <el-button type="primary" style="width:100%">清空</el-button>
+            <el-button type="primary" @click="clear" style="width:100%">清空</el-button>
         </el-col>
         <el-col :span="8">
-            <el-button type="primary" icon="el-icon-search" @click="query" style="width:100%">查询</el-button>
+            <el-button type="primary" icon="el-icon-search" @click="search" style="width:100%">查询</el-button>
         </el-col>
         <el-col v-for="(item,key) in param" :key="item.key" :span="24" style="margin-top:5px">
             <comSearch :pk="key" :value="value[key]" :param="item" @query="query" @change="change"></comSearch>
@@ -49,14 +49,36 @@ export default {
         }
     },
     computed: {},
-    mounted: function() {},
+    mounted: function() {
+        this.$nextTick(function() {
+            this.queryParam = this.value;
+            console.log("MoreSearch nextTick->", this.param);
+            this.query();
+        });
+    },
     methods: {
-        query(p) {
-            this.queryParam = Object.assign(this.queryParam, p);
+        search() {
+            console.log("MoreSearch search->", this.queryParam);
             this.$emit("query", this.queryParam);
         },
+        query(p) {
+            if (p) {
+                Object.assign(this.queryParam, p);
+                console.log("MoreSearch query->", this.queryParam);
+            }
+            this.search();
+        },
         change(p) {
-            this.queryParam = Object.assign(this.queryParam, p);
+            if (p) {
+                Object.assign(this.queryParam, p);
+                console.log("MoreSearch change->", this.queryParam);
+            }
+        },
+        clear() {
+            for (let k in this.queryParam) {
+                this.queryParam[k] = "";
+            }
+            this.search();
         }
     }
 };

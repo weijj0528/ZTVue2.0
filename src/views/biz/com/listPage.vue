@@ -213,6 +213,8 @@ export default {
     },
     mounted: function() {
         this.$nextTick(function() {
+            this.param = this.queryValue;
+            console.log("ListPage nextTick->", this.param);
             this.query();
         });
     },
@@ -230,11 +232,14 @@ export default {
                 pageNum: param.pageNum ? param.pageNum : 1,
                 pageSize: param.pageSize ? param.pageSize : 15
             };
-            this.param = Object.assign(this.param, page);
             this.query(page);
         },
         query(p) {
-            let param = Object.assign(this.param, p);
+            let param = this.param;
+            if (p) {
+                console.log("ListPage query->", p);
+                Object.assign(param, p);
+            }
             this.param = param;
             this.$emit("query", param);
         },

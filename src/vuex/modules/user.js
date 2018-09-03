@@ -7,7 +7,7 @@ const state = {
     },
     userResult: [],
     userQueryParam: {
-        page: 1,
+        pageNum: 1,
         pageSize: 15,
         total: 0,
     },
@@ -81,6 +81,7 @@ const actions = {
             method: 'queryUserList',
             param: param
         };
+        body.param.page = body.param.pageNum;
         let url = http.urlCommon + http.apiUrl.most;
         return new Promise((resolve, reject) => {
             http.commonPost(url, body).then((res) => {
@@ -102,7 +103,8 @@ const mutations = {
     setUserResult(state, res) {
         state.userResult = res.result.list;
         state.userQueryParam.total = res.result.total;
-        state.userQueryParam.page = res.result.page;
+        state.userQueryParam.page = res.result.pageNum;
+        state.userQueryParam.pageNum = res.result.pageNum;
         state.userQueryParam.pageSize = res.result.pageSize;
     },
     setUserQueryParam(state, res) {
