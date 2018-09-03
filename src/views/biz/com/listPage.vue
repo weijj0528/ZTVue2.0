@@ -1,9 +1,9 @@
 <!-- Created by Weiun on 2017/1/17.-->
 <!-- 通用列表页面组件 -->
 <template>
-    <centerLayout :leftOnOff="moreSearchShow" :functionShow="funcList.length > 0" @height-change="heightChange">
-        <moreSearch slot="left" :param="moreSerachParam" @query="query"></moreSearch>
-        <topSearch slot="search" :param="comSerachParam" @query="query" @more-search="moreSearchOnoff"></topSearch>
+    <centerLayout :loading="loading" :leftOnOff="moreSearchShow" :functionShow="funcList.length > 0" @height-change="heightChange">
+        <moreSearch slot="left" :param="moreSerachParam" :value="moreSerachValue" @query="query"></moreSearch>
+        <topSearch slot="search" :param="comSerachParam" :value="comSerachValue" @query="query" @more-search="moreSearchOnoff"></topSearch>
         <el-row slot="function">
             <el-button v-for="(item,index) in funcList" :key="item.title" :type="item.type" @click="funcClick(index)">{{item.title}}</el-button>
         </el-row>
@@ -21,6 +21,10 @@ import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
     components: { centerLayout, comPage, topSearch, moreSearch },
     props: {
+        loading: {
+            type: Boolean,
+            default: false
+        },
         // 查询参数
         queryParam: {
             type: Object,
@@ -37,6 +41,19 @@ export default {
                         title: "更多查询",
                         placeholder: "关键字"
                     },
+                    pageNum: 1,
+                    pageSize: 15,
+                    total: 0
+                };
+            }
+        },
+        // 查询初始值
+        queryValue: {
+            type: Object,
+            default: () => {
+                return {
+                    name: "",
+                    id: "",
                     pageNum: 1,
                     pageSize: 15,
                     total: 0
@@ -155,6 +172,16 @@ export default {
             }
             return param;
         },
+        comSerachValue() {
+            let param = {};
+            for (let k in this.queryParam) {
+                let v = this.queryParam[k];
+                if (v instanceof Object && !v.more) {
+                    param[k] = this.queryValue[k];
+                }
+            }
+            return param;
+        },
         moreSerachParam() {
             let param = {};
             for (let k in this.queryParam) {
@@ -165,11 +192,21 @@ export default {
             }
             return param;
         },
+        moreSerachValue() {
+            let param = {};
+            for (let k in this.queryParam) {
+                let v = this.queryParam[k];
+                if (v instanceof Object && v.more) {
+                    param[k] = this.queryValue[k];
+                }
+            }
+            return param;
+        },
         pageArgs: function() {
             let p = {
-                pageNum: this.queryParam.pageNum,
-                pageSize: this.queryParam.pageSize,
-                total: this.queryParam.total
+                pageNum: this.queryValue.pageNum,
+                pageSize: this.queryValue.pageSize,
+                total: this.queryValue.total
             };
             return p;
         }

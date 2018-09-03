@@ -13,7 +13,7 @@
             <el-button type="primary" icon="el-icon-search" @click="query" style="width:100%">查询</el-button>
         </el-col>
         <el-col v-for="(item,key) in param" :key="item.key" :span="24" style="margin-top:5px">
-            <comSearch :pk="key" :param="item" @query="query" @change="change"></comSearch>
+            <comSearch :pk="key" :value="value[key]" :param="item" @query="query" @change="change"></comSearch>
         </el-col>
     </el-row>
 </template>
@@ -38,6 +38,14 @@ export default {
                     }
                 };
             }
+        },
+        value: {
+            type: Object,
+            default: () => {
+                return {
+                    name: ""
+                };
+            }
         }
     },
     computed: {},
@@ -45,7 +53,7 @@ export default {
     methods: {
         query(p) {
             this.queryParam = Object.assign(this.queryParam, p);
-             this.$emit("query", this.queryParam);
+            this.$emit("query", this.queryParam);
         },
         change(p) {
             this.queryParam = Object.assign(this.queryParam, p);

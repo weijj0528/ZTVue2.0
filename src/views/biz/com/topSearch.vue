@@ -5,7 +5,7 @@
     <el-row :gutter='8' type="flex" justify="start">
         <el-button type="text" icon='el-icon-arrow-right' @click="moreSearchOnOff"></el-button>
         <el-col :span="4" v-for="(item,key) in param" :key="item.key">
-            <comSearch :pk="key" :param="item" @query="query" @change="change"></comSearch>
+            <comSearch :pk="key" :value="value[key]" :param="item" @query="query" @change="change"></comSearch>
         </el-col>
         <el-col :span="4">
             <el-button type="primary" icon="el-icon-search" @click="query" round></el-button>
@@ -33,6 +33,14 @@ export default {
                         title: "名称",
                         placeholder: "这是常用查询演示数据"
                     }
+                };
+            }
+        },
+        value: {
+            type: Object,
+            default: () => {
+                return {
+                    name: ""
                 };
             }
         }

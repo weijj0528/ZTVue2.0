@@ -4,7 +4,7 @@
 <template>
     <div>
         <!-- text -->
-        <el-input v-model="value" v-if="param.type == 'text'" type="text" :placeholder="param.placeholder" @change="change" @keyup.enter.native="query">
+        <el-input v-model="v" v-if="param.type == 'text'" type="text" :placeholder="param.placeholder" @change="change" @keyup.enter.native="query">
             <template slot="prepend" v-if="param.title">{{param.title}}</template>
         </el-input>
     </div>
@@ -13,13 +13,17 @@
 export default {
     data() {
         return {
-            value: ""
+            v: ""
         };
     },
     props: {
         pk: {
             type: String,
             default: "key"
+        },
+        value: {
+            type: String | Number,
+            default: ""
         },
         param: {
             type: Object,
@@ -33,7 +37,11 @@ export default {
         }
     },
     computed: {},
-    mounted: function() {},
+    mounted: function() {
+        this.$nextTick(function() {
+            this.v = this.value;
+        });
+    },
     methods: {
         query: function() {
             let p = {};
@@ -42,8 +50,13 @@ export default {
         },
         change: function() {
             let p = {};
-            p[this.pk] = this.value;
+            p[this.pk] = this.v;
             this.$emit("change", p);
+        }
+    },
+    watch: {
+        value(v) {
+            this.v = v;
         }
     }
 };
